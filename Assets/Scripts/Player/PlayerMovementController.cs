@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private KeyCode _playerJumpSecondKey;
 
     [SerializeField] private float _movementSpeed;
+    [SerializeField] private float _airMovementSpeed;
     [SerializeField] private float _jumpForce;
 
     [SerializeField] private LayerMask _platformLayerMask;
@@ -23,20 +25,33 @@ public class PlayerMovementController : MonoBehaviour
 
     void Update()
     {
-        if (CanPlayerMoveLeft())
-        {
-            MoveLeft();
-        }
+        HandleMovement();
+    }
 
-        if (CanPlayerMoveRight())
-        {
-            MoveRight();
-        }
-
+    private void HandleMovement()
+    {
         if (CanPlayerJump())
         {
             Jump();
         }
+        
+        if (CanPlayerMoveLeft())
+        {
+            MoveLeft();
+        } else if (CanPlayerMoveRight())
+        {
+            MoveRight();
+        }
+        else
+        {
+            if (IsGrounded())
+            {
+                Stay();
+            }
+        }
+        
+
+
     }
 
     private bool CanPlayerMoveRight()
@@ -77,12 +92,35 @@ public class PlayerMovementController : MonoBehaviour
 
     private void MoveRight()
     {
-        transform.Translate(Vector3.left * Time.deltaTime * _movementSpeed);
+        if (IsGrounded())
+        {
+            _rigidbody2D.velocity = new Vector2(-_movementSpeed, _rigidbody2D.velocity.y);
+        }
+        else
+        {
+            _rigidbody2D.velocity += new Vector2(-_movementSpeed * _airMovementSpeed * Time.deltaTime, 0);
+            _rigidbody2D.velocity = new Vector2(Mathf.Clamp(_rigidbody2D.velocity.x, -_movementSpeed, +_movementSpeed),
+                _rigidbody2D.velocity.y);
+        }
     }
 
     private void MoveLeft()
     {
-        transform.Translate(Vector3.right * Time.deltaTime * _movementSpeed);
+        if (IsGrounded())
+        {
+            _rigidbody2D.velocity = new Vector2(+_movementSpeed, _rigidbody2D.velocity.y);
+        }
+        else
+        {
+            _rigidbody2D.velocity += new Vector2(+_movementSpeed * _airMovementSpeed * Time.deltaTime, 0);
+            _rigidbody2D.velocity = new Vector2(Mathf.Clamp(_rigidbody2D.velocity.x, -_movementSpeed, +_movementSpeed),
+                _rigidbody2D.velocity.y);
+        }
+    }
+
+    private void Stay()
+    {
+        _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
     }
 
     private void Jump()
