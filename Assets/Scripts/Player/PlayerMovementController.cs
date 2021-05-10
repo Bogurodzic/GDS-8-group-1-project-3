@@ -17,6 +17,9 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private LayerMask _platformLayerMask;
     [SerializeField] private Rigidbody2D _rigidbody2D;
     [SerializeField] private BoxCollider2D _boxCollider2D;
+    [SerializeField] private Animator _animator;
+
+    private bool _doubleJumpActivated = false;
 
     void Start()
     {
@@ -30,6 +33,11 @@ public class PlayerMovementController : MonoBehaviour
 
     private void HandleMovement()
     {
+        if (IsGrounded())
+        {
+            ReloadDoubleJump();
+        }
+        
         if (CanPlayerJump())
         {
             Jump();
@@ -80,7 +88,7 @@ public class PlayerMovementController : MonoBehaviour
     
     private bool CanPlayerJump()
     {
-        if (IsGrounded() && (Input.GetKeyDown(_playerJumpFirstKey) || Input.GetKeyDown(_playerJumpSecondKey)))
+        if ((IsGrounded() || !_doubleJumpActivated) && (Input.GetKeyDown(_playerJumpFirstKey) || Input.GetKeyDown(_playerJumpSecondKey)))
         {
             return true;
         }
@@ -88,6 +96,15 @@ public class PlayerMovementController : MonoBehaviour
         {
             return false;
         }  
+    }
+
+    private void ReloadDoubleJump()
+    {
+        if (IsGrounded())
+        {
+            _doubleJumpActivated = false;
+            _animator.SetBool("isBat", false);
+        }
     }
 
     private void MoveRight()
@@ -126,6 +143,11 @@ public class PlayerMovementController : MonoBehaviour
     private void Jump()
     {
         Debug.Log("Jump");
+        if (!IsGrounded())
+        {
+            _doubleJumpActivated = true;
+            _animator.SetBool("isBat", true);
+        }
         _rigidbody2D.velocity = Vector2.up * _jumpForce;
     }
 
