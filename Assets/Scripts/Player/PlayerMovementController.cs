@@ -20,13 +20,32 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private LayerMask _platformLayerMask;
     [SerializeField] private Rigidbody2D _rigidbody2D;
     [SerializeField] private BoxCollider2D _boxCollider2D;
+    [SerializeField] private BoxCollider2D _batBoxCollider2D;
     [SerializeField] private Animator _animator;
+    [SerializeField] private SpriteRenderer _spriteRenderer;
 
     private bool _doubleJumpActivated = false;
 
+    private Vector2 _batSize;
+    private Vector2 _batOffset;
+
+    private Vector2 _vampireSize;
+    private Vector2 _vampireOffset;
+
     void Start()
     {
-        
+        LoadColliderSize();
+    }
+
+    private void LoadColliderSize()
+    {
+        _batSize = _batBoxCollider2D.size;
+        _batOffset = _batBoxCollider2D.offset;
+
+        _vampireSize = _boxCollider2D.size;
+        _vampireOffset = _boxCollider2D.offset;
+
+        _batBoxCollider2D.enabled = false;
     }
 
     void Update()
@@ -182,6 +201,7 @@ public class PlayerMovementController : MonoBehaviour
         _rigidbody2D.mass = 40;
         _rigidbody2D.gravityScale = 1f;
         _animator.SetBool("isBat", false);
+        ReloadBoxCollider();
     }
 
     private void ActivateBatMode()
@@ -190,6 +210,7 @@ public class PlayerMovementController : MonoBehaviour
         _rigidbody2D.mass = 1;
         _rigidbody2D.gravityScale = 1f / _gravityMultiplier;
         _animator.SetBool("isBat", true);
+        ReloadBoxCollider();
     }
 
     private bool IsGrounded()
@@ -198,5 +219,19 @@ public class PlayerMovementController : MonoBehaviour
             Vector2.down, .1f, _platformLayerMask);
         Debug.Log(raycastHit2D.collider);
         return raycastHit2D.collider != null;
+    }
+
+    private void ReloadBoxCollider()
+    {
+        if (_doubleJumpActivated)
+        {
+            _boxCollider2D.size = _batSize;
+            _boxCollider2D.offset = _batOffset;
+        }
+        else
+        {
+            _boxCollider2D.size = _vampireSize;
+            _boxCollider2D.offset = _vampireOffset;            
+        }
     }
 }
