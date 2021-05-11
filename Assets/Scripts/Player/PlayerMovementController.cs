@@ -55,10 +55,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private void HandleMovement()
     {
-        if (IsGrounded())
-        {
-            ReloadDoubleJump();
-        }
+
         
         if (CanPlayerJump())
         {
@@ -80,7 +77,10 @@ public class PlayerMovementController : MonoBehaviour
             }
         }
         
-
+        if (IsGrounded())
+        {
+            ReloadDoubleJump();
+        }
 
     }
 
@@ -122,7 +122,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private void ReloadDoubleJump()
     {
-        if (IsGrounded() && _doubleJumpActivated)
+        if (IsGrounded())
         {
             DeactivateBatMode();
         }
@@ -177,8 +177,8 @@ public class PlayerMovementController : MonoBehaviour
     }
 
     private void Jump()
-    {
-        Debug.Log("Jump");
+    {        
+
         if (!IsGrounded())
         {
             DoubleJump();
@@ -216,8 +216,8 @@ public class PlayerMovementController : MonoBehaviour
     private bool IsGrounded()
     {
         RaycastHit2D raycastHit2D = Physics2D.BoxCast(_boxCollider2D.bounds.center, _boxCollider2D.bounds.size, 0f,
-            Vector2.down, .1f, _platformLayerMask);
-        Debug.Log(raycastHit2D.collider);
+            Vector2.down, .01f, _platformLayerMask);
+        //Debug.Log(raycastHit2D.collider);
         return raycastHit2D.collider != null;
     }
 
