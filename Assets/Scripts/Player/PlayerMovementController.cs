@@ -12,7 +12,10 @@ public class PlayerMovementController : MonoBehaviour
 
     [SerializeField] private float _movementSpeed;
     [SerializeField] private float _airMovementSpeed;
+    [SerializeField] private float _batMovementSpeed;
     [SerializeField] private float _jumpForce;
+    [SerializeField] private float _doubleJumpForce;
+    [SerializeField] private float _gravityMultiplier;
 
     [SerializeField] private LayerMask _platformLayerMask;
     [SerializeField] private Rigidbody2D _rigidbody2D;
@@ -100,39 +103,53 @@ public class PlayerMovementController : MonoBehaviour
 
     private void ReloadDoubleJump()
     {
-        if (IsGrounded())
+        if (IsGrounded() && _doubleJumpActivated)
         {
-            _doubleJumpActivated = false;
-            _animator.SetBool("isBat", false);
+            DeactivateBatMode();
         }
     }
 
     private void MoveRight()
     {
-        if (IsGrounded())
+        if (_doubleJumpActivated)
         {
-            _rigidbody2D.velocity = new Vector2(-_movementSpeed, _rigidbody2D.velocity.y);
+            _rigidbody2D.velocity = new Vector2(-_batMovementSpeed, _rigidbody2D.velocity.y);
         }
         else
         {
-            _rigidbody2D.velocity += new Vector2(-_movementSpeed * _airMovementSpeed * Time.deltaTime, 0);
-            _rigidbody2D.velocity = new Vector2(Mathf.Clamp(_rigidbody2D.velocity.x, -_movementSpeed, +_movementSpeed),
-                _rigidbody2D.velocity.y);
+            if (IsGrounded())
+            {
+                _rigidbody2D.velocity = new Vector2(-_movementSpeed, _rigidbody2D.velocity.y);
+            }
+            else
+            {
+                _rigidbody2D.velocity += new Vector2(-_movementSpeed * _airMovementSpeed * Time.deltaTime, 0);
+                _rigidbody2D.velocity = new Vector2(Mathf.Clamp(_rigidbody2D.velocity.x, -_movementSpeed, +_movementSpeed),
+                    _rigidbody2D.velocity.y);
+            }         
         }
     }
 
     private void MoveLeft()
     {
-        if (IsGrounded())
+        if (_doubleJumpActivated)
         {
-            _rigidbody2D.velocity = new Vector2(+_movementSpeed, _rigidbody2D.velocity.y);
+            _rigidbody2D.velocity = new Vector2(+_batMovementSpeed, _rigidbody2D.velocity.y);
         }
         else
         {
-            _rigidbody2D.velocity += new Vector2(+_movementSpeed * _airMovementSpeed * Time.deltaTime, 0);
-            _rigidbody2D.velocity = new Vector2(Mathf.Clamp(_rigidbody2D.velocity.x, -_movementSpeed, +_movementSpeed),
-                _rigidbody2D.velocity.y);
+            if (IsGrounded())
+            {
+                _rigidbody2D.velocity = new Vector2(+_movementSpeed, _rigidbody2D.velocity.y);
+            }
+            else
+            {
+                _rigidbody2D.velocity += new Vector2(+_movementSpeed * _airMovementSpeed * Time.deltaTime, 0);
+                _rigidbody2D.velocity = new Vector2(Mathf.Clamp(_rigidbody2D.velocity.x, -_movementSpeed, +_movementSpeed),
+                    _rigidbody2D.velocity.y);
+            }
         }
+
     }
 
     private void Stay()
@@ -145,10 +162,34 @@ public class PlayerMovementController : MonoBehaviour
         Debug.Log("Jump");
         if (!IsGrounded())
         {
-            _doubleJumpActivated = true;
-            _animator.SetBool("isBat", true);
+            DoubleJump();
         }
-        _rigidbody2D.velocity = Vector2.up * _jumpForce;
+        else
+        {
+            _rigidbody2D.velocity = Vector2.up * _jumpForce;
+        }
+    }
+
+    private void DoubleJump()
+    {
+        ActivateBatMode();
+        _rigidbody2D.velocity = Vector2.up * _doubleJumpForce;
+    }
+
+    private void DeactivateBatMode()
+    {
+        _doubleJumpActivated = false;
+        _rigidbody2D.mass = 40;
+        _rigidbody2D.gravityScale = 1f;
+        _animator.SetBool("isBat", false);
+    }
+
+    private void ActivateBatMode()
+    {
+        _doubleJumpActivated = true;
+        _rigidbody2D.mass = 1;
+        _rigidbody2D.gravityScale = 1f / _gravityMultiplier;
+        _animator.SetBool("isBat", true);
     }
 
     private bool IsGrounded()
