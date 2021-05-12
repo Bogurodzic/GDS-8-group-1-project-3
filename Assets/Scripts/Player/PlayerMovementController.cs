@@ -234,4 +234,13 @@ public class PlayerMovementController : MonoBehaviour
             _boxCollider2D.offset = _vampireOffset;            
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Sun"))
+        {
+            DeactivateBatMode();
+            ReloadBoxCollider();
+        }
+    }
 }
