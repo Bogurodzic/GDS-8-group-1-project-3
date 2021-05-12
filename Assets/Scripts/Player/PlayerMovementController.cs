@@ -241,6 +241,7 @@ public class PlayerMovementController : MonoBehaviour
         {
             DeactivateBatMode();
             ReloadBoxCollider();
+            Stay();
         }
     }
 }
