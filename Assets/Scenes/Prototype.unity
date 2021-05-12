@@ -960,10 +960,10 @@ MonoBehaviour:
   _playerJumpSecondKey: 32
   _movementSpeed: 2
   _airMovementSpeed: 2
-  _batMovementSpeed: 2
+  _batMovementSpeed: 1.5
   _jumpForce: 4
   _doubleJumpForce: 4
-  _gravityMultiplier: 1.5
+  _gravityMultiplier: 2
   _platformLayerMask:
     serializedVersion: 2
     m_Bits: 256
