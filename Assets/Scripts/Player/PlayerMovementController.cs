@@ -23,6 +23,7 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private BoxCollider2D _batBoxCollider2D;
     [SerializeField] private Animator _animator;
     [SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] private LayerMask _boxMask;
 
     private bool _doubleJumpActivated = false;
 
@@ -31,6 +32,10 @@ public class PlayerMovementController : MonoBehaviour
 
     private Vector2 _vampireSize;
     private Vector2 _vampireOffset;
+
+    private bool _facingLeft = false;
+
+    private GameObject box;
 
     void Start()
     {
@@ -51,6 +56,25 @@ public class PlayerMovementController : MonoBehaviour
     void Update()
     {
         HandleMovement();
+
+        Physics2D.queriesStartInColliders = true;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, _facingLeft ? Vector2.left : Vector2.right, 0.35f, _boxMask);
+
+        if (hit.collider != null && hit.collider.gameObject.CompareTag("Box") && Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            box = hit.collider.gameObject;
+            box.GetComponent<FixedJoint2D>().enabled = true;
+            box.GetComponent<FixedJoint2D>().connectedBody = this.GetComponent<Rigidbody2D>();
+        } else if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            box.GetComponent<FixedJoint2D>().enabled = false;
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(transform.position,  new Vector3(transform.position.x + (_facingLeft ? -0.35f : 0.35f), transform.position.y, transform.position.z));
     }
 
     private void HandleMovement()
@@ -244,4 +268,7 @@ public class PlayerMovementController : MonoBehaviour
             Stay();
         }
     }
+
+
+
 }
