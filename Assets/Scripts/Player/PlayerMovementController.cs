@@ -158,7 +158,8 @@ public class PlayerMovementController : MonoBehaviour
     {
         if (_doubleJumpActivated)
         {
-            _rigidbody2D.velocity = new Vector2(-_batMovementSpeed, _rigidbody2D.velocity.y);
+                _rigidbody2D.velocity = new Vector2(-_batMovementSpeed, _rigidbody2D.velocity.y);
+                //transform.Translate(new Vector3(-_movementSpeed, 0, 0));
         }
         else if (!_underSoon)
         {
@@ -180,6 +181,7 @@ public class PlayerMovementController : MonoBehaviour
         if (_doubleJumpActivated)
         {
             _rigidbody2D.velocity = new Vector2(+_batMovementSpeed, _rigidbody2D.velocity.y);
+            //transform.Translate(new Vector3(_movementSpeed, 0, 0));
         }
         else if (!_underSoon)
         {
