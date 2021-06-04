@@ -34,6 +34,7 @@ public class PlayerMovementController : MonoBehaviour
     private Vector2 _vampireOffset;
 
     private bool _facingLeft = false;
+    private bool _underSoon = false;
 
     private GameObject box;
 
@@ -104,6 +105,7 @@ public class PlayerMovementController : MonoBehaviour
         if (IsGrounded())
         {
             ReloadDoubleJump();
+            _underSoon = false;
         }
 
     }
@@ -158,7 +160,7 @@ public class PlayerMovementController : MonoBehaviour
         {
             _rigidbody2D.velocity = new Vector2(-_batMovementSpeed, _rigidbody2D.velocity.y);
         }
-        else
+        else if (!_underSoon)
         {
             if (IsGrounded())
             {
@@ -179,7 +181,7 @@ public class PlayerMovementController : MonoBehaviour
         {
             _rigidbody2D.velocity = new Vector2(+_batMovementSpeed, _rigidbody2D.velocity.y);
         }
-        else
+        else if (!_underSoon)
         {
             if (IsGrounded())
             {
@@ -266,6 +268,7 @@ public class PlayerMovementController : MonoBehaviour
             DeactivateBatMode();
             ReloadBoxCollider();
             Stay();
+            _underSoon = true;
         }
 
         if (other.CompareTag("Coin"))
@@ -273,7 +276,5 @@ public class PlayerMovementController : MonoBehaviour
             Destroy(other.gameObject);
         }
     }
-
-
-
+    
 }
