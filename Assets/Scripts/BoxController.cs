@@ -5,13 +5,12 @@ using UnityEngine;
 
 public class BoxController : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] private BoxCollider2D _boxCollider2D;
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -21,8 +20,9 @@ public class BoxController : MonoBehaviour
     {
         if (other.CompareTag("Sun"))
         {
+            float endOfSunPosition = _boxCollider2D.bounds.min.y;
             Debug.Log("Sun enter");
-            other.gameObject.GetComponent<SunController>().SetNewPosition(transform.position.y);
+            other.gameObject.GetComponent<SunController>().SetNewPosition(endOfSunPosition);
         }
     }
 

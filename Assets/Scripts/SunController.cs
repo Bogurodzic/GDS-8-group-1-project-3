@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class SunController : MonoBehaviour
 {
-
+    [SerializeField] private BoxCollider2D _boxCollider2D;
+            
     private float _initialYPosition;
     
     // Start is called before the first frame update
@@ -31,9 +32,14 @@ public class SunController : MonoBehaviour
     public void SetNewPosition(float yPosition)
     {
         float newY = gameObject.GetComponent<BoxCollider2D>().bounds.max.y;
-        transform.position = new Vector3(transform.position.x, 18.33f, transform.position.z);
+        Debug.Log(transform.position.y);
+        Debug.Log(newY);
+        Debug.Log(yPosition);
+
+        float finalY = (newY - transform.position.y) + (yPosition - transform.position.y) + transform.position.y;
         
-        Debug.Log(transform.position);
+        transform.position = new Vector3(transform.position.x, finalY, transform.position.z);
+        
     }
 
     public void ResetPosition()
