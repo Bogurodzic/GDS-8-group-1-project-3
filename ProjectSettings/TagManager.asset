@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Sun
   - Box
+  - Coin
   layers:
   - Default
   - TransparentFX

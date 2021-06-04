@@ -267,6 +267,11 @@ public class PlayerMovementController : MonoBehaviour
             ReloadBoxCollider();
             Stay();
         }
+
+        if (other.CompareTag("Coin"))
+        {
+            Destroy(other.gameObject);
+        }
     }
 
 
