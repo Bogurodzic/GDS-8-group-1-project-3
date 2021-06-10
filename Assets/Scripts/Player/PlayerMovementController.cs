@@ -66,7 +66,7 @@ public class PlayerMovementController : MonoBehaviour
             box = hit.collider.gameObject;
             box.GetComponent<FixedJoint2D>().enabled = true;
             box.GetComponent<FixedJoint2D>().connectedBody = this.GetComponent<Rigidbody2D>();
-        } else if (Input.GetKeyUp(KeyCode.LeftShift))
+        } else if (hit.collider != null && Input.GetKeyUp(KeyCode.LeftShift))
         {
             box.GetComponent<FixedJoint2D>().enabled = false;
         }
