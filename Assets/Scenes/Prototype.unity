@@ -609,7 +609,7 @@ MonoBehaviour:
   _movementSpeed: 4.72
   _airMovementSpeed: 2.2
   _batMovementSpeed: 2.5
-  _jumpForce: 5.1
+  _jumpForce: 3
   _doubleJumpForce: 4
   _jumpTime: 0.35
   _gravityMultiplier: 2
@@ -3421,7 +3421,7 @@ PrefabInstance:
     - target: {fileID: 6974450364879314871, guid: 213804b8c5e64492cb2308602a0cf0cf,
         type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 213804b8c5e64492cb2308602a0cf0cf, type: 3}
