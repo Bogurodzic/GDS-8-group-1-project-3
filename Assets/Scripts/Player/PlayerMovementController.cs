@@ -59,6 +59,7 @@ public class PlayerMovementController : MonoBehaviour
 
     void Update()
     {
+        HandleMovement();
 
         Physics2D.queriesStartInColliders = true;
         RaycastHit2D hit = Physics2D.Raycast(transform.position, _facingLeft ? Vector2.left : Vector2.right, 0.35f, _boxMask);
@@ -75,11 +76,6 @@ public class PlayerMovementController : MonoBehaviour
         }
 
         //Debug.Log(_jumpTimeCounter);
-    }
-
-    private void FixedUpdate()
-    {
-        HandleMovement();
     }
 
     private void OnDrawGizmos()
@@ -116,6 +112,7 @@ public class PlayerMovementController : MonoBehaviour
         if (IsGrounded())
         {
             ReloadDoubleJump();
+            _jumpTimeCounter = _jumpTime;
             _underSoon = false;
         }
 
@@ -154,6 +151,24 @@ public class PlayerMovementController : MonoBehaviour
         else
         {
             return false;
+        }
+    }
+
+    private void Jump()
+    {
+
+        if (!IsGrounded() && (Input.GetKeyDown(_playerJumpFirstKey) || Input.GetKeyDown(_playerJumpSecondKey)))
+        {
+            DoubleJump();
+        }
+        else
+        {
+            //_rigidbody2D.velocity = Vector2.up * _jumpForce;
+            if (_jumpTimeCounter > 0)
+            {
+                _jumpTimeCounter -= Time.deltaTime;
+                _rigidbody2D.velocity = Vector2.up * _jumpForce;
+            }
         }
     }
 
@@ -215,25 +230,6 @@ public class PlayerMovementController : MonoBehaviour
     private void Stay()
     {
         _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
-        _jumpTimeCounter = _jumpTime;
-    }
-
-    private void Jump()
-    {
-
-        if (!IsGrounded() && (Input.GetKeyDown(_playerJumpFirstKey) || Input.GetKeyDown(_playerJumpSecondKey)))
-        {
-            DoubleJump();
-        }
-        else
-        {
-            //_rigidbody2D.velocity = Vector2.up * _jumpForce;
-            if (_jumpTimeCounter > 0)
-            {
-                _jumpTimeCounter -= Time.deltaTime;
-                _rigidbody2D.velocity = Vector2.up * _jumpForce;
-            }
-        }
     }
 
     private void DoubleJump()
