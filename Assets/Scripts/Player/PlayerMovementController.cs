@@ -163,7 +163,6 @@ public class PlayerMovementController : MonoBehaviour
         }
         else
         {
-            //_rigidbody2D.velocity = Vector2.up * _jumpForce;
             if (_jumpTimeCounter > 0)
             {
                 _jumpTimeCounter -= Time.deltaTime;
