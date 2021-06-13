@@ -15,6 +15,7 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private float _batMovementSpeed;
     [SerializeField] private float _jumpForce;
     [SerializeField] private float _doubleJumpForce;
+    [SerializeField] private float _jumpTime;
     [SerializeField] private float _gravityMultiplier;
 
     [SerializeField] private LayerMask _platformLayerMask;
@@ -26,6 +27,8 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private LayerMask _boxMask;
 
     private bool _doubleJumpActivated = false;
+
+    private float _jumpTimeCounter;
 
     private Vector2 _batSize;
     private Vector2 _batOffset;
@@ -66,31 +69,35 @@ public class PlayerMovementController : MonoBehaviour
             box = hit.collider.gameObject;
             box.GetComponent<FixedJoint2D>().enabled = true;
             box.GetComponent<FixedJoint2D>().connectedBody = this.GetComponent<Rigidbody2D>();
-        } else if (hit.collider != null && Input.GetKeyUp(KeyCode.LeftShift))
+        }
+        else if (hit.collider != null && Input.GetKeyUp(KeyCode.LeftShift))
         {
             box.GetComponent<FixedJoint2D>().enabled = false;
         }
+
+        //Debug.Log(_jumpTimeCounter);
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position,  new Vector3(transform.position.x + (_facingLeft ? -0.35f : 0.35f), transform.position.y, transform.position.z));
+        Gizmos.DrawLine(transform.position, new Vector3(transform.position.x + (_facingLeft ? -0.35f : 0.35f), transform.position.y, transform.position.z));
     }
 
     private void HandleMovement()
     {
 
-        
+
         if (CanPlayerJump())
         {
             Jump();
         }
-        
+
         if (CanPlayerMoveLeft())
         {
             MoveLeft();
-        } else if (CanPlayerMoveRight())
+        }
+        else if (CanPlayerMoveRight())
         {
             MoveRight();
         }
@@ -101,10 +108,11 @@ public class PlayerMovementController : MonoBehaviour
                 Stay();
             }
         }
-        
+
         if (IsGrounded())
         {
             ReloadDoubleJump();
+            _jumpTimeCounter = _jumpTime;
             _underSoon = false;
         }
 
@@ -131,19 +139,36 @@ public class PlayerMovementController : MonoBehaviour
         else
         {
             return false;
-        }  
+        }
     }
-    
+
     private bool CanPlayerJump()
     {
-        if ((IsGrounded() || !_doubleJumpActivated) && (Input.GetKeyDown(_playerJumpFirstKey) || Input.GetKeyDown(_playerJumpSecondKey)))
+        if ((IsGrounded() || !_doubleJumpActivated) && (Input.GetKey(_playerJumpFirstKey) || Input.GetKey(_playerJumpSecondKey)))
         {
             return true;
         }
         else
         {
             return false;
-        }  
+        }
+    }
+
+    private void Jump()
+    {
+
+        if (!IsGrounded() && (Input.GetKeyDown(_playerJumpFirstKey) || Input.GetKeyDown(_playerJumpSecondKey)))
+        {
+            DoubleJump();
+        }
+        else
+        {
+            if (_jumpTimeCounter > 0)
+            {
+                _jumpTimeCounter -= Time.deltaTime;
+                _rigidbody2D.velocity = Vector2.up * _jumpForce;
+            }
+        }
     }
 
     private void ReloadDoubleJump()
@@ -158,21 +183,22 @@ public class PlayerMovementController : MonoBehaviour
     {
         if (_doubleJumpActivated)
         {
-                _rigidbody2D.velocity = new Vector2(-_batMovementSpeed, _rigidbody2D.velocity.y);
-                //transform.Translate(new Vector3(-_movementSpeed, 0, 0));
+            _rigidbody2D.velocity = new Vector2(-_batMovementSpeed, _rigidbody2D.velocity.y);
+            //transform.Translate(new Vector3(-_movementSpeed, 0, 0));
         }
         else if (!_underSoon)
         {
             if (IsGrounded())
             {
                 _rigidbody2D.velocity = new Vector2(-_movementSpeed, _rigidbody2D.velocity.y);
+                transform.eulerAngles = new Vector3(0, 180, 0);
             }
             else
             {
                 _rigidbody2D.velocity += new Vector2(-_movementSpeed * _airMovementSpeed * Time.deltaTime, 0);
                 _rigidbody2D.velocity = new Vector2(Mathf.Clamp(_rigidbody2D.velocity.x, -_movementSpeed, +_movementSpeed),
                     _rigidbody2D.velocity.y);
-            }         
+            }
         }
     }
 
@@ -188,6 +214,7 @@ public class PlayerMovementController : MonoBehaviour
             if (IsGrounded())
             {
                 _rigidbody2D.velocity = new Vector2(+_movementSpeed, _rigidbody2D.velocity.y);
+                transform.eulerAngles = new Vector3(0, 0, 0);
             }
             else
             {
@@ -202,19 +229,6 @@ public class PlayerMovementController : MonoBehaviour
     private void Stay()
     {
         _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
-    }
-
-    private void Jump()
-    {        
-
-        if (!IsGrounded())
-        {
-            DoubleJump();
-        }
-        else
-        {
-            _rigidbody2D.velocity = Vector2.up * _jumpForce;
-        }
     }
 
     private void DoubleJump()
@@ -243,10 +257,12 @@ public class PlayerMovementController : MonoBehaviour
 
     private bool IsGrounded()
     {
-        RaycastHit2D raycastHit2D = Physics2D.BoxCast(_boxCollider2D.bounds.center, new Vector2(_boxCollider2D.bounds.size.x / 2, _boxCollider2D.bounds.size.y), 0f,
+        RaycastHit2D raycastHit2Dplatform = Physics2D.BoxCast(_boxCollider2D.bounds.center, new Vector2(_boxCollider2D.bounds.size.x / 2, _boxCollider2D.bounds.size.y), 0f,
             Vector2.down, .3f, _platformLayerMask);
+        RaycastHit2D raycastHit2Dbox = Physics2D.BoxCast(_boxCollider2D.bounds.center, new Vector2(_boxCollider2D.bounds.size.x / 2, _boxCollider2D.bounds.size.y), 0f,
+            Vector2.down, .3f, _boxMask);
         //Debug.Log(raycastHit2D.collider);
-        return raycastHit2D.collider != null;
+        return (raycastHit2Dplatform.collider != null || raycastHit2Dbox.collider != null);
     }
 
     private void ReloadBoxCollider()
@@ -259,7 +275,7 @@ public class PlayerMovementController : MonoBehaviour
         else
         {
             _boxCollider2D.size = _vampireSize;
-            _boxCollider2D.offset = _vampireOffset;            
+            _boxCollider2D.offset = _vampireOffset;
         }
     }
 
@@ -278,5 +294,5 @@ public class PlayerMovementController : MonoBehaviour
             Destroy(other.gameObject);
         }
     }
-    
+
 }
