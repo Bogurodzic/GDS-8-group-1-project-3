@@ -6,14 +6,16 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D _rigidbody2D;
+    [SerializeField] private int _maxHealth = 5;
 
     public float _movementSpeed;
 
+    private int _currentHealth;
     private bool _facingLeft = true;
     
     void Start()
     {
-        
+        _currentHealth = _maxHealth;
     }
 
     void Update()
@@ -26,6 +28,21 @@ public class EnemyController : MonoBehaviour
         {
             MoveRight();
         }
+    }
+
+    public void TakeDamage(int _damage)
+    {
+        _currentHealth -= _damage;
+
+        if (_currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        Destroy(gameObject);
     }
 
     public void MoveRight()
