@@ -11,6 +11,7 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private KeyCode _attackButton;
     [SerializeField] private float _attackRange = 0.5f;
     [SerializeField] private int _attackDamage = 5;
+    [SerializeField] private float _pushForce = 500f;
 
     // Update is called once per frame
     void Update()
@@ -30,6 +31,14 @@ public class PlayerCombat : MonoBehaviour
         foreach(Collider2D enemy in hitEnemies)
         {
             enemy.GetComponent<EnemyController>().TakeDamage(_attackDamage);
+            if (transform.eulerAngles == new Vector3(0, 180, 0))
+            {
+                enemy.GetComponent<Rigidbody2D>().AddForce(new Vector2(-_pushForce, 0f));
+            }
+            else
+            {
+                enemy.GetComponent<Rigidbody2D>().AddForce(new Vector2(_pushForce, 0f));
+            }
         }
     }
 
