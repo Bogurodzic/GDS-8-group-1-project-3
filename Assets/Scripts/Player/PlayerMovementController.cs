@@ -26,6 +26,8 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private LayerMask _boxMask;
 
+   
+    
     private bool _doubleJumpActivated = false;
 
     private float _jumpTimeCounter;
@@ -59,7 +61,9 @@ public class PlayerMovementController : MonoBehaviour
 
     void Update()
     {
+        
         HandleMovement();
+        
 
         Physics2D.queriesStartInColliders = true;
         RaycastHit2D hit = Physics2D.Raycast(transform.position, _facingLeft ? Vector2.left : Vector2.right, 0.35f, _boxMask);
@@ -86,8 +90,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private void HandleMovement()
     {
-
-
+      
         if (CanPlayerJump())
         {
             Jump();
@@ -120,12 +123,14 @@ public class PlayerMovementController : MonoBehaviour
 
     private bool CanPlayerMoveRight()
     {
+       
         if (Input.GetKey(_playerMoveLeft))
         {
             return true;
         }
         else
         {
+            _animator.SetFloat("Speed", 0f);
             return false;
         }
     }
@@ -138,6 +143,7 @@ public class PlayerMovementController : MonoBehaviour
         }
         else
         {
+            _animator.SetFloat("Speed", 0f);
             return false;
         }
     }
@@ -181,6 +187,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private void MoveRight()
     {
+        
         if (_doubleJumpActivated)
         {
             _rigidbody2D.velocity = new Vector2(-_batMovementSpeed, _rigidbody2D.velocity.y);
@@ -191,10 +198,12 @@ public class PlayerMovementController : MonoBehaviour
             if (IsGrounded())
             {
                 _rigidbody2D.velocity = new Vector2(-_movementSpeed, _rigidbody2D.velocity.y);
+                _animator.SetFloat("Speed", Mathf.Abs(_movementSpeed));
                 transform.eulerAngles = new Vector3(0, 180, 0);
             }
             else
             {
+                
                 _rigidbody2D.velocity += new Vector2(-_movementSpeed * _airMovementSpeed * Time.deltaTime, 0);
                 _rigidbody2D.velocity = new Vector2(Mathf.Clamp(_rigidbody2D.velocity.x, -_movementSpeed, +_movementSpeed),
                     _rigidbody2D.velocity.y);
@@ -204,6 +213,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private void MoveLeft()
     {
+        
         if (_doubleJumpActivated)
         {
             _rigidbody2D.velocity = new Vector2(+_batMovementSpeed, _rigidbody2D.velocity.y);
@@ -214,10 +224,12 @@ public class PlayerMovementController : MonoBehaviour
             if (IsGrounded())
             {
                 _rigidbody2D.velocity = new Vector2(+_movementSpeed, _rigidbody2D.velocity.y);
+                _animator.SetFloat("Speed", Mathf.Abs(_movementSpeed));
                 transform.eulerAngles = new Vector3(0, 0, 0);
             }
             else
             {
+                
                 _rigidbody2D.velocity += new Vector2(+_movementSpeed * _airMovementSpeed * Time.deltaTime, 0);
                 _rigidbody2D.velocity = new Vector2(Mathf.Clamp(_rigidbody2D.velocity.x, -_movementSpeed, +_movementSpeed),
                     _rigidbody2D.velocity.y);
@@ -229,6 +241,7 @@ public class PlayerMovementController : MonoBehaviour
     private void Stay()
     {
         _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
+
     }
 
     private void DoubleJump()

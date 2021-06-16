@@ -1,7 +1,28 @@
 fileFormatVersion: 2
 guid: 785469a5ce8950b44af7ecd5280f129b
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 2849398307404085236
+    second: Maeva Run-Sheet PLACEHOLDER_0
+  - first:
+      213: -2767531640493937446
+    second: Maeva Run-Sheet PLACEHOLDER_1
+  - first:
+      213: 2200974517084385599
+    second: Maeva Run-Sheet PLACEHOLDER_2
+  - first:
+      213: 6729260157131827942
+    second: Maeva Run-Sheet PLACEHOLDER_3
+  - first:
+      213: 1649050055821369982
+    second: Maeva Run-Sheet PLACEHOLDER_4
+  - first:
+      213: -40474578576834843
+    second: Maeva Run-Sheet PLACEHOLDER_5
+  - first:
+      213: 4889105256700007245
+    second: Maeva Run-Sheet PLACEHOLDER_6
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -40,7 +61,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -71,9 +92,168 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Maeva Run-Sheet PLACEHOLDER_0
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 0
+        width: 80
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f77b60f9a81b8720800000000000000
+      internalID: 2849398307404085236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maeva Run-Sheet PLACEHOLDER_1
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 0
+        width: 78
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: adc64bfc2a0c799d0800000000000000
+      internalID: -2767531640493937446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maeva Run-Sheet PLACEHOLDER_2
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 0
+        width: 78
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f31708a79ae6b8e10800000000000000
+      internalID: 2200974517084385599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maeva Run-Sheet PLACEHOLDER_3
+      rect:
+        serializedVersion: 2
+        x: 366
+        y: 0
+        width: 82
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ea2803b572236d50800000000000000
+      internalID: 6729260157131827942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maeva Run-Sheet PLACEHOLDER_4
+      rect:
+        serializedVersion: 2
+        x: 488
+        y: 0
+        width: 78
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e72221ae94a92e610800000000000000
+      internalID: 1649050055821369982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maeva Run-Sheet PLACEHOLDER_5
+      rect:
+        serializedVersion: 2
+        x: 606
+        y: 0
+        width: 74
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ee7e71d594307ff0800000000000000
+      internalID: -40474578576834843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maeva Run-Sheet PLACEHOLDER_6
+      rect:
+        serializedVersion: 2
+        x: 722
+        y: 0
+        width: 78
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d43591fc35799d340800000000000000
+      internalID: 4889105256700007245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
