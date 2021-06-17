@@ -152,13 +152,17 @@ public class PlayerMovementController : MonoBehaviour
     {
         if ((IsGrounded() || !_doubleJumpActivated) && (Input.GetKey(_playerJumpFirstKey) || Input.GetKey(_playerJumpSecondKey)))
         {
-            return true;
+           return true;
+            
         }
+        
         else
-        {
+        {            
             return false;
         }
     }
+
+   
 
     private void Jump()
     {
@@ -166,13 +170,17 @@ public class PlayerMovementController : MonoBehaviour
         if (!IsGrounded() && (Input.GetKeyDown(_playerJumpFirstKey) || Input.GetKeyDown(_playerJumpSecondKey)))
         {
             DoubleJump();
+            
         }
         else
         {
             if (_jumpTimeCounter > 0)
             {
+                _animator.SetTrigger("FirstJump");
                 _jumpTimeCounter -= Time.deltaTime;
                 _rigidbody2D.velocity = Vector2.up * _jumpForce;
+                
+
             }
         }
     }
@@ -248,6 +256,8 @@ public class PlayerMovementController : MonoBehaviour
     {
         ActivateBatMode();
         _rigidbody2D.velocity = Vector2.up * _doubleJumpForce;
+        _animator.SetBool("isBat", true);
+
     }
 
     private void DeactivateBatMode()
