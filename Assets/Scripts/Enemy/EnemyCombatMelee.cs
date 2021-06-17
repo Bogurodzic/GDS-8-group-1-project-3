@@ -9,10 +9,13 @@ public class EnemyCombatMelee : MonoBehaviour
         Patrolling,
         Combat
     }
+
     [Header("References")]
     [SerializeField] private Rigidbody2D _rigidbody2D;
     [SerializeField] private LayerMask _playerLayer;
     [SerializeField] private Transform _player;
+    [SerializeField] private Transform _damagePoint;
+    [SerializeField] private Animator _animator;
 
     [Header("Speed Parameters")]
     [SerializeField] private float _patrolSpeed = 1f;
@@ -20,7 +23,9 @@ public class EnemyCombatMelee : MonoBehaviour
 
     [Header("Combat Parameters")]
     [SerializeField] private float _sightRange = 2f;
-    [SerializeField] private float _attackRange = 1f;
+    [SerializeField] private float _attackDistance = 1f;
+    [SerializeField] private float _attackRange = 0.5f;
+    [SerializeField] private int _damage = 1;
 
     [Header("Patrol Constraints")]
     [SerializeField] private float _patrolLeftBound;
@@ -85,7 +90,12 @@ public class EnemyCombatMelee : MonoBehaviour
 
     void ChasePlayer()
     {
-        if (Vector2.Distance(transform.position, _player.position) <= _attackRange)
+        if (_player == null)
+        {
+            return;
+        }
+
+        if (Vector2.Distance(transform.position, _player.position) <= _attackDistance)
         {
             Attack();
         }
@@ -97,7 +107,19 @@ public class EnemyCombatMelee : MonoBehaviour
 
     void Attack()
     {
-        //attack logic
+        if (_animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        {
+            return;
+        }
+
+        _animator.SetTrigger("Attack");
+
+        Collider2D hitPlayer = Physics2D.OverlapCircle(_damagePoint.position, _attackRange, _playerLayer);
+
+        if (hitPlayer)
+        {
+            hitPlayer.GetComponent<ICharacter>().TakeDamage(_damage);
+        }
     }
 
     private void OnDrawGizmosSelected()
@@ -105,5 +127,6 @@ public class EnemyCombatMelee : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, _sightRange);
         Gizmos.DrawSphere(new Vector2(_patrolRightBound, transform.position.y), 0.5f);
         Gizmos.DrawSphere(new Vector2(_patrolLeftBound, transform.position.y), 0.5f);
+        Gizmos.DrawWireSphere(_damagePoint.position, _attackRange);
     }
 }

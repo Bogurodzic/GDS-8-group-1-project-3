@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour
+public class EnemyController : MonoBehaviour, ICharacter
 {
     [SerializeField] private Animator _animator;
     [SerializeField] private int _maxHealth = 5;
@@ -32,7 +32,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    void Die()
+    public void Die()
     {
         Destroy(gameObject);
     }

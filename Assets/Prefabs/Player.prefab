@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6484529932508659972}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: DamagePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6820323240819943735}
   - component: {fileID: 6820323240819943734}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: BatBoxCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 6820323240941389624}
   - component: {fileID: 6820323240941389630}
   - component: {fileID: 6820323240941389631}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -306,5 +306,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4096
   _attackButton: 306
-  _attackRange: 0.41
-  _attackDamage: 5
+  _attackRange: 0.5
+  _attackDamage: 2
+  _pushForce: 5

@@ -30,7 +30,7 @@ public class PlayerCombat : MonoBehaviour
 
         foreach(Collider2D enemy in hitEnemies)
         {
-            enemy.GetComponent<EnemyController>().TakeDamage(_attackDamage);
+            enemy.GetComponent<ICharacter>().TakeDamage(_attackDamage);
             if (transform.eulerAngles == new Vector3(0, 180, 0))
             {
                 enemy.GetComponent<Rigidbody2D>().AddForce(new Vector2(-_pushForce, 0f));
