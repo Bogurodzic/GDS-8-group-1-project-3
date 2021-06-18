@@ -26,6 +26,7 @@ public class EnemyCombatMelee : MonoBehaviour
     [SerializeField] private float _attackDistance = 1f;
     [SerializeField] private float _attackRange = 0.5f;
     [SerializeField] private int _damage = 1;
+    [SerializeField] private float _pushForce = 10f;
 
     [Header("Patrol Constraints")]
     [SerializeField] private float _patrolLeftBound;
@@ -118,7 +119,13 @@ public class EnemyCombatMelee : MonoBehaviour
         }
         else
         {
-            transform.position = Vector2.MoveTowards(transform.position, _player.position, _chaseSpeed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(_player.position.x, transform.position.y), _chaseSpeed * Time.deltaTime);
+        }
+
+        Collider2D spotRange = Physics2D.OverlapCircle(transform.position, _sightRange, _playerLayer);
+        if (!spotRange)
+        {
+            _state = State.Patrolling;
         }
     }
 
@@ -136,6 +143,16 @@ public class EnemyCombatMelee : MonoBehaviour
         if (hitPlayer)
         {
             hitPlayer.GetComponent<ICharacter>().TakeDamage(_damage);
+
+            // nie działa :( jeszcze nie wiem czemu
+            if (transform.eulerAngles == new Vector3(0, 180, 0))
+            {
+                hitPlayer.GetComponent<Rigidbody2D>().AddForce(new Vector2(-_pushForce, 0f));
+            }
+            else
+            {
+                hitPlayer.GetComponent<Rigidbody2D>().AddForce(new Vector2(_pushForce, 0f));
+            }
         }
     }
 

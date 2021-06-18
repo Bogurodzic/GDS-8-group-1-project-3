@@ -6,6 +6,7 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour, ICharacter
 {
     [SerializeField] private Animator _animator;
+    [SerializeField] private GameObject _healthPickup;
     [SerializeField] private int _maxHealth = 5;
 
     private int _currentHealth;
@@ -34,6 +35,7 @@ public class EnemyController : MonoBehaviour, ICharacter
 
     public void Die()
     {
+        Instantiate(_healthPickup, transform.position, transform.rotation);
         Destroy(gameObject);
     }
 

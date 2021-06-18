@@ -235,6 +235,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 696560f82eeb54defbddf4274a6b381e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animator: {fileID: 6820323240941389630}
+  maxHealth: 5
+  currentHealth: 0
 --- !u!114 &6820323240941389624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,17 +250,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9af1b7fe0df547499124b7c61558138, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerMoveLeft: 276
-  _playerMoveRight: 275
-  _playerJumpFirstKey: 273
-  _playerJumpSecondKey: 122
-  _movementSpeed: 4.72
-  _airMovementSpeed: 30
-  _batMovementSpeed: 2.5
-  _jumpForce: 3
-  _doubleJumpForce: 4
-  _jumpTime: 0.35
-  _gravityMultiplier: 2
   _platformLayerMask:
     serializedVersion: 2
     m_Bits: 256
@@ -269,6 +261,17 @@ MonoBehaviour:
   _boxMask:
     serializedVersion: 2
     m_Bits: 512
+  _playerMoveLeft: 276
+  _playerMoveRight: 275
+  _playerJumpFirstKey: 273
+  _playerJumpSecondKey: 122
+  _movementSpeed: 4.72
+  _airMovementSpeed: 30
+  _batMovementSpeed: 2.5
+  _jumpForce: 3
+  _doubleJumpForce: 4
+  _jumpTime: 0.35
+  _gravityMultiplier: 2
 --- !u!95 &6820323240941389630
 Animator:
   serializedVersion: 3
@@ -308,4 +311,4 @@ MonoBehaviour:
   _attackButton: 306
   _attackRange: 0.5
   _attackDamage: 2
-  _pushForce: 5
+  _pushForce: 0
