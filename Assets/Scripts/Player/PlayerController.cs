@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour, ICharacter
 {
+    [SerializeField] private Animator _animator;
     [SerializeField] private float _maxHealth = 5;
 
     private float _currentHealth;
@@ -13,13 +14,9 @@ public class PlayerController : MonoBehaviour, ICharacter
         _currentHealth = _maxHealth;
     }
 
-    void Update()
-    {
-        
-    }
-
     public void TakeDamage (int _damage)
     {
+        _animator.SetTrigger("isDamaged");
         _currentHealth -= _damage;
 
         if (_currentHealth <= 0)

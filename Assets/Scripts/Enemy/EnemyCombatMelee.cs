@@ -33,10 +33,12 @@ public class EnemyCombatMelee : MonoBehaviour
     [SerializeField] private bool _goTowardsLeft = true;
 
     private State _state;
+    private float _priorPosition;
 
     private void Awake()
     {
         _state = State.Patrolling;
+        _priorPosition = transform.position.x;
     }
 
     // Update is called once per frame
@@ -53,6 +55,8 @@ public class EnemyCombatMelee : MonoBehaviour
                 ChasePlayer();
                 break;
         }
+
+        FaceTowardsMovementDirection();
     }
 
     public void Patrol()
@@ -70,16 +74,29 @@ public class EnemyCombatMelee : MonoBehaviour
         if (_goTowardsLeft)
         {
             _rigidbody2D.velocity = new Vector2(-_patrolSpeed, _rigidbody2D.velocity.y);
-            transform.eulerAngles = new Vector3(0, 0, 0);
         }
         else if (!_goTowardsLeft)
         {
             _rigidbody2D.velocity = new Vector2(+_patrolSpeed, _rigidbody2D.velocity.y);
-            transform.eulerAngles = new Vector3(0, 180, 0);
         }
     }
 
-    void SpotPlayer()
+    private void FaceTowardsMovementDirection()
+    {
+        if (transform.position.x > _priorPosition)
+        {
+            transform.eulerAngles = new Vector3(0, 180, 0);
+        }
+
+        if (transform.position.x < _priorPosition)
+        {
+            transform.eulerAngles = new Vector3(0, 0, 0);
+        }
+
+        _priorPosition = transform.position.x;
+    }
+
+    private void SpotPlayer()
     {
         Collider2D spotRange = Physics2D.OverlapCircle(transform.position, _sightRange, _playerLayer);
         if (spotRange)
@@ -88,7 +105,7 @@ public class EnemyCombatMelee : MonoBehaviour
         }
     }
 
-    void ChasePlayer()
+    private void ChasePlayer()
     {
         if (_player == null)
         {
@@ -105,7 +122,7 @@ public class EnemyCombatMelee : MonoBehaviour
         }
     }
 
-    void Attack()
+    private void Attack()
     {
         if (_animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
         {

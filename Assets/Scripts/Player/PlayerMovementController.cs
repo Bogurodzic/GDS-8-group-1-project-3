@@ -5,19 +5,7 @@ using UnityEngine;
 
 public class PlayerMovementController : MonoBehaviour
 {
-    [SerializeField] private KeyCode _playerMoveLeft;
-    [SerializeField] private KeyCode _playerMoveRight;
-    [SerializeField] private KeyCode _playerJumpFirstKey;
-    [SerializeField] private KeyCode _playerJumpSecondKey;
-
-    [SerializeField] private float _movementSpeed;
-    [SerializeField] private float _airMovementSpeed;
-    [SerializeField] private float _batMovementSpeed;
-    [SerializeField] private float _jumpForce;
-    [SerializeField] private float _doubleJumpForce;
-    [SerializeField] private float _jumpTime;
-    [SerializeField] private float _gravityMultiplier;
-
+    [Header("References")]
     [SerializeField] private LayerMask _platformLayerMask;
     [SerializeField] private Rigidbody2D _rigidbody2D;
     [SerializeField] private BoxCollider2D _boxCollider2D;
@@ -26,7 +14,20 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private LayerMask _boxMask;
 
-   
+    [Header("Controls")]
+    [SerializeField] private KeyCode _playerMoveLeft;
+    [SerializeField] private KeyCode _playerMoveRight;
+    [SerializeField] private KeyCode _playerJumpFirstKey;
+    [SerializeField] private KeyCode _playerJumpSecondKey;
+
+    [Header("Movement Parameters")]
+    [SerializeField] private float _movementSpeed;
+    [SerializeField] private float _airMovementSpeed;
+    [SerializeField] private float _batMovementSpeed;
+    [SerializeField] private float _jumpForce;
+    [SerializeField] private float _doubleJumpForce;
+    [SerializeField] private float _jumpTime;
+    [SerializeField] private float _gravityMultiplier;
     
     private bool _doubleJumpActivated = false;
 
