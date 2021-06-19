@@ -157,7 +157,6 @@ public class PlayerMovementController : MonoBehaviour
         if ((IsGrounded() || !_doubleJumpActivated) && (Input.GetKey(_playerJumpFirstKey) || Input.GetKey(_playerJumpSecondKey)))
         {
             return true;
-            
         }
         
         else
