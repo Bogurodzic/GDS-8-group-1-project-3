@@ -118,6 +118,11 @@ public class PlayerMovementController : MonoBehaviour
             ReloadDoubleJump();
             _jumpTimeCounter = _jumpTime;
             _underSoon = false;
+            _animator.SetBool("isJumping", false);
+        }
+        else if (!IsGrounded() && !_animator.GetBool("isBat"))
+        {
+            _animator.SetBool("isJumping", true);
         }
 
     }
@@ -131,7 +136,6 @@ public class PlayerMovementController : MonoBehaviour
         }
         else
         {
-            _animator.SetFloat("Speed", 0f);
             return false;
         }
     }
@@ -144,7 +148,6 @@ public class PlayerMovementController : MonoBehaviour
         }
         else
         {
-            _animator.SetFloat("Speed", 0f);
             return false;
         }
     }
@@ -153,7 +156,7 @@ public class PlayerMovementController : MonoBehaviour
     {
         if ((IsGrounded() || !_doubleJumpActivated) && (Input.GetKey(_playerJumpFirstKey) || Input.GetKey(_playerJumpSecondKey)))
         {
-           return true;
+            return true;
             
         }
         
@@ -177,7 +180,7 @@ public class PlayerMovementController : MonoBehaviour
         {
             if (_jumpTimeCounter > 0)
             {
-                _animator.SetTrigger("FirstJump");
+               
                 _jumpTimeCounter -= Time.deltaTime;
                 _rigidbody2D.velocity = Vector2.up * _jumpForce;
                 
@@ -204,11 +207,11 @@ public class PlayerMovementController : MonoBehaviour
         }
         else if (!_underSoon)
         {
+            transform.eulerAngles = new Vector3(0, 180, 0);
             if (IsGrounded())
             {
                 _rigidbody2D.velocity = new Vector2(-_movementSpeed, _rigidbody2D.velocity.y);
-                _animator.SetFloat("Speed", Mathf.Abs(_movementSpeed));
-                transform.eulerAngles = new Vector3(0, 180, 0);
+                _animator.SetBool("isRunning", true);
             }
             else
             {
@@ -230,11 +233,12 @@ public class PlayerMovementController : MonoBehaviour
         }
         else if (!_underSoon)
         {
+            transform.eulerAngles = new Vector3(0, 0, 0);
             if (IsGrounded())
             {
                 _rigidbody2D.velocity = new Vector2(+_movementSpeed, _rigidbody2D.velocity.y);
-                _animator.SetFloat("Speed", Mathf.Abs(_movementSpeed));
-                transform.eulerAngles = new Vector3(0, 0, 0);
+                _animator.SetBool("isRunning", true);
+
             }
             else
             {
@@ -250,13 +254,14 @@ public class PlayerMovementController : MonoBehaviour
     private void Stay()
     {
         _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
-
+        _animator.SetBool("isRunning", false);
     }
 
     private void DoubleJump()
     {
         ActivateBatMode();
         _rigidbody2D.velocity = Vector2.up * _doubleJumpForce;
+        _animator.SetBool("isJumping", false);
         _animator.SetBool("isBat", true);
 
     }
@@ -275,7 +280,6 @@ public class PlayerMovementController : MonoBehaviour
         _doubleJumpActivated = true;
         _rigidbody2D.mass = 1;
         _rigidbody2D.gravityScale = 1f / _gravityMultiplier;
-        _animator.SetBool("isBat", true);
         ReloadBoxCollider();
     }
 
