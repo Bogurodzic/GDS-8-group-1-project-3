@@ -5,19 +5,7 @@ using UnityEngine;
 
 public class PlayerMovementController : MonoBehaviour
 {
-    [SerializeField] private KeyCode _playerMoveLeft;
-    [SerializeField] private KeyCode _playerMoveRight;
-    [SerializeField] private KeyCode _playerJumpFirstKey;
-    [SerializeField] private KeyCode _playerJumpSecondKey;
-
-    [SerializeField] private float _movementSpeed;
-    [SerializeField] private float _airMovementSpeed;
-    [SerializeField] private float _batMovementSpeed;
-    [SerializeField] private float _jumpForce;
-    [SerializeField] private float _doubleJumpForce;
-    [SerializeField] private float _jumpTime;
-    [SerializeField] private float _gravityMultiplier;
-
+    [Header("References")]
     [SerializeField] private LayerMask _platformLayerMask;
     [SerializeField] private Rigidbody2D _rigidbody2D;
     [SerializeField] private BoxCollider2D _boxCollider2D;
@@ -26,6 +14,21 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private LayerMask _boxMask;
 
+    [Header("Controls")]
+    [SerializeField] private KeyCode _playerMoveLeft;
+    [SerializeField] private KeyCode _playerMoveRight;
+    [SerializeField] private KeyCode _playerJumpFirstKey;
+    [SerializeField] private KeyCode _playerJumpSecondKey;
+
+    [Header("Movement Parameters")]
+    [SerializeField] private float _movementSpeed;
+    [SerializeField] private float _airMovementSpeed;
+    [SerializeField] private float _batMovementSpeed;
+    [SerializeField] private float _jumpForce;
+    [SerializeField] private float _doubleJumpForce;
+    [SerializeField] private float _jumpTime;
+    [SerializeField] private float _gravityMultiplier;
+    
     private bool _doubleJumpActivated = false;
 
     private float _jumpTimeCounter;
@@ -59,7 +62,9 @@ public class PlayerMovementController : MonoBehaviour
 
     void Update()
     {
+        
         HandleMovement();
+        
 
         Physics2D.queriesStartInColliders = true;
         RaycastHit2D hit = Physics2D.Raycast(transform.position, _facingLeft ? Vector2.left : Vector2.right, 0.35f, _boxMask);
@@ -86,8 +91,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private void HandleMovement()
     {
-
-
+      
         if (CanPlayerJump())
         {
             Jump();
@@ -114,12 +118,18 @@ public class PlayerMovementController : MonoBehaviour
             ReloadDoubleJump();
             _jumpTimeCounter = _jumpTime;
             _underSoon = false;
+            _animator.SetBool("isJumping", false);
+        }
+        else if (!IsGrounded() && !_animator.GetBool("isBat"))
+        {
+            _animator.SetBool("isJumping", true);
         }
 
     }
 
     private bool CanPlayerMoveRight()
     {
+       
         if (Input.GetKey(_playerMoveLeft))
         {
             return true;
@@ -147,12 +157,16 @@ public class PlayerMovementController : MonoBehaviour
         if ((IsGrounded() || !_doubleJumpActivated) && (Input.GetKey(_playerJumpFirstKey) || Input.GetKey(_playerJumpSecondKey)))
         {
             return true;
+            
         }
+        
         else
-        {
+        {            
             return false;
         }
     }
+
+   
 
     private void Jump()
     {
@@ -160,13 +174,17 @@ public class PlayerMovementController : MonoBehaviour
         if (!IsGrounded() && (Input.GetKeyDown(_playerJumpFirstKey) || Input.GetKeyDown(_playerJumpSecondKey)))
         {
             DoubleJump();
+            
         }
         else
         {
             if (_jumpTimeCounter > 0)
             {
+               
                 _jumpTimeCounter -= Time.deltaTime;
                 _rigidbody2D.velocity = Vector2.up * _jumpForce;
+                
+
             }
         }
     }
@@ -181,6 +199,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private void MoveRight()
     {
+        
         if (_doubleJumpActivated)
         {
             _rigidbody2D.velocity = new Vector2(-_batMovementSpeed, _rigidbody2D.velocity.y);
@@ -188,13 +207,15 @@ public class PlayerMovementController : MonoBehaviour
         }
         else if (!_underSoon)
         {
+            transform.eulerAngles = new Vector3(0, 180, 0);
             if (IsGrounded())
             {
                 _rigidbody2D.velocity = new Vector2(-_movementSpeed, _rigidbody2D.velocity.y);
-                transform.eulerAngles = new Vector3(0, 180, 0);
+                _animator.SetBool("isRunning", true);
             }
             else
             {
+                
                 _rigidbody2D.velocity += new Vector2(-_movementSpeed * _airMovementSpeed * Time.deltaTime, 0);
                 _rigidbody2D.velocity = new Vector2(Mathf.Clamp(_rigidbody2D.velocity.x, -_movementSpeed, +_movementSpeed),
                     _rigidbody2D.velocity.y);
@@ -204,6 +225,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private void MoveLeft()
     {
+        
         if (_doubleJumpActivated)
         {
             _rigidbody2D.velocity = new Vector2(+_batMovementSpeed, _rigidbody2D.velocity.y);
@@ -211,13 +233,16 @@ public class PlayerMovementController : MonoBehaviour
         }
         else if (!_underSoon)
         {
+            transform.eulerAngles = new Vector3(0, 0, 0);
             if (IsGrounded())
             {
                 _rigidbody2D.velocity = new Vector2(+_movementSpeed, _rigidbody2D.velocity.y);
-                transform.eulerAngles = new Vector3(0, 0, 0);
+                _animator.SetBool("isRunning", true);
+
             }
             else
             {
+                
                 _rigidbody2D.velocity += new Vector2(+_movementSpeed * _airMovementSpeed * Time.deltaTime, 0);
                 _rigidbody2D.velocity = new Vector2(Mathf.Clamp(_rigidbody2D.velocity.x, -_movementSpeed, +_movementSpeed),
                     _rigidbody2D.velocity.y);
@@ -229,12 +254,16 @@ public class PlayerMovementController : MonoBehaviour
     private void Stay()
     {
         _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
+        _animator.SetBool("isRunning", false);
     }
 
     private void DoubleJump()
     {
         ActivateBatMode();
         _rigidbody2D.velocity = Vector2.up * _doubleJumpForce;
+        _animator.SetBool("isJumping", false);
+        _animator.SetBool("isBat", true);
+
     }
 
     private void DeactivateBatMode()
@@ -251,7 +280,6 @@ public class PlayerMovementController : MonoBehaviour
         _doubleJumpActivated = true;
         _rigidbody2D.mass = 1;
         _rigidbody2D.gravityScale = 1f / _gravityMultiplier;
-        _animator.SetBool("isBat", true);
         ReloadBoxCollider();
     }
 
