@@ -9,7 +9,7 @@ public class LightBeam : MonoBehaviour
     [SerializeField] private float _distanceRay = 100f;
 
 
-    private void Update()
+    private void FixedUpdate()
     {
         CastLight();
     }
@@ -20,13 +20,12 @@ public class LightBeam : MonoBehaviour
         if (_hit)
         {
             DrawBeam(transform.position, _hit.point);
-            //Debug.Log(transform.position);
-            //Debug.Log(_hit.point);
-            //Debug.Log(_hit.collider.GetType());
+            _lineRenderer.SetPosition(2, Vector2.Reflect((_hit.point - new Vector2(transform.position.x, transform.position.y)).normalized * _distanceRay, _hit.normal));
         }
         else
         {
             DrawBeam(transform.position, transform.transform.right * _distanceRay);
+            _lineRenderer.SetPosition(2, _lineRenderer.GetPosition(1));
         } 
     }
 
