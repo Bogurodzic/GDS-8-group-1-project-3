@@ -6,12 +6,26 @@ public class LightBeam : MonoBehaviour
 {
     [SerializeField] private LineRenderer _lineRenderer;
     [SerializeField] private LayerMask _platformLayers;
+    [SerializeField] private LayerMask _mirrorLayer;
+    [SerializeField] private LayerMask _playerLayer;
     [SerializeField] private float _distanceRay = 100f;
+    
+    //private MeshCollider _meshCollider;
+    //private Mesh _mesh;
 
+    private void Awake()
+    {
+        //_meshCollider = gameObject.AddComponent<MeshCollider>();
+        //_mesh = new Mesh();
+    }
 
     private void FixedUpdate()
     {
         CastLight();
+        //_lineRenderer.BakeMesh(_mesh, true);
+        //_meshCollider.sharedMesh = _mesh;
+        
+        
     }
 
     private void CastLight()
@@ -20,13 +34,29 @@ public class LightBeam : MonoBehaviour
         if (_hit)
         {
             DrawBeam(transform.position, _hit.point);
-            _lineRenderer.SetPosition(2, Vector2.Reflect((_hit.point - new Vector2(transform.position.x, transform.position.y)).normalized * _distanceRay, _hit.normal));
+            if (_hit.collider.IsTouchingLayers(_mirrorLayer))
+            {
+                _lineRenderer.SetPosition(2, Vector2.Reflect((_hit.point - new Vector2(transform.position.x, transform.position.y)).normalized * _distanceRay, _hit.normal));
+            }
+            else
+            {
+                _lineRenderer.SetPosition(2, _lineRenderer.GetPosition(1));
+            }
+            
         }
         else
         {
             DrawBeam(transform.position, transform.transform.right * _distanceRay);
             _lineRenderer.SetPosition(2, _lineRenderer.GetPosition(1));
-        } 
+        }
+
+        RaycastHit2D _hitPlayer = Physics2D.Raycast(transform.position, transform.right, _distanceRay, _playerLayer);
+        if (_hitPlayer)
+        {
+            Debug.Log("Player in light");
+            _hitPlayer.collider.gameObject.GetComponent<PlayerMovementController>().DeactivateBatMode();
+        }
+
     }
 
     private void DrawBeam(Vector2 startPosition, Vector2 endPosition)

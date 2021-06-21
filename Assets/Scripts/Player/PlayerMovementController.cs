@@ -265,7 +265,7 @@ public class PlayerMovementController : MonoBehaviour
 
     }
 
-    private void DeactivateBatMode()
+    public void DeactivateBatMode()
     {
         _doubleJumpActivated = false;
         _rigidbody2D.mass = 40;

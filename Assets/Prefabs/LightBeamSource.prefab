@@ -155,4 +155,7 @@ MonoBehaviour:
   _platformLayers:
     serializedVersion: 2
     m_Bits: 256
+  _mirrorLayer:
+    serializedVersion: 2
+    m_Bits: 16384
   _distanceRay: 20
