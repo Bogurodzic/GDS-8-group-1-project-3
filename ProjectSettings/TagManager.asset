@@ -8,6 +8,7 @@ TagManager:
   - Box
   - Coin
   - MaximumEnemyDistance
+  - Mirror
   layers:
   - Default
   - TransparentFX

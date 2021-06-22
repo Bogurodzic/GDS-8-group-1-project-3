@@ -31,12 +31,18 @@ public class LightBeam : MonoBehaviour
     private void CastLight()
     {
         RaycastHit2D _hit = Physics2D.Raycast(transform.position, transform.right, _distanceRay, _platformLayers);
+        RaycastHit2D _hitPlayer = Physics2D.Raycast(transform.position, transform.right, _distanceRay, _playerLayer);
+
+        TouchPlayer(_hitPlayer);
+
         if (_hit)
         {
             DrawBeam(transform.position, _hit.point);
-            if (_hit.collider.IsTouchingLayers(_mirrorLayer))
+            if (_hit.collider.tag == "Mirror")
             {
                 _lineRenderer.SetPosition(2, Vector2.Reflect((_hit.point - new Vector2(transform.position.x, transform.position.y)).normalized * _distanceRay, _hit.normal));
+                RaycastHit2D _hitPlayerMirrored = Physics2D.Raycast(_hit.point, _lineRenderer.GetPosition(2), _distanceRay, _playerLayer);
+                TouchPlayer(_hitPlayerMirrored);
             }
             else
             {
@@ -50,13 +56,15 @@ public class LightBeam : MonoBehaviour
             _lineRenderer.SetPosition(2, _lineRenderer.GetPosition(1));
         }
 
-        RaycastHit2D _hitPlayer = Physics2D.Raycast(transform.position, transform.right, _distanceRay, _playerLayer);
-        if (_hitPlayer)
+    }
+
+    private void TouchPlayer(RaycastHit2D hitPlayer)
+    {
+        if (hitPlayer)
         {
             Debug.Log("Player in light");
-            _hitPlayer.collider.gameObject.GetComponent<PlayerMovementController>().DeactivateBatMode();
+            hitPlayer.collider.gameObject.GetComponent<PlayerMovementController>().DeactivateBatMode();
         }
-
     }
 
     private void DrawBeam(Vector2 startPosition, Vector2 endPosition)

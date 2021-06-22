@@ -185,7 +185,7 @@ GameObject:
   - component: {fileID: 980031795}
   m_Layer: 8
   m_Name: GameObject
-  m_TagString: Untagged
+  m_TagString: Mirror
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5818,12 +5818,12 @@ PrefabInstance:
     - target: {fileID: 7444984289883954245, guid: b471ac10e1c0b074fa650eb803ff0120,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.76
+      value: -10.43
       objectReference: {fileID: 0}
     - target: {fileID: 7444984289883954245, guid: b471ac10e1c0b074fa650eb803ff0120,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.79
+      value: 1.02
       objectReference: {fileID: 0}
     - target: {fileID: 7444984289883954245, guid: b471ac10e1c0b074fa650eb803ff0120,
         type: 3}
@@ -5833,7 +5833,7 @@ PrefabInstance:
     - target: {fileID: 7444984289883954245, guid: b471ac10e1c0b074fa650eb803ff0120,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9848078
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7444984289883954245, guid: b471ac10e1c0b074fa650eb803ff0120,
         type: 3}
@@ -5848,7 +5848,7 @@ PrefabInstance:
     - target: {fileID: 7444984289883954245, guid: b471ac10e1c0b074fa650eb803ff0120,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.17364825
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7444984289883954245, guid: b471ac10e1c0b074fa650eb803ff0120,
         type: 3}
@@ -5863,7 +5863,27 @@ PrefabInstance:
     - target: {fileID: 7444984289883954245, guid: b471ac10e1c0b074fa650eb803ff0120,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -20
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7444984289883954246, guid: b471ac10e1c0b074fa650eb803ff0120,
+        type: 3}
+      propertyPath: _mirrorLayer.m_Bits
+      value: 16384
+      objectReference: {fileID: 0}
+    - target: {fileID: 7444984289883954246, guid: b471ac10e1c0b074fa650eb803ff0120,
+        type: 3}
+      propertyPath: _playerLayer.m_Bits
+      value: 2048
+      objectReference: {fileID: 0}
+    - target: {fileID: 7444984289883954246, guid: b471ac10e1c0b074fa650eb803ff0120,
+        type: 3}
+      propertyPath: _platformLayers.m_Bits
+      value: 16640
+      objectReference: {fileID: 0}
+    - target: {fileID: 7444984289883954247, guid: b471ac10e1c0b074fa650eb803ff0120,
+        type: 3}
+      propertyPath: m_UseWorldSpace
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7444984289883954297, guid: b471ac10e1c0b074fa650eb803ff0120,
         type: 3}
