@@ -165,25 +165,19 @@ public class PlayerMovementController : MonoBehaviour
         }
     }
 
-   
-
     private void Jump()
     {
 
         if (!IsGrounded() && (Input.GetKeyDown(_playerJumpFirstKey) || Input.GetKeyDown(_playerJumpSecondKey)))
         {
-            DoubleJump();
-            
+            DoubleJump(); 
         }
         else
         {
             if (_jumpTimeCounter > 0)
             {
-               
                 _jumpTimeCounter -= Time.deltaTime;
                 _rigidbody2D.velocity = Vector2.up * _jumpForce;
-                
-
             }
         }
     }
@@ -237,11 +231,9 @@ public class PlayerMovementController : MonoBehaviour
             {
                 _rigidbody2D.velocity = new Vector2(+_movementSpeed, _rigidbody2D.velocity.y);
                 _animator.SetBool("isRunning", true);
-
             }
             else
-            {
-                
+            {                
                 _rigidbody2D.velocity += new Vector2(+_movementSpeed * _airMovementSpeed * Time.deltaTime, 0);
                 _rigidbody2D.velocity = new Vector2(Mathf.Clamp(_rigidbody2D.velocity.x, -_movementSpeed, +_movementSpeed),
                     _rigidbody2D.velocity.y);
@@ -262,7 +254,6 @@ public class PlayerMovementController : MonoBehaviour
         _rigidbody2D.velocity = Vector2.up * _doubleJumpForce;
         _animator.SetBool("isJumping", false);
         _animator.SetBool("isBat", true);
-
     }
 
     public void DeactivateBatMode()
@@ -321,5 +312,4 @@ public class PlayerMovementController : MonoBehaviour
             Destroy(other.gameObject);
         }
     }
-
 }
