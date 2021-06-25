@@ -64,23 +64,36 @@ public class PlayerMovementController : MonoBehaviour
     {
         
         HandleMovement();
-        
+
+        MoveBoxes();
+
+        //Debug.Log(_jumpTimeCounter);
+    }
+
+    void MoveBoxes()
+    {
+        if (transform.eulerAngles == new Vector3(0, 0, 0))
+        {
+            _facingLeft = false;
+        }
+        else if (transform.eulerAngles == new Vector3(0, 180, 0))
+        {
+            _facingLeft = true;
+        }
 
         Physics2D.queriesStartInColliders = true;
         RaycastHit2D hit = Physics2D.Raycast(transform.position, _facingLeft ? Vector2.left : Vector2.right, 0.35f, _boxMask);
 
-        if (hit.collider != null && hit.collider.gameObject.CompareTag("Box") && Input.GetKeyDown(KeyCode.LeftShift))
+        if (hit.collider != null && hit.collider.gameObject.CompareTag("Box") && Input.GetKey(KeyCode.LeftShift))
         {
             box = hit.collider.gameObject;
             box.GetComponent<FixedJoint2D>().enabled = true;
             box.GetComponent<FixedJoint2D>().connectedBody = this.GetComponent<Rigidbody2D>();
         }
-        else if (hit.collider != null && Input.GetKeyUp(KeyCode.LeftShift))
+        else if (Input.GetKeyUp(KeyCode.LeftShift) && box.GetComponent<FixedJoint2D>().enabled)
         {
             box.GetComponent<FixedJoint2D>().enabled = false;
         }
-
-        //Debug.Log(_jumpTimeCounter);
     }
 
     private void OnDrawGizmos()
@@ -192,7 +205,6 @@ public class PlayerMovementController : MonoBehaviour
 
     private void MoveRight()
     {
-        
         if (_doubleJumpActivated)
         {
             _rigidbody2D.velocity = new Vector2(-_batMovementSpeed, _rigidbody2D.velocity.y);
@@ -218,7 +230,6 @@ public class PlayerMovementController : MonoBehaviour
 
     private void MoveLeft()
     {
-        
         if (_doubleJumpActivated)
         {
             _rigidbody2D.velocity = new Vector2(+_batMovementSpeed, _rigidbody2D.velocity.y);
