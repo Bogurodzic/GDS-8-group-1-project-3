@@ -29,7 +29,7 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private float _jumpTime;
     [SerializeField] private float _gravityMultiplier;
     
-    private bool _doubleJumpActivated = false;
+    [HideInInspector] public bool doubleJumpActivated = false;
 
     private float _jumpTimeCounter;
 
@@ -167,7 +167,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private bool CanPlayerJump()
     {
-        if ((IsGrounded() || !_doubleJumpActivated) && (Input.GetKey(_playerJumpFirstKey) || Input.GetKey(_playerJumpSecondKey)))
+        if ((IsGrounded() || !doubleJumpActivated) && (Input.GetKey(_playerJumpFirstKey) || Input.GetKey(_playerJumpSecondKey)))
         {
             return true;
         }
@@ -205,7 +205,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private void MoveRight()
     {
-        if (_doubleJumpActivated)
+        if (doubleJumpActivated)
         {
             _rigidbody2D.velocity = new Vector2(-_batMovementSpeed, _rigidbody2D.velocity.y);
             //transform.Translate(new Vector3(-_movementSpeed, 0, 0));
@@ -230,7 +230,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private void MoveLeft()
     {
-        if (_doubleJumpActivated)
+        if (doubleJumpActivated)
         {
             _rigidbody2D.velocity = new Vector2(+_batMovementSpeed, _rigidbody2D.velocity.y);
             //transform.Translate(new Vector3(_movementSpeed, 0, 0));
@@ -269,7 +269,7 @@ public class PlayerMovementController : MonoBehaviour
 
     public void DeactivateBatMode()
     {
-        _doubleJumpActivated = false;
+        doubleJumpActivated = false;
         _rigidbody2D.mass = 40;
         _rigidbody2D.gravityScale = 1f;
         _animator.SetBool("isBat", false);
@@ -278,7 +278,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private void ActivateBatMode()
     {
-        _doubleJumpActivated = true;
+        doubleJumpActivated = true;
         _rigidbody2D.mass = 1;
         _rigidbody2D.gravityScale = 1f / _gravityMultiplier;
         ReloadBoxCollider();
@@ -296,7 +296,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private void ReloadBoxCollider()
     {
-        if (_doubleJumpActivated)
+        if (doubleJumpActivated)
         {
             _boxCollider2D.size = _batSize;
             _boxCollider2D.offset = _batOffset;

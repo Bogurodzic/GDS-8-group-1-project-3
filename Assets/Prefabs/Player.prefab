@@ -272,6 +272,7 @@ MonoBehaviour:
   _doubleJumpForce: 4
   _jumpTime: 0.35
   _gravityMultiplier: 2
+  doubleJumpActivated: 0
 --- !u!95 &6820323240941389630
 Animator:
   serializedVersion: 3
@@ -308,6 +309,7 @@ MonoBehaviour:
   _enemyLayer:
     serializedVersion: 2
     m_Bits: 4096
+  _movementController: {fileID: 6820323240941389624}
   _attackButton: 306
   _attackRange: 0.5
   _attackDamage: 2

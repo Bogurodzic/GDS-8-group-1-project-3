@@ -7,6 +7,7 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private Animator _animator;
     [SerializeField] private Transform _damagePoint;
     [SerializeField] private LayerMask _enemyLayer;
+    [SerializeField] private PlayerMovementController _movementController;
 
     [SerializeField] private KeyCode _attackButton;
     [SerializeField] private float _attackRange = 0.5f;
@@ -16,7 +17,7 @@ public class PlayerCombat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(_attackButton))
+        if (Input.GetKeyDown(_attackButton) && !_movementController.doubleJumpActivated)
         {
             Attack();
         }
