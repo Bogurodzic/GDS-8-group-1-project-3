@@ -197,7 +197,8 @@ public class PlayerMovementController : MonoBehaviour
             {
                 _jumpTimeCounter -= Time.deltaTime;
                 _singleJumpActive = true;
-                _rigidbody2D.velocity = Vector2.up * _jumpForce;
+                //_rigidbody2D.velocity = Vector2.up * _jumpForce;
+                _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x*_jumpForce ,_jumpForce);
             }
         }
     }
@@ -229,9 +230,9 @@ public class PlayerMovementController : MonoBehaviour
             {
                 if (_singleJumpActive)
                 {
-                    _rigidbody2D.velocity += new Vector2(-_movementSpeed * _airMovementSpeed * Time.deltaTime, 0);
+                    _rigidbody2D.velocity += new Vector2(-_movementSpeed * Time.deltaTime, 0);
                     _rigidbody2D.velocity = new Vector2(Mathf.Clamp(_rigidbody2D.velocity.x, -_movementSpeed, +_movementSpeed),
-                        _rigidbody2D.velocity.y);
+                            _rigidbody2D.velocity.y);
                 }
                 else
                 {
@@ -263,9 +264,10 @@ public class PlayerMovementController : MonoBehaviour
             {
                 if (_singleJumpActive)
                 {
-                    _rigidbody2D.velocity += new Vector2(+_movementSpeed * _airMovementSpeed * Time.deltaTime, 0);
+                    _rigidbody2D.velocity += new Vector2(+_movementSpeed * Time.deltaTime, 0);
                     _rigidbody2D.velocity = new Vector2(Mathf.Clamp(_rigidbody2D.velocity.x, -_movementSpeed, +_movementSpeed),
-                        _rigidbody2D.velocity.y);
+                         _rigidbody2D.velocity.y);
+
                 }
                 else
                 {
