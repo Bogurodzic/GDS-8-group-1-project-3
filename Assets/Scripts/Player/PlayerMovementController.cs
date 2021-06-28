@@ -220,10 +220,19 @@ public class PlayerMovementController : MonoBehaviour
             }
             else
             {
+                if (CanPlayerJump())
+                {
+                    _rigidbody2D.velocity += new Vector2(-_movementSpeed * _airMovementSpeed * Time.deltaTime, 0f);
+                    _rigidbody2D.velocity = new Vector2(Mathf.Clamp(_rigidbody2D.velocity.x, -_movementSpeed, +_movementSpeed),
+                        _rigidbody2D.velocity.y);
+                }
+                else
+                {
+                    _rigidbody2D.velocity += new Vector2(-_movementSpeed * Time.deltaTime, 0f);
+                    _rigidbody2D.velocity = new Vector2(Mathf.Clamp(_rigidbody2D.velocity.x, -_movementSpeed, +_movementSpeed),
+                        _rigidbody2D.velocity.y);
+                }
                 
-                _rigidbody2D.velocity += new Vector2(-_movementSpeed * _airMovementSpeed * Time.deltaTime, 0);
-                _rigidbody2D.velocity = new Vector2(Mathf.Clamp(_rigidbody2D.velocity.x, -_movementSpeed, +_movementSpeed),
-                    _rigidbody2D.velocity.y);
             }
         }
     }
@@ -244,13 +253,21 @@ public class PlayerMovementController : MonoBehaviour
                 _animator.SetBool("isRunning", true);
             }
             else
-            {                
-                _rigidbody2D.velocity += new Vector2(+_movementSpeed * _airMovementSpeed * Time.deltaTime, 0);
-                _rigidbody2D.velocity = new Vector2(Mathf.Clamp(_rigidbody2D.velocity.x, -_movementSpeed, +_movementSpeed),
-                    _rigidbody2D.velocity.y);
+            {
+                if (CanPlayerJump())
+                {
+                    _rigidbody2D.velocity += new Vector2(+_movementSpeed * _airMovementSpeed * Time.deltaTime, 0f);
+                    _rigidbody2D.velocity = new Vector2(Mathf.Clamp(_rigidbody2D.velocity.x, -_movementSpeed, +_movementSpeed),
+                        _rigidbody2D.velocity.y);
+                }
+                else
+                {
+                    _rigidbody2D.velocity += new Vector2(+_movementSpeed * Time.deltaTime, 0f);
+                    _rigidbody2D.velocity = new Vector2(Mathf.Clamp(_rigidbody2D.velocity.x, -_movementSpeed, +_movementSpeed),
+                        _rigidbody2D.velocity.y);
+                }
             }
         }
-
     }
 
     private void Stay()
