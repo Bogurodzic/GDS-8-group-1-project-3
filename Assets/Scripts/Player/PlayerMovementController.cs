@@ -41,6 +41,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private bool _facingLeft = false;
     private bool _underSoon = false;
+    private bool _singleJumpActive = false;
 
     private GameObject box;
 
@@ -62,11 +63,10 @@ public class PlayerMovementController : MonoBehaviour
 
     void Update()
     {
-        
         HandleMovement();
 
         MoveBoxes();
-
+        //Debug.Log(_singleJumpActive);
         //Debug.Log(_jumpTimeCounter);
     }
 
@@ -131,6 +131,7 @@ public class PlayerMovementController : MonoBehaviour
             ReloadDoubleJump();
             _jumpTimeCounter = _jumpTime;
             _underSoon = false;
+            _singleJumpActive = false;
             _animator.SetBool("isJumping", false);
         }
         else if (!IsGrounded() && !_animator.GetBool("isBat"))
@@ -169,6 +170,11 @@ public class PlayerMovementController : MonoBehaviour
     {
         if ((IsGrounded() || !doubleJumpActivated) && (Input.GetKey(_playerJumpFirstKey) || Input.GetKey(_playerJumpSecondKey)))
         {
+            //temporary
+            if (Input.GetKeyDown(_playerJumpFirstKey) || Input.GetKeyDown(_playerJumpSecondKey))
+            {
+                _singleJumpActive = true;
+            }
             return true;
         }
         
@@ -190,6 +196,7 @@ public class PlayerMovementController : MonoBehaviour
             if (_jumpTimeCounter > 0)
             {
                 _jumpTimeCounter -= Time.deltaTime;
+                _singleJumpActive = true;
                 _rigidbody2D.velocity = Vector2.up * _jumpForce;
             }
         }
@@ -220,19 +227,19 @@ public class PlayerMovementController : MonoBehaviour
             }
             else
             {
-                if (CanPlayerJump())
+                if (_singleJumpActive)
                 {
-                    _rigidbody2D.velocity += new Vector2(-_movementSpeed * _airMovementSpeed * Time.deltaTime, 0f);
+                    _rigidbody2D.velocity += new Vector2(-_movementSpeed * _airMovementSpeed * Time.deltaTime, 0);
                     _rigidbody2D.velocity = new Vector2(Mathf.Clamp(_rigidbody2D.velocity.x, -_movementSpeed, +_movementSpeed),
                         _rigidbody2D.velocity.y);
                 }
                 else
                 {
-                    _rigidbody2D.velocity += new Vector2(-_movementSpeed * Time.deltaTime, 0f);
-                    _rigidbody2D.velocity = new Vector2(Mathf.Clamp(_rigidbody2D.velocity.x, -_movementSpeed, +_movementSpeed),
-                        _rigidbody2D.velocity.y);
+                    _rigidbody2D.velocity += new Vector2(-_airMovementSpeed/4 * Time.deltaTime, 0);
+                    _rigidbody2D.velocity = new Vector2(Mathf.Clamp(_rigidbody2D.velocity.x/2, -_movementSpeed, +_movementSpeed),
+                       _rigidbody2D.velocity.y);
                 }
-                
+
             }
         }
     }
@@ -254,17 +261,18 @@ public class PlayerMovementController : MonoBehaviour
             }
             else
             {
-                if (CanPlayerJump())
+                if (_singleJumpActive)
                 {
-                    _rigidbody2D.velocity += new Vector2(+_movementSpeed * _airMovementSpeed * Time.deltaTime, 0f);
+                    _rigidbody2D.velocity += new Vector2(+_movementSpeed * _airMovementSpeed * Time.deltaTime, 0);
                     _rigidbody2D.velocity = new Vector2(Mathf.Clamp(_rigidbody2D.velocity.x, -_movementSpeed, +_movementSpeed),
                         _rigidbody2D.velocity.y);
                 }
                 else
                 {
-                    _rigidbody2D.velocity += new Vector2(+_movementSpeed * Time.deltaTime, 0f);
-                    _rigidbody2D.velocity = new Vector2(Mathf.Clamp(_rigidbody2D.velocity.x, -_movementSpeed, +_movementSpeed),
+                    _rigidbody2D.velocity += new Vector2(+_airMovementSpeed/4 * Time.deltaTime, 0);
+                    _rigidbody2D.velocity = new Vector2(Mathf.Clamp(_rigidbody2D.velocity.x/2, -_movementSpeed, +_movementSpeed),
                         _rigidbody2D.velocity.y);
+
                 }
             }
         }
@@ -282,6 +290,7 @@ public class PlayerMovementController : MonoBehaviour
         _rigidbody2D.velocity = Vector2.up * _doubleJumpForce;
         _animator.SetBool("isJumping", false);
         _animator.SetBool("isBat", true);
+        _singleJumpActive = false;
     }
 
     public void DeactivateBatMode()
