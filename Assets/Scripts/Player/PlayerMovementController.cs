@@ -250,7 +250,7 @@ public class PlayerMovementController : MonoBehaviour
         if (doubleJumpActivated)
         {
             _rigidbody2D.velocity = new Vector2(+_batMovementSpeed, _rigidbody2D.velocity.y);
-            //transform.Translate(new Vector3(_movementSpeed, 0, 0));
+            //transform.Translate(new Vector3(_movementSpeed, 0, 0))
         }
         else if (!_underSoon)
         {
