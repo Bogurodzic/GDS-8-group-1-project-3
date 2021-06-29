@@ -6,7 +6,7 @@ public class FallDamage : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponent<ICharacter>() == null)
+        if (collision.GetComponent<ICharacter>() == null || collision.gameObject.tag == "Player")
         {
             return;
         }
