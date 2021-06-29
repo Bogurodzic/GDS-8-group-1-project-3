@@ -59,4 +59,11 @@ public class LightBeam : MonoBehaviour
         _lineRenderer.SetPosition(0, startPosition);
         _lineRenderer.SetPosition(1, endPosition);
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(transform.position, 0.5f);
+        Gizmos.DrawRay(transform.position, transform.right);
+    }
 }
