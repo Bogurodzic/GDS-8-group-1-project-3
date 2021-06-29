@@ -24,11 +24,6 @@ public class BoxController : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.DrawCube(_groundPoint.position, new Vector2(_boxCollider2D.bounds.size.x, _boxCollider2D.bounds.size.y/2));
-    }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Sun"))
