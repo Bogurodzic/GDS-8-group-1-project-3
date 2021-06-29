@@ -88,8 +88,12 @@ public class PlayerMovementController : MonoBehaviour
             box.GetComponent<FixedJoint2D>().enabled = true;
             box.GetComponent<FixedJoint2D>().connectedBody = this.GetComponent<Rigidbody2D>();
         }
-        else if (Input.GetKeyUp(KeyCode.LeftShift) && box.GetComponent<FixedJoint2D>().enabled)
+        else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
+            if (box.GetComponent<FixedJoint2D>() == null)
+            {
+                return;
+            }
             box.GetComponent<FixedJoint2D>().enabled = false;
         }
     }
