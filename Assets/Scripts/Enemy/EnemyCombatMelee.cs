@@ -60,28 +60,6 @@ public class EnemyCombatMelee : MonoBehaviour
         FaceTowardsMovementDirection();
     }
 
-    public void Patrol()
-    {
-        if(transform.position.x <= _patrolLeftBound)
-        {
-            _goTowardsLeft = false;
-        }
-        if(transform.position.x >= _patrolRightBound)
-        {
-            _goTowardsLeft = true;
-        }
-
-
-        if (_goTowardsLeft)
-        {
-            _rigidbody2D.velocity = new Vector2(-_patrolSpeed, _rigidbody2D.velocity.y);
-        }
-        else if (!_goTowardsLeft)
-        {
-            _rigidbody2D.velocity = new Vector2(+_patrolSpeed, _rigidbody2D.velocity.y);
-        }
-    }
-
     private void FaceTowardsMovementDirection()
     {
         if (transform.position.x > _priorPosition)
@@ -95,6 +73,28 @@ public class EnemyCombatMelee : MonoBehaviour
         }
 
         _priorPosition = transform.position.x;
+    }
+
+    public void Patrol()
+    {
+        if (transform.position.x <= _patrolLeftBound)
+        {
+            _goTowardsLeft = false;
+        }
+
+        if (transform.position.x >= _patrolRightBound)
+        {
+            _goTowardsLeft = true;
+        }
+
+        if (_goTowardsLeft)
+        {
+            _rigidbody2D.velocity = new Vector2(-_patrolSpeed, _rigidbody2D.velocity.y);
+        }
+        else if (!_goTowardsLeft)
+        {
+            _rigidbody2D.velocity = new Vector2(+_patrolSpeed, _rigidbody2D.velocity.y);
+        }
     }
 
     private void SpotPlayer()
@@ -144,7 +144,7 @@ public class EnemyCombatMelee : MonoBehaviour
         {
             hitPlayer.GetComponent<ICharacter>().TakeDamage(_damage);
 
-            // nie działa :( jeszcze nie wiem czemu
+            // pushing the player - needs improvement
             if (transform.eulerAngles == new Vector3(0, 180, 0))
             {
                 hitPlayer.GetComponent<Rigidbody2D>().AddForce(new Vector2(-_pushForce, 0f));

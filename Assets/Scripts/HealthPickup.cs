@@ -5,6 +5,7 @@ using UnityEngine;
 public class HealthPickup : MonoBehaviour
 {
     [SerializeField] private int _health = 1;
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.layer == 11)

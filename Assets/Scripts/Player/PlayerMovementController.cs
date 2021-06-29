@@ -66,8 +66,6 @@ public class PlayerMovementController : MonoBehaviour
         HandleMovement();
 
         MoveBoxes();
-        //Debug.Log(_singleJumpActive);
-        //Debug.Log(_jumpTimeCounter);
     }
 
     void MoveBoxes()
@@ -129,10 +127,12 @@ public class PlayerMovementController : MonoBehaviour
         if (IsGrounded())
         {
             ReloadDoubleJump();
-            _jumpTimeCounter = _jumpTime;
+
             _underSoon = false;
-            _singleJumpActive = false;
+           
             _animator.SetBool("isJumping", false);
+            _singleJumpActive = false;
+            _jumpTimeCounter = _jumpTime;
         }
         else if (!IsGrounded() && !_animator.GetBool("isBat"))
         {
@@ -175,6 +175,7 @@ public class PlayerMovementController : MonoBehaviour
             {
                 _singleJumpActive = true;
             }
+
             return true;
         }
         
@@ -197,8 +198,7 @@ public class PlayerMovementController : MonoBehaviour
             {
                 _jumpTimeCounter -= Time.deltaTime;
                 _singleJumpActive = true;
-                //_rigidbody2D.velocity = Vector2.up * _jumpForce;
-                _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x*_jumpForce ,_jumpForce);
+                _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x * _jumpForce ,_jumpForce);
             }
         }
     }
@@ -318,7 +318,7 @@ public class PlayerMovementController : MonoBehaviour
             Vector2.down, .3f, _platformLayerMask);
         RaycastHit2D raycastHit2Dbox = Physics2D.BoxCast(_boxCollider2D.bounds.center, new Vector2(_boxCollider2D.bounds.size.x / 2, _boxCollider2D.bounds.size.y), 0f,
             Vector2.down, .3f, _boxMask);
-        //Debug.Log(raycastHit2D.collider);
+
         return (raycastHit2Dplatform.collider != null || raycastHit2Dbox.collider != null);
     }
 

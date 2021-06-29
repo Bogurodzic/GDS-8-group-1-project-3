@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] private Animator _animator;
     [SerializeField] private Transform _damagePoint;
     [SerializeField] private LayerMask _enemyLayer;
     [SerializeField] private PlayerMovementController _movementController;
 
+    [Header("Controls")]
     [SerializeField] private KeyCode _attackButton;
+
+    [Header("Player Combat Stats")]
     [SerializeField] private float _attackRange = 0.5f;
     [SerializeField] private int _attackDamage = 5;
     [SerializeField] private float _pushForce = 500f;

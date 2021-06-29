@@ -10,16 +10,6 @@ public class BoxController : MonoBehaviour
     [SerializeField] private Transform _groundPoint;
     [SerializeField] private LayerMask _groundLayers;
 
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        //Debug.Log("Box velocity: " + _rigidbody.velocity);
-    }
-
     private void FixedUpdate()
     {
         FallDown();

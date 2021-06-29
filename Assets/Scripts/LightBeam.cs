@@ -9,23 +9,10 @@ public class LightBeam : MonoBehaviour
     [SerializeField] private LayerMask _mirrorLayer;
     [SerializeField] private LayerMask _playerLayer;
     [SerializeField] private float _distanceRay = 100f;
-    
-    //private MeshCollider _meshCollider;
-    //private Mesh _mesh;
-
-    private void Awake()
-    {
-        //_meshCollider = gameObject.AddComponent<MeshCollider>();
-        //_mesh = new Mesh();
-    }
 
     private void FixedUpdate()
     {
-        CastLight();
-        //_lineRenderer.BakeMesh(_mesh, true);
-        //_meshCollider.sharedMesh = _mesh;
-        
-        
+        CastLight();              
     }
 
     private void CastLight()
