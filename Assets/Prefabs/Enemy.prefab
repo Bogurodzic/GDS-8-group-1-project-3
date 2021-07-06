@@ -95,7 +95,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2486829031149169404}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -195,8 +195,8 @@ MonoBehaviour:
   _attackRange: 0.83
   _damage: 1
   _pushForce: 500
-  _patrolLeftBound: 0.53
-  _patrolRightBound: 7.8
+  _patrolLeftBound: 0.55
+  _patrolRightBound: 9.4
   _goTowardsLeft: 0
 --- !u!1 &3987039382670728152
 GameObject:

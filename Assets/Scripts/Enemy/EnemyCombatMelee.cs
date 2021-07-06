@@ -119,7 +119,10 @@ public class EnemyCombatMelee : MonoBehaviour
         }
         else
         {
+            //Vector2 _relativePosition = _player.position - gameObject.transform.position;
+            //_rigidbody2D.AddForce(new Vector2(_relativePosition.x, transform.position.y).normalized * _chaseSpeed * Time.deltaTime);
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(_player.position.x, transform.position.y), _chaseSpeed * Time.deltaTime);
+            //_rigidbody2D.velocity = new Vector2(_player.position.x, 0f).normalized * _chaseSpeed * Time.deltaTime;
         }
 
         Collider2D spotRange = Physics2D.OverlapCircle(transform.position, _sightRange, _playerLayer);
