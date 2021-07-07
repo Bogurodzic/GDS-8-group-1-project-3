@@ -13,9 +13,12 @@ public class EnemyCombatMelee : MonoBehaviour
     [Header("References")]
     [SerializeField] private Rigidbody2D _rigidbody2D;
     [SerializeField] private LayerMask _playerLayer;
+    [SerializeField] private LayerMask _groundLayer;
     [SerializeField] private Transform _player;
     [SerializeField] private Transform _damagePoint;
+    [SerializeField] private Transform _groundCheck;
     [SerializeField] private Animator _animator;
+
 
     [Header("Speed Parameters")]
     [SerializeField] private float _patrolSpeed = 1f;
@@ -122,6 +125,13 @@ public class EnemyCombatMelee : MonoBehaviour
             //Vector2 _relativePosition = _player.position - gameObject.transform.position;
             //_rigidbody2D.AddForce(new Vector2(_relativePosition.x, transform.position.y).normalized * _chaseSpeed * Time.deltaTime);
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(_player.position.x, transform.position.y), _chaseSpeed * Time.deltaTime);
+
+            Collider2D _grounded = Physics2D.OverlapCircle(_groundCheck.position, 0.2f, _groundLayer);
+            if (!_grounded)
+            {
+                _state = State.Patrolling;
+            }
+
             //_rigidbody2D.velocity = new Vector2(_player.position.x, 0f).normalized * _chaseSpeed * Time.deltaTime;
         }
 
