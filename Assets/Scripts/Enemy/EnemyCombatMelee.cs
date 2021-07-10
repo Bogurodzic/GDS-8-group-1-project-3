@@ -18,6 +18,7 @@ public class EnemyCombatMelee : MonoBehaviour
     [SerializeField] private Transform _damagePoint;
     [SerializeField] private Transform _groundCheck;
     [SerializeField] private Animator _animator;
+    [SerializeField] private Collider2D _spotRange;
 
 
     [Header("Speed Parameters")]
@@ -25,7 +26,7 @@ public class EnemyCombatMelee : MonoBehaviour
     [SerializeField] private float _chaseSpeed = 4.73f;
 
     [Header("Combat Parameters")]
-    [SerializeField] private float _sightRange = 2f;
+    //[SerializeField] private float _sightRange = 2f;
     [SerializeField] private float _attackDistance = 1f;
     [SerializeField] private float _attackRange = 0.5f;
     [SerializeField] private int _damage = 1;
@@ -102,8 +103,8 @@ public class EnemyCombatMelee : MonoBehaviour
 
     private void SpotPlayer()
     {
-        Collider2D spotRange = Physics2D.OverlapCircle(transform.position, _sightRange, _playerLayer);
-        if (spotRange)
+        //OverlapCircle(transform.position, _sightRange, _playerLayer);
+        if (_spotRange.IsTouchingLayers(_playerLayer))
         {
             _state = State.Combat;
         }
@@ -135,8 +136,8 @@ public class EnemyCombatMelee : MonoBehaviour
             //_rigidbody2D.velocity = new Vector2(_player.position.x, 0f).normalized * _chaseSpeed * Time.deltaTime;
         }
 
-        Collider2D spotRange = Physics2D.OverlapCircle(transform.position, _sightRange, _playerLayer);
-        if (!spotRange)
+        //Collider2D spotRange = Physics2D.OverlapCircle(transform.position, _sightRange, _playerLayer);
+        if (!_spotRange.IsTouchingLayers(_playerLayer))
         {
             _state = State.Patrolling;
         }
@@ -171,7 +172,6 @@ public class EnemyCombatMelee : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.DrawWireSphere(transform.position, _sightRange);
         Gizmos.DrawSphere(new Vector2(_patrolRightBound, transform.position.y), 0.5f);
         Gizmos.DrawSphere(new Vector2(_patrolLeftBound, transform.position.y), 0.5f);
         Gizmos.DrawWireSphere(_damagePoint.position, _attackRange);
