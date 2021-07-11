@@ -19,10 +19,12 @@ public class EnemyCombatRanged : MonoBehaviour
     //[SerializeField] private Transform _groundCheck;
     [SerializeField] private Animator _animator;
     [SerializeField] private Collider2D _spotRange;
+    [SerializeField] private GameObject _projectile;
 
 
     [Header("Speed Parameters")]
     [SerializeField] private float _patrolSpeed = 1f;
+    [SerializeField] private float _bulletSpeed = 8f;
     //[SerializeField] private float _chaseSpeed = 4.73f;
 
     [Header("Combat Parameters")]
@@ -62,6 +64,12 @@ public class EnemyCombatRanged : MonoBehaviour
         }
 
         FaceTowardsMovementDirection();
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawSphere(new Vector2(_patrolRightBound, transform.position.y), 0.5f);
+        Gizmos.DrawSphere(new Vector2(_patrolLeftBound, transform.position.y), 0.5f);
     }
 
     private void FaceTowardsMovementDirection()
@@ -112,6 +120,30 @@ public class EnemyCombatRanged : MonoBehaviour
 
     void Shoot()
     {
-        //shooting logic
+        if (_animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        {
+            return;
+        }
+
+        _animator.SetTrigger("Attack");
+
+        if (_player.transform.position.x < transform.position.x)
+        {
+            transform.eulerAngles = new Vector3(0, 0, 0);
+
+            GameObject _bullet = Instantiate(_projectile, transform.position, Quaternion.identity);
+            _bullet.GetComponent<Rigidbody2D>().AddForce(new Vector2(-_bulletSpeed, transform.position.y));
+        }
+        else if (_player.transform.position.x >= transform.position.x)
+        {
+            transform.eulerAngles = new Vector3(0, 180, 0);
+            GameObject _bullet = Instantiate(_projectile, transform.position, Quaternion.identity);
+            _bullet.GetComponent<Rigidbody2D>().AddForce(new Vector2(_bulletSpeed, transform.position.y));
+        }
+
+        if (!_spotRange.IsTouchingLayers(_playerLayer))
+        {
+            _state = State.Patrolling;
+        }
     }
 }
