@@ -29,7 +29,7 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private float _jumpTime;
     [SerializeField] private float _gravityMultiplier;
     
-    private bool _doubleJumpActivated = false;
+    [HideInInspector] public bool doubleJumpActivated = false;
 
     private float _jumpTimeCounter;
 
@@ -41,6 +41,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private bool _facingLeft = false;
     private bool _underSoon = false;
+    private bool _singleJumpActive = false;
 
     private GameObject box;
 
@@ -62,25 +63,39 @@ public class PlayerMovementController : MonoBehaviour
 
     void Update()
     {
-        
         HandleMovement();
-        
+
+        MoveBoxes();
+    }
+
+    void MoveBoxes()
+    {
+        if (transform.eulerAngles == new Vector3(0, 0, 0))
+        {
+            _facingLeft = false;
+        }
+        else if (transform.eulerAngles == new Vector3(0, 180, 0))
+        {
+            _facingLeft = true;
+        }
 
         Physics2D.queriesStartInColliders = true;
         RaycastHit2D hit = Physics2D.Raycast(transform.position, _facingLeft ? Vector2.left : Vector2.right, 0.35f, _boxMask);
 
-        if (hit.collider != null && hit.collider.gameObject.CompareTag("Box") && Input.GetKeyDown(KeyCode.LeftShift))
+        if (hit.collider != null && hit.collider.gameObject.CompareTag("Box") && Input.GetKey(KeyCode.LeftShift))
         {
             box = hit.collider.gameObject;
             box.GetComponent<FixedJoint2D>().enabled = true;
             box.GetComponent<FixedJoint2D>().connectedBody = this.GetComponent<Rigidbody2D>();
         }
-        else if (hit.collider != null && Input.GetKeyUp(KeyCode.LeftShift))
+        else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
+            if (box.GetComponent<FixedJoint2D>() == null)
+            {
+                return;
+            }
             box.GetComponent<FixedJoint2D>().enabled = false;
         }
-
-        //Debug.Log(_jumpTimeCounter);
     }
 
     private void OnDrawGizmos()
@@ -116,9 +131,12 @@ public class PlayerMovementController : MonoBehaviour
         if (IsGrounded())
         {
             ReloadDoubleJump();
-            _jumpTimeCounter = _jumpTime;
+
             _underSoon = false;
+           
             _animator.SetBool("isJumping", false);
+            _singleJumpActive = false;
+            _jumpTimeCounter = _jumpTime;
         }
         else if (!IsGrounded() && !_animator.GetBool("isBat"))
         {
@@ -154,10 +172,15 @@ public class PlayerMovementController : MonoBehaviour
 
     private bool CanPlayerJump()
     {
-        if ((IsGrounded() || !_doubleJumpActivated) && (Input.GetKey(_playerJumpFirstKey) || Input.GetKey(_playerJumpSecondKey)))
+        if ((IsGrounded() || !doubleJumpActivated) && (Input.GetKey(_playerJumpFirstKey) || Input.GetKey(_playerJumpSecondKey)))
         {
+            //temporary
+            if (Input.GetKeyDown(_playerJumpFirstKey) || Input.GetKeyDown(_playerJumpSecondKey))
+            {
+                _singleJumpActive = true;
+            }
+
             return true;
-            
         }
         
         else
@@ -166,25 +189,20 @@ public class PlayerMovementController : MonoBehaviour
         }
     }
 
-   
-
     private void Jump()
     {
 
         if (!IsGrounded() && (Input.GetKeyDown(_playerJumpFirstKey) || Input.GetKeyDown(_playerJumpSecondKey)))
         {
-            DoubleJump();
-            
+            DoubleJump(); 
         }
         else
         {
             if (_jumpTimeCounter > 0)
             {
-               
                 _jumpTimeCounter -= Time.deltaTime;
-                _rigidbody2D.velocity = Vector2.up * _jumpForce;
-                
-
+                _singleJumpActive = true;
+                _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x * _jumpForce ,_jumpForce);
             }
         }
     }
@@ -199,8 +217,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private void MoveRight()
     {
-        
-        if (_doubleJumpActivated)
+        if (doubleJumpActivated)
         {
             _rigidbody2D.velocity = new Vector2(-_batMovementSpeed, _rigidbody2D.velocity.y);
             //transform.Translate(new Vector3(-_movementSpeed, 0, 0));
@@ -215,21 +232,29 @@ public class PlayerMovementController : MonoBehaviour
             }
             else
             {
-                
-                _rigidbody2D.velocity += new Vector2(-_movementSpeed * _airMovementSpeed * Time.deltaTime, 0);
-                _rigidbody2D.velocity = new Vector2(Mathf.Clamp(_rigidbody2D.velocity.x, -_movementSpeed, +_movementSpeed),
-                    _rigidbody2D.velocity.y);
+                if (_singleJumpActive)
+                {
+                    _rigidbody2D.velocity += new Vector2(-_movementSpeed * Time.deltaTime, 0);
+                    _rigidbody2D.velocity = new Vector2(Mathf.Clamp(_rigidbody2D.velocity.x, -_movementSpeed, +_movementSpeed),
+                            _rigidbody2D.velocity.y);
+                }
+                else
+                {
+                    _rigidbody2D.velocity += new Vector2(-_airMovementSpeed/4 * Time.deltaTime, 0);
+                    _rigidbody2D.velocity = new Vector2(Mathf.Clamp(_rigidbody2D.velocity.x/2, -_movementSpeed, +_movementSpeed),
+                       _rigidbody2D.velocity.y);
+                }
+
             }
         }
     }
 
     private void MoveLeft()
     {
-        
-        if (_doubleJumpActivated)
+        if (doubleJumpActivated)
         {
             _rigidbody2D.velocity = new Vector2(+_batMovementSpeed, _rigidbody2D.velocity.y);
-            //transform.Translate(new Vector3(_movementSpeed, 0, 0));
+            //transform.Translate(new Vector3(_movementSpeed, 0, 0))
         }
         else if (!_underSoon)
         {
@@ -238,17 +263,25 @@ public class PlayerMovementController : MonoBehaviour
             {
                 _rigidbody2D.velocity = new Vector2(+_movementSpeed, _rigidbody2D.velocity.y);
                 _animator.SetBool("isRunning", true);
-
             }
             else
             {
-                
-                _rigidbody2D.velocity += new Vector2(+_movementSpeed * _airMovementSpeed * Time.deltaTime, 0);
-                _rigidbody2D.velocity = new Vector2(Mathf.Clamp(_rigidbody2D.velocity.x, -_movementSpeed, +_movementSpeed),
-                    _rigidbody2D.velocity.y);
+                if (_singleJumpActive)
+                {
+                    _rigidbody2D.velocity += new Vector2(+_movementSpeed * Time.deltaTime, 0);
+                    _rigidbody2D.velocity = new Vector2(Mathf.Clamp(_rigidbody2D.velocity.x, -_movementSpeed, +_movementSpeed),
+                         _rigidbody2D.velocity.y);
+
+                }
+                else
+                {
+                    _rigidbody2D.velocity += new Vector2(+_airMovementSpeed/4 * Time.deltaTime, 0);
+                    _rigidbody2D.velocity = new Vector2(Mathf.Clamp(_rigidbody2D.velocity.x/2, -_movementSpeed, +_movementSpeed),
+                        _rigidbody2D.velocity.y);
+
+                }
             }
         }
-
     }
 
     private void Stay()
@@ -263,12 +296,12 @@ public class PlayerMovementController : MonoBehaviour
         _rigidbody2D.velocity = Vector2.up * _doubleJumpForce;
         _animator.SetBool("isJumping", false);
         _animator.SetBool("isBat", true);
-
+        _singleJumpActive = false;
     }
 
-    private void DeactivateBatMode()
+    public void DeactivateBatMode()
     {
-        _doubleJumpActivated = false;
+        doubleJumpActivated = false;
         _rigidbody2D.mass = 40;
         _rigidbody2D.gravityScale = 1f;
         _animator.SetBool("isBat", false);
@@ -277,7 +310,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private void ActivateBatMode()
     {
-        _doubleJumpActivated = true;
+        doubleJumpActivated = true;
         _rigidbody2D.mass = 1;
         _rigidbody2D.gravityScale = 1f / _gravityMultiplier;
         ReloadBoxCollider();
@@ -289,13 +322,13 @@ public class PlayerMovementController : MonoBehaviour
             Vector2.down, .3f, _platformLayerMask);
         RaycastHit2D raycastHit2Dbox = Physics2D.BoxCast(_boxCollider2D.bounds.center, new Vector2(_boxCollider2D.bounds.size.x / 2, _boxCollider2D.bounds.size.y), 0f,
             Vector2.down, .3f, _boxMask);
-        //Debug.Log(raycastHit2D.collider);
+
         return (raycastHit2Dplatform.collider != null || raycastHit2Dbox.collider != null);
     }
 
     private void ReloadBoxCollider()
     {
-        if (_doubleJumpActivated)
+        if (doubleJumpActivated)
         {
             _boxCollider2D.size = _batSize;
             _boxCollider2D.offset = _batOffset;
@@ -322,5 +355,4 @@ public class PlayerMovementController : MonoBehaviour
             Destroy(other.gameObject);
         }
     }
-
 }

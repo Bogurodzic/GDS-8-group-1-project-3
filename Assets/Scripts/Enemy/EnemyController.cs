@@ -7,19 +7,14 @@ public class EnemyController : MonoBehaviour, ICharacter
 {
     [SerializeField] private Animator _animator;
     [SerializeField] private GameObject _healthPickup;
+
     [SerializeField] private int _maxHealth = 5;
 
     private int _currentHealth;
-
     
     void Start()
     {
         _currentHealth = _maxHealth;
-    }
-
-    void Update()
-    {
-
     }
 
     public void TakeDamage(int _damage)
@@ -38,6 +33,4 @@ public class EnemyController : MonoBehaviour, ICharacter
         Instantiate(_healthPickup, transform.position, transform.rotation);
         Destroy(gameObject);
     }
-
-
 }

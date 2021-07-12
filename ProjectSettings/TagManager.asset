@@ -8,6 +8,7 @@ TagManager:
   - Box
   - Coin
   - MaximumEnemyDistance
+  - Mirror
   layers:
   - Default
   - TransparentFX
@@ -22,9 +23,9 @@ TagManager:
   - Bounds
   - Player
   - Enemy
-  - 
-  - 
-  - 
+  - Sunlight
+  - Pickup
+  - Bullet
   - 
   - 
   - 

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour, ICharacter
-{
-    [SerializeField] private Animator _animator;
-    
+{   
     public float maxHealth = 5;
     public float currentHealth;
+
+    [SerializeField] private Animator _animator;
 
     void Start()
     {
@@ -29,5 +29,4 @@ public class PlayerController : MonoBehaviour, ICharacter
     {
         Destroy(gameObject);
     }
-
 }
