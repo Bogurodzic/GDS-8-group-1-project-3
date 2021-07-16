@@ -57,13 +57,13 @@ public class EnemyCombatRanged : MonoBehaviour
             case State.Patrolling:
                 Patrol();
                 SpotPlayer();
+                FaceTowardsMovementDirection();
                 break;
             case State.Combat:
                 Shoot();
                 break;
         }
 
-        FaceTowardsMovementDirection();
     }
 
     private void OnDrawGizmosSelected()
