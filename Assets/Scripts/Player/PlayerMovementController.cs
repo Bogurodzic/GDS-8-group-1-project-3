@@ -17,6 +17,7 @@ public class PlayerMovementController : MonoBehaviour
     [Header("Controls")]
     [SerializeField] private KeyCode _playerMoveLeft;
     [SerializeField] private KeyCode _playerMoveRight;
+    [SerializeField] private KeyCode _playerMoveDown;
     [SerializeField] private KeyCode _playerJumpFirstKey;
     [SerializeField] private KeyCode _playerJumpSecondKey;
 
@@ -120,6 +121,10 @@ public class PlayerMovementController : MonoBehaviour
         {
             MoveRight();
         }
+        else if (CanPlayerMoveDown())
+        {
+            MoveDown();
+        }
         else
         {
             if (IsGrounded())
@@ -161,6 +166,18 @@ public class PlayerMovementController : MonoBehaviour
     private bool CanPlayerMoveLeft()
     {
         if (Input.GetKey(_playerMoveRight))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    private bool CanPlayerMoveDown()
+    {
+        if (Input.GetKey(_playerMoveDown))
         {
             return true;
         }
@@ -281,6 +298,14 @@ public class PlayerMovementController : MonoBehaviour
 
                 }
             }
+        }
+    }
+
+    private void MoveDown()
+    {
+        if (doubleJumpActivated)
+        {
+            _rigidbody2D.velocity = new Vector2 (_rigidbody2D.velocity.x, -_batMovementSpeed);
         }
     }
 
