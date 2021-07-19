@@ -81,15 +81,15 @@ public class PlayerMovementController : MonoBehaviour
         }
 
         Physics2D.queriesStartInColliders = true;
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, _facingLeft ? Vector2.left : Vector2.right, 0.35f, _boxMask);
+        RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - 0.5f), _facingLeft ? Vector2.left : Vector2.right, 0.55f, _boxMask);
 
-        if (hit.collider != null && hit.collider.gameObject.CompareTag("Box") && Input.GetKey(KeyCode.LeftShift))
+        if (hit.collider != null && hit.collider.gameObject.CompareTag("Mirror") && Input.GetKey(KeyCode.LeftShift))
         {
             box = hit.collider.gameObject;
             box.GetComponent<FixedJoint2D>().enabled = true;
             box.GetComponent<FixedJoint2D>().connectedBody = this.GetComponent<Rigidbody2D>();
         }
-        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        else if (Input.GetKeyUp(KeyCode.LeftShift) && box)
         {
             if (box.GetComponent<FixedJoint2D>() == null)
             {
@@ -102,7 +102,7 @@ public class PlayerMovementController : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, new Vector3(transform.position.x + (_facingLeft ? -0.35f : 0.35f), transform.position.y, transform.position.z));
+        Gizmos.DrawLine(new Vector2(transform.position.x, transform.position.y - 0.5f), new Vector3(transform.position.x + (_facingLeft ? -0.55f : 0.55f), transform.position.y - 0.5f, transform.position.z));
     }
 
     private void HandleMovement()
