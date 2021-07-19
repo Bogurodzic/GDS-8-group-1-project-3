@@ -177,7 +177,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private bool CanPlayerMoveDown()
     {
-        if (Input.GetKey(_playerMoveDown))
+        if (Input.GetKey(_playerMoveDown) && doubleJumpActivated)
         {
             return true;
         }
@@ -303,10 +303,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private void MoveDown()
     {
-        if (doubleJumpActivated)
-        {
-            _rigidbody2D.velocity = new Vector2 (_rigidbody2D.velocity.x, -_batMovementSpeed);
-        }
+        _rigidbody2D.velocity = new Vector2 (_rigidbody2D.velocity.x, -_batMovementSpeed);
     }
 
     private void Stay()
