@@ -9,7 +9,7 @@ public class LightBeam : MonoBehaviour
     [SerializeField] private LayerMask _mirrorLayer;
     [SerializeField] private LayerMask _playerLayer;
     [SerializeField] private float _distanceRay = 100f;
-
+    
     private void FixedUpdate()
     {
         CastLight();              
@@ -27,7 +27,7 @@ public class LightBeam : MonoBehaviour
             DrawBeam(transform.position, _hit.point);
             if (_hit.collider.tag == "Mirror")
             {
-                _lineRenderer.SetPosition(2, Vector2.Reflect((_hit.point - new Vector2(transform.position.x, transform.position.y)).normalized * _distanceRay, _hit.normal));
+                _lineRenderer.SetPosition(2, Vector2.Reflect((_hit.point - new Vector2(transform.position.x, transform.position.y)) * _distanceRay, _hit.normal));
                 RaycastHit2D _hitPlayerMirrored = Physics2D.Raycast(_hit.point, _lineRenderer.GetPosition(2), _distanceRay, _playerLayer);
                 TouchPlayer(_hitPlayerMirrored);
             }
@@ -49,7 +49,6 @@ public class LightBeam : MonoBehaviour
     {
         if (hitPlayer)
         {
-            Debug.Log("Player in light");
             hitPlayer.collider.gameObject.GetComponent<PlayerMovementController>().DeactivateBatMode();
         }
     }
