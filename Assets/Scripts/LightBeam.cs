@@ -18,8 +18,8 @@ public class LightBeam : MonoBehaviour
     private void CastLight()
     {
         RaycastHit2D _hit = Physics2D.Raycast(transform.position, transform.right, _distanceRay, _platformLayers);
-        RaycastHit2D _hitPlayer = Physics2D.Raycast(transform.position, transform.right, _distanceRay, _playerLayer);
-
+        RaycastHit2D _hitPlayer = Physics2D.BoxCast(transform.position, new Vector2(0.7f, 0.7f), 0, transform.right, _distanceRay, _playerLayer);
+        
         TouchPlayer(_hitPlayer);
 
         if (_hit)
