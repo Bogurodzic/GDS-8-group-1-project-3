@@ -1113,50 +1113,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -64.693
       objectReference: {fileID: 0}
-    - target: {fileID: 7444984289883954246, guid: b471ac10e1c0b074fa650eb803ff0120,
+    - target: {fileID: 7444984289883954247, guid: b471ac10e1c0b074fa650eb803ff0120,
         type: 3}
-      propertyPath: _distanceRay
-      value: 50
+      propertyPath: m_Parameters.colorGradient.atime0
+      value: 386
       objectReference: {fileID: 0}
-    - target: {fileID: 7444984289883954246, guid: b471ac10e1c0b074fa650eb803ff0120,
+    - target: {fileID: 7444984289883954247, guid: b471ac10e1c0b074fa650eb803ff0120,
         type: 3}
-      propertyPath: startPosition.x
-      value: -42.36545
+      propertyPath: m_Parameters.colorGradient.atime1
+      value: 63029
       objectReference: {fileID: 0}
-    - target: {fileID: 7444984289883954246, guid: b471ac10e1c0b074fa650eb803ff0120,
+    - target: {fileID: 7444984289883954247, guid: b471ac10e1c0b074fa650eb803ff0120,
         type: 3}
-      propertyPath: startPosition.y
-      value: 12.53886
+      propertyPath: m_Parameters.colorGradient.key0.a
+      value: 0.39215687
       objectReference: {fileID: 0}
-    - target: {fileID: 7444984289883954246, guid: b471ac10e1c0b074fa650eb803ff0120,
+    - target: {fileID: 7444984289883954247, guid: b471ac10e1c0b074fa650eb803ff0120,
         type: 3}
-      propertyPath: _startPosition.x
-      value: -42.36545
-      objectReference: {fileID: 0}
-    - target: {fileID: 7444984289883954246, guid: b471ac10e1c0b074fa650eb803ff0120,
-        type: 3}
-      propertyPath: _startPosition.y
-      value: 12.53886
-      objectReference: {fileID: 0}
-    - target: {fileID: 7444984289883954246, guid: b471ac10e1c0b074fa650eb803ff0120,
-        type: 3}
-      propertyPath: _playerLayer.m_Bits
-      value: 2048
-      objectReference: {fileID: 0}
-    - target: {fileID: 7444984289883954246, guid: b471ac10e1c0b074fa650eb803ff0120,
-        type: 3}
-      propertyPath: _platformLayers.m_Bits
-      value: 17152
+      propertyPath: m_Parameters.colorGradient.key1.a
+      value: 0.12156863
       objectReference: {fileID: 0}
     - target: {fileID: 7444984289883954297, guid: b471ac10e1c0b074fa650eb803ff0120,
         type: 3}
       propertyPath: m_Name
       value: LightBeamSource
-      objectReference: {fileID: 0}
-    - target: {fileID: 7444984289883954297, guid: b471ac10e1c0b074fa650eb803ff0120,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b471ac10e1c0b074fa650eb803ff0120, type: 3}
