@@ -55,13 +55,13 @@ public class EnemyCombatMelee : MonoBehaviour
             case State.Patrolling:
                 Patrol();
                 SpotPlayer();
+                FaceTowardsMovementDirection();
                 break;
             case State.Combat:
                 ChasePlayer();
+                FaceTowardsPlayer();
                 break;
         }
-
-        FaceTowardsMovementDirection();
     }
 
     private void OnDrawGizmosSelected()
@@ -84,6 +84,18 @@ public class EnemyCombatMelee : MonoBehaviour
         }
 
         _priorPosition = transform.position.x;
+    }
+
+    private void FaceTowardsPlayer()
+    {
+        if (_player.transform.position.x < transform.position.x)
+        {
+            transform.eulerAngles = new Vector3(0, 0, 0);
+        }
+        else if (_player.transform.position.x >= transform.position.x)
+        {
+            transform.eulerAngles = new Vector3(0, 180, 0);
+        }
     }
 
     public void Patrol()
