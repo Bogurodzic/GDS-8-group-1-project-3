@@ -188,7 +188,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 8000
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -239,6 +239,7 @@ MonoBehaviour:
   _healthPickup: {fileID: 1778563846365517646, guid: 261c69bea67ec3144b8be0bf011a3ebd,
     type: 3}
   _maxHealth: 5
+  _pushForce: 5
 --- !u!95 &2053602825
 Animator:
   serializedVersion: 3
