@@ -25,6 +25,7 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private float _movementSpeed;
     [SerializeField] private float _airMovementSpeed;
     [SerializeField] private float _batMovementSpeed;
+    [SerializeField][Range(0,1)] private float _horizontalFriction;
     [SerializeField] private float _jumpForce;
     [SerializeField] private float _doubleJumpForce;
     [SerializeField] private float _jumpTime;
@@ -219,7 +220,7 @@ public class PlayerMovementController : MonoBehaviour
             {
                 _jumpTimeCounter -= Time.deltaTime;
                 _singleJumpActive = true;
-                _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x * _jumpForce ,_jumpForce);
+                _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x * _horizontalFriction,_jumpForce);
             }
         }
     }
