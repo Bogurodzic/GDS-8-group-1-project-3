@@ -155,6 +155,9 @@ MonoBehaviour:
   _platformLayers:
     serializedVersion: 2
     m_Bits: 17152
+  _doorButtonLayer:
+    serializedVersion: 2
+    m_Bits: 65536
   _mirrorLayer:
     serializedVersion: 2
     m_Bits: 16384

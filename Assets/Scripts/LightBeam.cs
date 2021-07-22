@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ public class LightBeam : MonoBehaviour
     
     [SerializeField] private LineRenderer _lineRenderer;
     [SerializeField] private LayerMask _platformLayers;
+    [SerializeField] private LayerMask _doorButtonLayer;
     [SerializeField] private LayerMask _mirrorLayer;
     [SerializeField] private LayerMask _playerLayer;
     [SerializeField] private float _distanceRay = 100f;
@@ -32,14 +34,28 @@ public class LightBeam : MonoBehaviour
         RaycastHit2D _hit = Physics2D.Raycast(transform.position, transform.right, _distanceRay, _platformLayers);
         RaycastHit2D _hitPlayer = Physics2D.BoxCast(transform.position, new Vector2(0.7f, 0.7f), 0, transform.right, _distanceRay, _playerLayer);
         
-        TouchPlayer(_hitPlayer);
+        //It can be enabled if we want to use light to open door without reflecting it
+        //RaycastHit2D _hitDoor = Physics2D.BoxCast(transform.position, new Vector2(0.7f, 0.7f), 0, transform.right, _distanceRay, _doorButtonLayer);
+        //InteractWithDoors(_hitDoor);
 
+        TouchPlayer(_hitPlayer);
+        
         if (_hit)
         {
             DrawBeam(transform.position, _hit.point);
             if (_hit.collider.tag == "Mirror")
             {
-                _lineRenderer.SetPosition(2, Vector2.Reflect((_hit.point - new Vector2(transform.position.x, transform.position.y)) * _distanceRay, _hit.normal));
+                Vector2 reflectedPosition =
+                    Vector2.Reflect(
+                        (_hit.point - new Vector2(transform.position.x, transform.position.y)) * _distanceRay,
+                        _hit.normal);
+                
+                //Raycast to find door button
+                RaycastHit2D _hitDoorReflected = Physics2D.BoxCast(_hit.point, new Vector2(0.7f, 0.7f), 0, reflectedPosition, _distanceRay, _doorButtonLayer);
+                InteractWithDoors(_hitDoorReflected);
+
+                
+                _lineRenderer.SetPosition(2, reflectedPosition);
                 RaycastHit2D _hitPlayerMirrored = Physics2D.Raycast(_hit.point, _lineRenderer.GetPosition(2), _distanceRay, _playerLayer);
                 TouchPlayer(_hitPlayerMirrored);
             }
@@ -55,6 +71,19 @@ public class LightBeam : MonoBehaviour
             _lineRenderer.SetPosition(2, _lineRenderer.GetPosition(1));
         }
 
+    }
+    
+
+    private void InteractWithDoors(RaycastHit2D hitDoor)
+    {
+        if (hitDoor)
+        {
+            Debug.Log("Interact with doors 2");
+            Debug.Log(hitDoor);
+
+            DoorButtonController doorButtonController = hitDoor.collider.gameObject.GetComponent<DoorButtonController>();
+            doorButtonController.Interact();
+        }
     }
 
     private void TouchPlayer(RaycastHit2D hitPlayer)
