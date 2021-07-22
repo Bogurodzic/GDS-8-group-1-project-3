@@ -5,6 +5,7 @@ using UnityEngine;
 public class DoorButtonController : MonoBehaviour
 {
     [SerializeField] private DoorController _doorController;
+
     void Start()
     {
         
@@ -17,7 +18,7 @@ public class DoorButtonController : MonoBehaviour
 
     public void Interact()
     {
-        Debug.Log("Interact");
         _doorController.UnlockDoors();
     }
+    
 }

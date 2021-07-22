@@ -78,9 +78,6 @@ public class LightBeam : MonoBehaviour
     {
         if (hitDoor)
         {
-            Debug.Log("Interact with doors 2");
-            Debug.Log(hitDoor);
-
             DoorButtonController doorButtonController = hitDoor.collider.gameObject.GetComponent<DoorButtonController>();
             doorButtonController.Interact();
         }
