@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class LightBeam : MonoBehaviour
 {
+    
     [SerializeField] private LineRenderer _lineRenderer;
     [SerializeField] private LayerMask _platformLayers;
     [SerializeField] private LayerMask _mirrorLayer;
     [SerializeField] private LayerMask _playerLayer;
     [SerializeField] private float _distanceRay = 100f;
 
-
+    [SerializeField] private PlayerController _playerController;
+    
     [SerializeField] private int _firstTimeDamageToPlayerDelay;
     [SerializeField] private int _regularTimeDamageToPlayerDelay;
     [SerializeField] private int _damageToPlayer;
@@ -92,17 +94,28 @@ public class LightBeam : MonoBehaviour
             _damageDealingProcessStarded = true;
             Invoke("DealDamage", _regularTimeDamageToPlayerDelay);
         }
+        else if (!_playerIsAffectedBySun)
+        {
+            ResetDamagingPlayer();
+        }
+    }
+
+    private void ResetDamagingPlayer()
+    {
+        CancelInvoke();
+        _damageDealingProcessStarded = false;
+        _firstDamageDealed = false;
     }
 
     private void DealDamage()
     {
         if (_playerIsAffectedBySun && !_firstDamageDealed)
         {
-            Debug.Log("DEALING DAMAGE First Time");
+            _playerController.TakeDamage(_damageToPlayer);
             _firstDamageDealed = true;
         } else if (_playerIsAffectedBySun && _firstDamageDealed)
         {
-            Debug.Log("DEALING DAMAGE Second Time");
+            _playerController.TakeDamage(_damageToPlayer);
         }
         
         _damageDealingProcessStarded = false;

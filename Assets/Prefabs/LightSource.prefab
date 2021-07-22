@@ -162,6 +162,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   _distanceRay: 50
+  _playerController: {fileID: 6820323240941389625, guid: 079cdc55a7b531d4aac9a541858d09c0,
+    type: 3}
   _firstTimeDamageToPlayerDelay: 3
   _regularTimeDamageToPlayerDelay: 5
   _damageToPlayer: 0
