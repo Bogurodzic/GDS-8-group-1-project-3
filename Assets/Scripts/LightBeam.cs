@@ -9,10 +9,20 @@ public class LightBeam : MonoBehaviour
     [SerializeField] private LayerMask _mirrorLayer;
     [SerializeField] private LayerMask _playerLayer;
     [SerializeField] private float _distanceRay = 100f;
+
+
+    [SerializeField] private int _firstTimeDamageToPlayerDelay;
+    [SerializeField] private int _regularTimeDamageToPlayerDelay;
+    [SerializeField] private int _damageToPlayer;
+
+    private bool _playerIsAffectedBySun = false;
+    private bool _damageDealingProcessStarded = false;
+    private bool _firstDamageDealed = false;
     
     private void FixedUpdate()
     {
-        CastLight();              
+        CastLight();
+        TryDealDamageToPlayer();
     }
 
     private void CastLight()
@@ -50,6 +60,11 @@ public class LightBeam : MonoBehaviour
         if (hitPlayer)
         {
             hitPlayer.collider.gameObject.GetComponent<PlayerMovementController>().HandleSunEffect();
+            _playerIsAffectedBySun = true;
+        }
+        else
+        {
+            _playerIsAffectedBySun = false;
         }
     }
 
@@ -64,5 +79,33 @@ public class LightBeam : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawSphere(transform.position, 0.5f);
         Gizmos.DrawRay(transform.position, transform.right);
+    }
+
+    private void TryDealDamageToPlayer()
+    {
+        if (_playerIsAffectedBySun && !_damageDealingProcessStarded && !_firstDamageDealed)
+        {
+            _damageDealingProcessStarded = true;
+            Invoke("DealDamage", _firstTimeDamageToPlayerDelay);
+        } else if (_playerIsAffectedBySun && !_damageDealingProcessStarded && _firstDamageDealed)
+        {
+            _damageDealingProcessStarded = true;
+            Invoke("DealDamage", _regularTimeDamageToPlayerDelay);
+        }
+    }
+
+    private void DealDamage()
+    {
+        if (_playerIsAffectedBySun && !_firstDamageDealed)
+        {
+            Debug.Log("DEALING DAMAGE First Time");
+            _firstDamageDealed = true;
+        } else if (_playerIsAffectedBySun && _firstDamageDealed)
+        {
+            Debug.Log("DEALING DAMAGE Second Time");
+        }
+        
+        _damageDealingProcessStarded = false;
+
     }
 }

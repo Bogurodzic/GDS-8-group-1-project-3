@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5180537753095742504}
   - component: {fileID: 5180537753095742505}
   m_Layer: 13
-  m_Name: LightBeamSource 1
+  m_Name: LightSource
   m_TagString: Sun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -162,3 +162,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   _distanceRay: 50
+  _firstTimeDamageToPlayerDelay: 3
+  _regularTimeDamageToPlayerDelay: 5
+  _damageToPlayer: 0
