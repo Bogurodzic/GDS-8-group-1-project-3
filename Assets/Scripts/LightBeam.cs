@@ -49,7 +49,7 @@ public class LightBeam : MonoBehaviour
     {
         if (hitPlayer)
         {
-            hitPlayer.collider.gameObject.GetComponent<PlayerMovementController>().DeactivateBatMode();
+            hitPlayer.collider.gameObject.GetComponent<PlayerMovementController>().HandleSunEffect();
         }
     }
 

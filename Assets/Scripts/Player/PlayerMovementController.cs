@@ -41,8 +41,10 @@ public class PlayerMovementController : MonoBehaviour
     private Vector2 _vampireOffset;
 
     private bool _facingLeft = false;
-    private bool _underSoon = false;
+    private bool _underSun = false;
+    private bool _affectedBySun = false;
     private bool _singleJumpActive = false;
+    
 
     private GameObject box;
 
@@ -136,8 +138,8 @@ public class PlayerMovementController : MonoBehaviour
         if (IsGrounded())
         {
             ReloadDoubleJump();
-
-            _underSoon = false;
+            ReloadUnderSun();
+            _affectedBySun = false;
            
             _animator.SetBool("isJumping", false);
             _singleJumpActive = false;
@@ -211,11 +213,14 @@ public class PlayerMovementController : MonoBehaviour
 
         if (!IsGrounded() && (Input.GetKeyDown(_playerJumpFirstKey) || Input.GetKeyDown(_playerJumpSecondKey)))
         {
-            DoubleJump(); 
+            if (!_underSun)
+            {
+                DoubleJump();
+            }
         }
         else
         {
-            if (_jumpTimeCounter > 0)
+            if (_jumpTimeCounter > 0 && IsGrounded())
             {
                 _jumpTimeCounter -= Time.deltaTime;
                 _singleJumpActive = true;
@@ -239,7 +244,7 @@ public class PlayerMovementController : MonoBehaviour
             _rigidbody2D.velocity = new Vector2(-_batMovementSpeed, _rigidbody2D.velocity.y);
             //transform.Translate(new Vector3(-_movementSpeed, 0, 0));
         }
-        else if (!_underSoon)
+        else if (!_affectedBySun)
         {
             transform.eulerAngles = new Vector3(0, 180, 0);
             if (IsGrounded())
@@ -273,7 +278,7 @@ public class PlayerMovementController : MonoBehaviour
             _rigidbody2D.velocity = new Vector2(+_batMovementSpeed, _rigidbody2D.velocity.y);
             //transform.Translate(new Vector3(_movementSpeed, 0, 0))
         }
-        else if (!_underSoon)
+        else if (!_affectedBySun)
         {
             transform.eulerAngles = new Vector3(0, 0, 0);
             if (IsGrounded())
@@ -324,9 +329,12 @@ public class PlayerMovementController : MonoBehaviour
         _singleJumpActive = false;
     }
 
-    public void DeactivateBatMode()
+    public void DeactivateBatMode(bool deactivateDoubleJump = true)
     {
-        doubleJumpActivated = false;
+        if (deactivateDoubleJump)
+        {
+            doubleJumpActivated = false;
+        }
         _rigidbody2D.mass = 40;
         _rigidbody2D.gravityScale = 1f;
         _animator.SetBool("isBat", false);
@@ -365,19 +373,33 @@ public class PlayerMovementController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    public void HandleSunEffect()
     {
-        if (other.CompareTag("Sun"))
+        if (doubleJumpActivated)
         {
-            DeactivateBatMode();
+            _affectedBySun = true;
+            DeactivateBatMode(false);
             ReloadBoxCollider();
             Stay();
-            _underSoon = true;
         }
+        else
+        {
+            _underSun = true;
+        }
+    }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
         if (other.CompareTag("Coin"))
         {
             Destroy(other.gameObject);
         }
     }
+
+    private void ReloadUnderSun()
+    {
+        _underSun = false;
+    }
+    
+    
 }
