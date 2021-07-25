@@ -221,7 +221,7 @@ public class PlayerMovementController : MonoBehaviour
         }
         else
         {
-            if (_jumpTimeCounter > 0 && IsGrounded())
+            if (_jumpTimeCounter > 0)
             {
                 _jumpTimeCounter -= Time.deltaTime;
                 _singleJumpActive = true;
