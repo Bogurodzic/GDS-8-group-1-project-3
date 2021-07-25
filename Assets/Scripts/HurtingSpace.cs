@@ -12,6 +12,7 @@ public class HurtingSpace : MonoBehaviour
     {
         _collisionTime = 0f;
         Hurt(collision);
+        DestroyBox(collision);
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -34,5 +35,13 @@ public class HurtingSpace : MonoBehaviour
             return;
         }
         character.GetComponent<ICharacter>().TakeDamage(_damage);
+    }
+    
+    private void DestroyBox(Collider2D collider2D)
+    {
+        if (collider2D.CompareTag("Mirror"))
+        {
+            collider2D.gameObject.GetComponent<DestroyingObjectController>().StartRespawningObject();
+        }
     }
 }

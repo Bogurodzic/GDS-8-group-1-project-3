@@ -42,8 +42,10 @@ public class PlayerMovementController : MonoBehaviour
     private Vector2 _vampireOffset;
 
     private bool _facingLeft = false;
-    private bool _underSoon = false;
+    private bool _underSun = false;
+    private bool _affectedBySun = false;
     private bool _singleJumpActive = false;
+    
 
     private GameObject box;
 
@@ -82,15 +84,15 @@ public class PlayerMovementController : MonoBehaviour
         }
 
         Physics2D.queriesStartInColliders = true;
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, _facingLeft ? Vector2.left : Vector2.right, 0.35f, _boxMask);
+        RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - 0.5f), _facingLeft ? Vector2.left : Vector2.right, 0.55f, _boxMask);
 
-        if (hit.collider != null && hit.collider.gameObject.CompareTag("Box") && Input.GetKey(KeyCode.LeftShift))
+        if (hit.collider != null && hit.collider.gameObject.CompareTag("Mirror") && Input.GetKey(KeyCode.LeftShift))
         {
             box = hit.collider.gameObject;
             box.GetComponent<FixedJoint2D>().enabled = true;
             box.GetComponent<FixedJoint2D>().connectedBody = this.GetComponent<Rigidbody2D>();
         }
-        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        else if (Input.GetKeyUp(KeyCode.LeftShift) && box)
         {
             if (box.GetComponent<FixedJoint2D>() == null)
             {
@@ -103,7 +105,7 @@ public class PlayerMovementController : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, new Vector3(transform.position.x + (_facingLeft ? -0.35f : 0.35f), transform.position.y, transform.position.z));
+        Gizmos.DrawLine(new Vector2(transform.position.x, transform.position.y - 0.5f), new Vector3(transform.position.x + (_facingLeft ? -0.55f : 0.55f), transform.position.y - 0.5f, transform.position.z));
     }
 
     private void HandleMovement()
@@ -137,8 +139,8 @@ public class PlayerMovementController : MonoBehaviour
         if (IsGrounded())
         {
             ReloadDoubleJump();
-
-            _underSoon = false;
+            ReloadUnderSun();
+            _affectedBySun = false;
            
             _animator.SetBool("isJumping", false);
             _singleJumpActive = false;
@@ -212,11 +214,14 @@ public class PlayerMovementController : MonoBehaviour
 
         if (!IsGrounded() && (Input.GetKeyDown(_playerJumpFirstKey) || Input.GetKeyDown(_playerJumpSecondKey)))
         {
-            DoubleJump(); 
+            if (!_underSun)
+            {
+                DoubleJump();
+            }
         }
         else
         {
-            if (_jumpTimeCounter > 0)
+            if (_jumpTimeCounter > 0 && IsGrounded())
             {
                 _jumpTimeCounter -= Time.deltaTime;
                 _singleJumpActive = true;
@@ -240,7 +245,7 @@ public class PlayerMovementController : MonoBehaviour
             _rigidbody2D.velocity = new Vector2(-_batMovementSpeed, _rigidbody2D.velocity.y);
             //transform.Translate(new Vector3(-_movementSpeed, 0, 0));
         }
-        else if (!_underSoon)
+        else if (!_affectedBySun)
         {
             transform.eulerAngles = new Vector3(0, 180, 0);
             if (IsGrounded())
@@ -274,7 +279,7 @@ public class PlayerMovementController : MonoBehaviour
             _rigidbody2D.velocity = new Vector2(+_batMovementSpeed, _rigidbody2D.velocity.y);
             //transform.Translate(new Vector3(_movementSpeed, 0, 0))
         }
-        else if (!_underSoon)
+        else if (!_affectedBySun)
         {
             transform.eulerAngles = new Vector3(0, 0, 0);
             if (IsGrounded())
@@ -322,9 +327,12 @@ public class PlayerMovementController : MonoBehaviour
         _singleJumpActive = false;
     }
 
-    public void DeactivateBatMode()
+    public void DeactivateBatMode(bool deactivateDoubleJump = true)
     {
-        doubleJumpActivated = false;
+        if (deactivateDoubleJump)
+        {
+            doubleJumpActivated = false;
+        }
         _rigidbody2D.mass = 40;
         _rigidbody2D.gravityScale = 1f;
         _animator.SetBool("isBat", false);
@@ -341,12 +349,25 @@ public class PlayerMovementController : MonoBehaviour
 
     private bool IsGrounded()
     {
-        RaycastHit2D raycastHit2Dplatform = Physics2D.BoxCast(_boxCollider2D.bounds.center, new Vector2(_boxCollider2D.bounds.size.x / 2, _boxCollider2D.bounds.size.y), 0f,
-            Vector2.down, .3f, _platformLayerMask);
-        RaycastHit2D raycastHit2Dbox = Physics2D.BoxCast(_boxCollider2D.bounds.center, new Vector2(_boxCollider2D.bounds.size.x / 2, _boxCollider2D.bounds.size.y), 0f,
-            Vector2.down, .3f, _boxMask);
+        if (doubleJumpActivated)
+        {
+            RaycastHit2D raycastHit2Dplatform = Physics2D.BoxCast(_boxCollider2D.bounds.center, new Vector2(_boxCollider2D.bounds.size.x / 2, _boxCollider2D.bounds.size.y), 0f,
+                Vector2.down, .8f, _platformLayerMask);
+            RaycastHit2D raycastHit2Dbox = Physics2D.BoxCast(_boxCollider2D.bounds.center, new Vector2(_boxCollider2D.bounds.size.x / 2, _boxCollider2D.bounds.size.y), 0f,
+                Vector2.down, .8f, _boxMask);
 
-        return (raycastHit2Dplatform.collider != null || raycastHit2Dbox.collider != null);
+            return (raycastHit2Dplatform.collider != null || raycastHit2Dbox.collider != null);  
+        }
+        else
+        {
+            RaycastHit2D raycastHit2Dplatform = Physics2D.BoxCast(_boxCollider2D.bounds.center, new Vector2(_boxCollider2D.bounds.size.x / 2, _boxCollider2D.bounds.size.y), 0f,
+                Vector2.down, .3f, _platformLayerMask);
+            RaycastHit2D raycastHit2Dbox = Physics2D.BoxCast(_boxCollider2D.bounds.center, new Vector2(_boxCollider2D.bounds.size.x / 2, _boxCollider2D.bounds.size.y), 0f,
+                Vector2.down, .3f, _boxMask);
+
+            return (raycastHit2Dplatform.collider != null || raycastHit2Dbox.collider != null);
+        }
+
     }
 
     private void ReloadBoxCollider()
@@ -363,19 +384,33 @@ public class PlayerMovementController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    public void HandleSunEffect()
     {
-        if (other.CompareTag("Sun"))
+        if (doubleJumpActivated)
         {
-            DeactivateBatMode();
+            _affectedBySun = true;
+            DeactivateBatMode(false);
             ReloadBoxCollider();
             Stay();
-            _underSoon = true;
         }
+        else
+        {
+            _underSun = true;
+        }
+    }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
         if (other.CompareTag("Coin"))
         {
             Destroy(other.gameObject);
         }
     }
+
+    private void ReloadUnderSun()
+    {
+        _underSun = false;
+    }
+    
+    
 }

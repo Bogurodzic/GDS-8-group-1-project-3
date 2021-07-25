@@ -9,6 +9,7 @@ TagManager:
   - Coin
   - MaximumEnemyDistance
   - Mirror
+  - DoorButton
   layers:
   - Default
   - TransparentFX
@@ -26,7 +27,7 @@ TagManager:
   - Sunlight
   - Pickup
   - Bullet
-  - 
+  - DoorButton
   - 
   - 
   - 
