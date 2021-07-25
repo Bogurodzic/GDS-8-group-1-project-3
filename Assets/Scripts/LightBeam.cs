@@ -33,10 +33,11 @@ public class LightBeam : MonoBehaviour
     {
         RaycastHit2D _hit = Physics2D.Raycast(transform.position, transform.right, _distanceRay, _platformLayers);
         RaycastHit2D _hitPlayer = Physics2D.BoxCast(transform.position, new Vector2(0.7f, 0.7f), 0, transform.right, _distanceRay, _playerLayer);
-        
+
         //It can be enabled if we want to use light to open door without reflecting it
-        //RaycastHit2D _hitDoor = Physics2D.BoxCast(transform.position, new Vector2(0.7f, 0.7f), 0, transform.right, _distanceRay, _doorButtonLayer);
-        //InteractWithDoors(_hitDoor);
+
+        RaycastHit2D _hitDoor = Physics2D.BoxCast(transform.position, new Vector2(0.7f, 0.7f), 0, transform.right, _distanceRay, _doorButtonLayer);
+        InteractWithDoors(_hitDoor);
 
         TouchPlayer(_hitPlayer);
         
