@@ -8,9 +8,12 @@ public class PlayerController : MonoBehaviour, ICharacter
     public float currentHealth;
 
     [SerializeField] private Animator _animator;
+    
+    private Vector2 _startPosition;
 
     void Start()
     {
+        _startPosition = transform.position;
         currentHealth = maxHealth;
     }
 
@@ -27,6 +30,8 @@ public class PlayerController : MonoBehaviour, ICharacter
 
     public void Die()
     {
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        transform.position = _startPosition;
+        currentHealth = maxHealth;
     }
 }
