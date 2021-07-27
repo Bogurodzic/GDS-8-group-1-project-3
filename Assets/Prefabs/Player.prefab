@@ -260,7 +260,7 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 6820323240941389626}
   _boxMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 768
   _playerMoveLeft: 276
   _playerMoveRight: 275
   _playerMoveDown: 274
