@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyProjectile : MonoBehaviour
 {
     [SerializeField] private int _damage = 1;
+    [SerializeField] private float _lifeTime = 3f;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -16,5 +17,10 @@ public class EnemyProjectile : MonoBehaviour
         collision.gameObject.GetComponent<ICharacter>().TakeDamage(_damage);
         //Debug.Log("Bullet collision with: " + collision.gameObject.name);
         Destroy(gameObject);
+    }
+
+    private void Update()
+    {
+        Destroy(gameObject, _lifeTime);
     }
 }
