@@ -13,7 +13,7 @@ public class LightBeam : MonoBehaviour
     [SerializeField] private LayerMask _playerLayer;
     [SerializeField] private float _distanceRay = 100f;
 
-    [SerializeField] private PlayerController _playerController;
+    [SerializeField] private GameObject _playerController;
     
     [SerializeField] private int _firstTimeDamageToPlayerDelay;
     [SerializeField] private int _regularTimeDamageToPlayerDelay;
@@ -114,10 +114,13 @@ public class LightBeam : MonoBehaviour
     {
         if (_playerIsAffectedBySun && !_damageDealingProcessStarded && !_firstDamageDealed)
         {
+            Debug.Log("TryDealDamageToPlayer 1");
             _damageDealingProcessStarded = true;
             Invoke("DealDamage", _firstTimeDamageToPlayerDelay);
         } else if (_playerIsAffectedBySun && !_damageDealingProcessStarded && _firstDamageDealed)
         {
+            Debug.Log("TryDealDamageToPlayer 2");
+
             _damageDealingProcessStarded = true;
             Invoke("DealDamage", _regularTimeDamageToPlayerDelay);
         }
@@ -136,13 +139,22 @@ public class LightBeam : MonoBehaviour
 
     private void DealDamage()
     {
+        Debug.Log("DEAL DAMAGE 1");
         if (_playerIsAffectedBySun && !_firstDamageDealed)
         {
-            _playerController.TakeDamage(_damageToPlayer);
+            Debug.Log("DEAL DAMAGE 2");
+
+            //_playerController.TakeDamage(_damageToPlayer);
+            _playerController.GetComponent<ICharacter>().TakeDamage(_damageToPlayer);
+
             _firstDamageDealed = true;
         } else if (_playerIsAffectedBySun && _firstDamageDealed)
         {
-            _playerController.TakeDamage(_damageToPlayer);
+            Debug.Log("DEAL DAMAGE 3");
+
+            //_playerController.TakeDamage(_damageToPlayer);
+            _playerController.GetComponent<ICharacter>().TakeDamage(_damageToPlayer);
+
         }
         
         _damageDealingProcessStarded = false;

@@ -19,8 +19,10 @@ public class PlayerController : MonoBehaviour, ICharacter
 
     public void TakeDamage (int _damage)
     {
+        Debug.Log("Damage taken " + _damage);
         _animator.SetTrigger("isDamaged");
         currentHealth -= _damage;
+        Debug.Log("currentHealth " + currentHealth);
 
         if (currentHealth <= 0)
         {
