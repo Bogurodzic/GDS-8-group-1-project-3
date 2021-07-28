@@ -26,6 +26,7 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private float _airMovementSpeed;
     [SerializeField] private float _batMovementSpeed;
     [SerializeField][Range(0,1)] private float _horizontalFriction;
+    [SerializeField] [Range(0, 1)] private float _horizontalFrictionNosedive;
     [SerializeField] private float _jumpForce;
     [SerializeField] private float _doubleJumpForce;
     [SerializeField] private float _jumpTime;
@@ -309,7 +310,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private void MoveDown()
     {
-        _rigidbody2D.velocity = new Vector2 (_rigidbody2D.velocity.x, -_batMovementSpeed);
+        _rigidbody2D.velocity = new Vector2 (_rigidbody2D.velocity.x * _horizontalFrictionNosedive, -_batMovementSpeed);
     }
 
     private void Stay()
