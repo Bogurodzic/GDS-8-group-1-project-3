@@ -25,7 +25,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5180537753095742486}
-  m_LocalRotation: {x: -0, y: -0, z: -0.5350413, w: 0.844826}
+  m_LocalRotation: {x: 0, y: 0, z: -0.5350382, w: 0.84482795}
   m_LocalPosition: {x: -42.365448, y: 12.538861, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -164,9 +164,8 @@ MonoBehaviour:
   _playerLayer:
     serializedVersion: 2
     m_Bits: 2048
-  _distanceRay: 50
-  _playerController: {fileID: 6820323240941389625, guid: 079cdc55a7b531d4aac9a541858d09c0,
-    type: 3}
+  _distanceRay: 70
+  _playerController: {fileID: 0}
   _firstTimeDamageToPlayerDelay: 3
   _regularTimeDamageToPlayerDelay: 5
-  _damageToPlayer: 0
+  _damageToPlayer: 1
