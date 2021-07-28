@@ -146,7 +146,7 @@ public class EnemyCombatMelee : MonoBehaviour
             //_rigidbody2D.AddForce(new Vector2(_relativePosition.x, transform.position.y).normalized * _chaseSpeed * Time.deltaTime);
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(_player.position.x, transform.position.y), _chaseSpeed * Time.deltaTime);
 
-            Collider2D _grounded = Physics2D.OverlapCircle(_groundCheck.position, 0.2f, _groundLayer);
+            Collider2D _grounded = Physics2D.OverlapCircle(_groundCheck.position, 0.5f, _groundLayer);
             if (!_grounded)
             {
                 _state = State.Patrolling;

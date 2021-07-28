@@ -232,8 +232,8 @@ MonoBehaviour:
   _attackRange: 0.5
   _damage: 1
   _pushForce: 10
-  _patrolLeftBound: 0.75
-  _patrolRightBound: 8.14
+  _patrolLeftBound: 10
+  _patrolRightBound: 18.69
   _goTowardsLeft: 1
 --- !u!1 &7394334522833782190
 GameObject:
@@ -259,7 +259,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7394334522833782190}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.368, y: -0.598, z: 0}
+  m_LocalPosition: {x: -0.62, y: -0.598, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6396016169824847542}
