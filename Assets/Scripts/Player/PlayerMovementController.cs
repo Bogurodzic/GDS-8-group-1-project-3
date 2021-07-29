@@ -28,9 +28,11 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField][Range(0,1)] private float _horizontalFriction;
     [SerializeField] [Range(0, 1)] private float _horizontalFrictionNosedive;
     [SerializeField] private float _jumpForce;
+    [SerializeField] private float _gravityScale;
     [SerializeField] private float _doubleJumpForce;
     [SerializeField] private float _jumpTime;
     [SerializeField] private float _gravityMultiplier;
+    [SerializeField] private float _playerMass;
     
     [HideInInspector] public bool doubleJumpActivated = false;
 
@@ -226,7 +228,7 @@ public class PlayerMovementController : MonoBehaviour
             {
                 _jumpTimeCounter -= Time.deltaTime;
                 _singleJumpActive = true;
-                _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x * _horizontalFriction,_jumpForce);
+                _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x * _horizontalFriction, _jumpForce);
             }
         }
     }
@@ -334,8 +336,8 @@ public class PlayerMovementController : MonoBehaviour
         {
             doubleJumpActivated = false;
         }
-        _rigidbody2D.mass = 40;
-        _rigidbody2D.gravityScale = 1f;
+        _rigidbody2D.mass = _playerMass;
+        _rigidbody2D.gravityScale = _gravityScale;
         _animator.SetBool("isBat", false);
         ReloadBoxCollider();
     }
