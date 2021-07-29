@@ -171,6 +171,12 @@ public class EnemyCombatMelee : MonoBehaviour
 
         _animator.SetTrigger("Attack");
 
+
+    }
+
+    // This is triggered by animation event
+    public void DealDamage()
+    {
         Collider2D hitPlayer = Physics2D.OverlapCircle(_damagePoint.position, _attackRange, _playerLayer);
 
         if (hitPlayer)

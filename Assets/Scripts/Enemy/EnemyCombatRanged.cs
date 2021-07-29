@@ -127,6 +127,11 @@ public class EnemyCombatRanged : MonoBehaviour
 
         _animator.SetTrigger("Attack");
 
+    }
+
+    // This is triggered by animation event
+    public void Fire()
+    {
         if (_player.transform.position.x < transform.position.x)
         {
             transform.eulerAngles = new Vector3(0, 0, 0);
