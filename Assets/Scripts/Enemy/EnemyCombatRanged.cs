@@ -27,11 +27,11 @@ public class EnemyCombatRanged : MonoBehaviour
     [SerializeField] private float _bulletSpeed = 8f;
     //[SerializeField] private float _chaseSpeed = 4.73f;
 
-    [Header("Combat Parameters")]
+    //[Header("Combat Parameters")]
     //[SerializeField] private float _sightRange = 2f;
     //[SerializeField] private float _attackDistance = 1f;
     //[SerializeField] private float _attackRange = 0.5f;
-    [SerializeField] private int _damage = 1;
+    //[SerializeField] private int _damage = 1;
     //[SerializeField] private float _pushForce = 10f;
 
     [Header("Patrol Constraints")]
@@ -111,9 +111,19 @@ public class EnemyCombatRanged : MonoBehaviour
 
     private void SpotPlayer()
     {
-        //OverlapCircle(transform.position, _sightRange, _playerLayer);
         if (_spotRange.IsTouchingLayers(_playerLayer))
         {
+            RaycastHit2D _wallCheck = Physics2D.Raycast(transform.position, _goTowardsLeft ? Vector2.left : Vector2.right, 8f, _groundLayer);
+            float _playerDistance = Mathf.Abs(transform.position.x - _player.position.x);
+
+            Debug.Log(gameObject.name + ": distance to wall: " + _wallCheck.distance);
+            Debug.Log(gameObject.name + ": distance to player: " + _playerDistance);
+
+            if (_wallCheck.distance < _playerDistance)
+            {
+                return;
+            }
+
             _state = State.Combat;
         }
     }
