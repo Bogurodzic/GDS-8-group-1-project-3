@@ -122,9 +122,19 @@ public class EnemyCombatMelee : MonoBehaviour
 
     private void SpotPlayer()
     {
-        //OverlapCircle(transform.position, _sightRange, _playerLayer);
         if (_spotRange.IsTouchingLayers(_playerLayer))
         {
+            RaycastHit2D _wallCheck = Physics2D.Raycast(transform.position, _goTowardsLeft ? Vector2.left: Vector2.right, 6f, _groundLayer);
+            float _playerDistance = Mathf.Abs(transform.position.x - _player.position.x);
+            
+            Debug.Log(gameObject.name + ": distance to wall: " + _wallCheck.distance);
+            Debug.Log(gameObject.name + ": distance to player: " + _playerDistance);
+
+            if (_wallCheck.distance < _playerDistance)
+            {
+                return;
+            }
+
             _state = State.Combat;
         }
     }
@@ -171,6 +181,12 @@ public class EnemyCombatMelee : MonoBehaviour
 
         _animator.SetTrigger("Attack");
 
+
+    }
+
+    // This is triggered by animation event
+    public void DealDamage()
+    {
         Collider2D hitPlayer = Physics2D.OverlapCircle(_damagePoint.position, _attackRange, _playerLayer);
 
         if (hitPlayer)

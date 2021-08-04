@@ -10,6 +10,7 @@ TagManager:
   - MaximumEnemyDistance
   - Mirror
   - DoorButton
+  - BoxRespawn
   layers:
   - Default
   - TransparentFX
