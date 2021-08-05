@@ -24,16 +24,19 @@ public class PlayerMovementController : MonoBehaviour
     [Header("Movement Parameters")]
     [SerializeField] private float _movementSpeed;
     [SerializeField] private float _airMovementSpeed;
-    [SerializeField] private float _batMovementSpeed;
     [SerializeField][Range(0,1)] private float _horizontalFriction;
-    [SerializeField] [Range(0, 1)] private float _horizontalFrictionNosedive;
     [SerializeField] private float _jumpForce;
     [SerializeField] private float _gravityScale;
-    [SerializeField] private float _doubleJumpForce;
     [SerializeField] private float _jumpTime;
-    [SerializeField] private float _gravityMultiplier;
     [SerializeField] private float _playerMass;
-    
+
+    [Header("Bat Movement Parameters")]
+    [SerializeField] private float _batMovementSpeed;
+    [SerializeField] private float _doubleJumpForce;
+    [SerializeField] [Range(0, 1)] private float _horizontalFrictionNosedive;
+    [SerializeField] private float _gravityMultiplier;
+    [SerializeField] private float _batMass;
+
     [HideInInspector] public bool doubleJumpActivated = false;
 
     private float _jumpTimeCounter;
@@ -345,7 +348,7 @@ public class PlayerMovementController : MonoBehaviour
     private void ActivateBatMode()
     {
         doubleJumpActivated = true;
-        _rigidbody2D.mass = 1;
+        _rigidbody2D.mass = _batMass;
         _rigidbody2D.gravityScale = 1f / _gravityMultiplier;
         ReloadBoxCollider();
     }
