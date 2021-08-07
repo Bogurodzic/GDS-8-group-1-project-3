@@ -39,7 +39,7 @@ public class HurtingSpace : MonoBehaviour
     
     private void DestroyBox(Collider2D collider2D)
     {
-        if (collider2D.CompareTag("Mirror") || collider2D.CompareTag("BoxRespawn"))
+        if (collider2D.CompareTag("Mirror"))
         {
             collider2D.gameObject.GetComponent<DestroyingObjectController>().StartRespawningObject();
         }
