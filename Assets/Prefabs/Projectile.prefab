@@ -134,3 +134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 1
+  _lifeTime: 3
+  _wallLayer:
+    serializedVersion: 2
+    m_Bits: 768

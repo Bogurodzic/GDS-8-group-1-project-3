@@ -6,12 +6,21 @@ public class EnemyProjectile : MonoBehaviour
 {
     [SerializeField] private int _damage = 1;
     [SerializeField] private float _lifeTime = 3f;
+    [SerializeField] private LayerMask _wallLayer;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.GetComponent<ICharacter>() == null)
         {
-            return;
+            if (collision.gameObject.layer == _wallLayer)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                return;
+            }
+
         }
 
         collision.gameObject.GetComponent<ICharacter>().TakeDamage(_damage);
