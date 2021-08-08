@@ -92,7 +92,7 @@ public class PlayerMovementController : MonoBehaviour
         Physics2D.queriesStartInColliders = true;
         RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - 0.5f), _facingLeft ? Vector2.left : Vector2.right, 0.55f, _boxMask);
 
-        if (hit.collider != null && hit.collider.gameObject.CompareTag("Mirror") && Input.GetKey(KeyCode.LeftShift))
+        if (hit.collider != null && (hit.collider.gameObject.CompareTag("Mirror") || hit.collider.gameObject.CompareTag("Box")) && Input.GetKey(KeyCode.LeftShift))
         {
             box = hit.collider.gameObject;
             box.GetComponent<FixedJoint2D>().enabled = true;

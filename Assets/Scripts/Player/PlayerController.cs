@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour, ICharacter
 {   
@@ -33,7 +34,11 @@ public class PlayerController : MonoBehaviour, ICharacter
     public void Die()
     {
         //Destroy(gameObject);
-        transform.position = _startPosition;
+        //transform.position = _startPosition;
         currentHealth = maxHealth;
+
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.name);
+        
     }
 }
