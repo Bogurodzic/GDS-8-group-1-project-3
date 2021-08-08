@@ -266,14 +266,18 @@ MonoBehaviour:
   _playerMoveDown: 274
   _playerJumpFirstKey: 32
   _playerJumpSecondKey: 122
-  _movementSpeed: 7.08
+  _movementSpeed: 6
   _airMovementSpeed: 1000
-  _batMovementSpeed: 5
   _horizontalFriction: 0.931
-  _jumpForce: 2.5
-  _doubleJumpForce: 4
-  _jumpTime: 0.35
-  _gravityMultiplier: 2
+  _jumpForce: 3
+  _gravityScale: 2
+  _jumpTime: 0.32
+  _playerMass: 100
+  _batMovementSpeed: 4.2
+  _doubleJumpForce: 6.8
+  _horizontalFrictionNosedive: 0
+  _gravityMultiplier: 0.8
+  _batMass: 1
   doubleJumpActivated: 0
 --- !u!95 &6820323240941389630
 Animator:
