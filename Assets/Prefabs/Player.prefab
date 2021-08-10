@@ -103,6 +103,7 @@ GameObject:
   - component: {fileID: 6820323240941389624}
   - component: {fileID: 6820323240941389630}
   - component: {fileID: 6820323240941389631}
+  - component: {fileID: 1105568951677144104}
   m_Layer: 11
   m_Name: Player
   m_TagString: Player
@@ -268,12 +269,16 @@ MonoBehaviour:
   _playerJumpSecondKey: 122
   _movementSpeed: 7.08
   _airMovementSpeed: 1000
-  _batMovementSpeed: 5
   _horizontalFriction: 0.931
   _jumpForce: 2.5
-  _doubleJumpForce: 4
+  _gravityScale: 0
   _jumpTime: 0.35
+  _playerMass: 0
+  _batMovementSpeed: 5
+  _doubleJumpForce: 4
+  _horizontalFrictionNosedive: 0
   _gravityMultiplier: 2
+  _batMass: 0
   doubleJumpActivated: 0
 --- !u!95 &6820323240941389630
 Animator:
@@ -316,3 +321,15 @@ MonoBehaviour:
   _attackRange: 0.5
   _attackDamage: 2
   _pushForce: 0
+--- !u!114 &1105568951677144104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6820323240941389607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d40963dd74c7e4113be02d7460502cc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
