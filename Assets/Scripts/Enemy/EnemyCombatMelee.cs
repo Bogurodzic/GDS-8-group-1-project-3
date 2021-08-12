@@ -130,7 +130,7 @@ public class EnemyCombatMelee : MonoBehaviour
             Debug.Log(gameObject.name + ": distance to wall: " + _wallCheck.distance);
             Debug.Log(gameObject.name + ": distance to player: " + _playerDistance);
 
-            if (_wallCheck.distance < _playerDistance)
+            if (_wallCheck.distance > 0 &&_wallCheck.distance < _playerDistance)
             {
                 return;
             }
