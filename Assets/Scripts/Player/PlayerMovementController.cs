@@ -269,8 +269,8 @@ public class PlayerMovementController : MonoBehaviour
                 }
                 else
                 {
-                    _rigidbody2D.velocity += new Vector2(-_airMovementSpeed/4 * Time.deltaTime, 0);
-                    _rigidbody2D.velocity = new Vector2(Mathf.Clamp(_rigidbody2D.velocity.x/2, -_movementSpeed, +_movementSpeed),
+                    _rigidbody2D.velocity += new Vector2(-_airMovementSpeed/2 * _horizontalFriction * Time.deltaTime, 0);
+                    _rigidbody2D.velocity = new Vector2(Mathf.Clamp(_rigidbody2D.velocity.x/4, -_movementSpeed, +_movementSpeed),
                        _rigidbody2D.velocity.y);
                 }
 
@@ -304,8 +304,8 @@ public class PlayerMovementController : MonoBehaviour
                 }
                 else
                 {
-                    _rigidbody2D.velocity += new Vector2(+_airMovementSpeed/4 * Time.deltaTime, 0);
-                    _rigidbody2D.velocity = new Vector2(Mathf.Clamp(_rigidbody2D.velocity.x/2, -_movementSpeed, +_movementSpeed),
+                    _rigidbody2D.velocity += new Vector2(+_airMovementSpeed/ 2 * _horizontalFriction * Time.deltaTime, 0);
+                    _rigidbody2D.velocity = new Vector2(Mathf.Clamp(_rigidbody2D.velocity.x/4, -_movementSpeed, +_movementSpeed),
                         _rigidbody2D.velocity.y);
 
                 }
