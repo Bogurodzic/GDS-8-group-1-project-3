@@ -60,6 +60,7 @@ public class EnemyCombatRanged : MonoBehaviour
                 FaceTowardsMovementDirection();
                 break;
             case State.Combat:
+                FaceTowardsPlayer();
                 Shoot();
                 break;
         }
@@ -85,6 +86,17 @@ public class EnemyCombatRanged : MonoBehaviour
         }
 
         _priorPosition = transform.position.x;
+    }
+    private void FaceTowardsPlayer()
+    {
+        if (_player.transform.position.x < transform.position.x)
+        {
+            transform.eulerAngles = new Vector3(0, 0, 0);
+        }
+        else if (_player.transform.position.x >= transform.position.x)
+        {
+            transform.eulerAngles = new Vector3(0, 180, 0);
+        }
     }
 
     public void Patrol()
@@ -119,7 +131,7 @@ public class EnemyCombatRanged : MonoBehaviour
             Debug.Log(gameObject.name + ": distance to wall: " + _wallCheck.distance);
             Debug.Log(gameObject.name + ": distance to player: " + _playerDistance);
 
-            if (_wallCheck.distance < _playerDistance)
+            if (_wallCheck.distance > 0 && _wallCheck.distance < _playerDistance)
             {
                 return;
             }
