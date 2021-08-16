@@ -3,12 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoxController : MonoBehaviour
+public class BoxController : MonoBehaviour, ICharacter
 {
     [SerializeField] private BoxCollider2D _boxCollider2D;
     [SerializeField] private Rigidbody2D _rigidbody;
     [SerializeField] private Transform _groundPoint;
     [SerializeField] private LayerMask _groundLayers;
+
+    [SerializeField] private float _maxHP = 6;
+    private float _currentHP;
+
+    private void Start()
+    {
+        _currentHP = _maxHP;    
+    }
 
     private void FixedUpdate()
     {
@@ -42,4 +50,25 @@ public class BoxController : MonoBehaviour
             other.gameObject.GetComponent<SunController>().ResetPosition();
         }
     }
+
+    public void TakeDamage (int _damage)
+    {
+        _currentHP -= _damage;
+
+        if (_currentHP <= 0)
+        {
+            Die();
+        }
+    }
+
+    public void Die()
+    {
+        if (GetComponent<DestroyingObjectController>() == null)
+        {
+            return;
+        }
+
+        GetComponent<DestroyingObjectController>().StartRespawningObject();
+    }
+    
 }

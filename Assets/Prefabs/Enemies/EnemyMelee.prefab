@@ -275,7 +275,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8809545556978045342}
   - component: {fileID: 8809545556978045343}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: SightRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
