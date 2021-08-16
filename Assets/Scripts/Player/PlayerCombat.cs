@@ -35,7 +35,7 @@ public class PlayerCombat : MonoBehaviour
 
         foreach(Collider2D enemy in hitEnemies)
         {
-            Debug.Log("Enemy hit: " + enemy.gameObject.name);
+            Debug.Log("Target hit: " + enemy.gameObject.name);
             enemy.GetComponent<ICharacter>().TakeDamage(_attackDamage);
             if (transform.eulerAngles == new Vector3(0, 180, 0))
             {

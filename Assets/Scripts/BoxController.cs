@@ -23,15 +23,6 @@ public class BoxController : MonoBehaviour, ICharacter
         FallDown();
     }
 
-    void FallDown()
-    {
-        RaycastHit2D groundCheck = Physics2D.BoxCast(_groundPoint.position, new Vector2(_boxCollider2D.bounds.size.x, _boxCollider2D.bounds.size.y/2), 0f, Vector2.down, _groundLayers);
-        if (groundCheck)
-        {
-            _rigidbody.velocity = new Vector2(0f, _rigidbody.velocity.y);
-        }
-    }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Sun"))
@@ -69,6 +60,15 @@ public class BoxController : MonoBehaviour, ICharacter
         }
 
         GetComponent<DestroyingObjectController>().StartRespawningObject();
+        _currentHP = _maxHP;
     }
-    
+
+    void FallDown()
+    {
+        RaycastHit2D groundCheck = Physics2D.BoxCast(_groundPoint.position, new Vector2(_boxCollider2D.bounds.size.x, _boxCollider2D.bounds.size.y / 2), 0f, Vector2.down, _groundLayers);
+        if (groundCheck)
+        {
+            _rigidbody.velocity = new Vector2(0f, _rigidbody.velocity.y);
+        }
+    }
 }
