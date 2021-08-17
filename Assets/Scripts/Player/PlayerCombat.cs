@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerCombat : MonoBehaviour
 {
     [Header("References")]
+    [SerializeField] private Rigidbody2D _rigidbody2D;
     [SerializeField] private Animator _animator;
     [SerializeField] private Transform _damagePoint;
     [SerializeField] private LayerMask _enemyLayer;
@@ -36,7 +37,9 @@ public class PlayerCombat : MonoBehaviour
         foreach(Collider2D enemy in hitEnemies)
         {
             Debug.Log("Target hit: " + enemy.gameObject.name);
+
             enemy.GetComponent<ICharacter>().TakeDamage(_attackDamage);
+
             if (transform.eulerAngles == new Vector3(0, 180, 0))
             {
                 enemy.GetComponent<Rigidbody2D>().AddForce(new Vector2(-_pushForce, 0f));
