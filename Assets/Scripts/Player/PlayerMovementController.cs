@@ -40,6 +40,11 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private float _gravityMultiplier;
     [SerializeField] private float _batMass;
 
+    [Header("Push back on enemy collision")]
+    [SerializeField] private float _horizontalPush = 800f;
+    [SerializeField] private float _verticalPush = 300f;
+    [SerializeField] private float _inertiaTime = 0.1f;
+
     [HideInInspector] public bool doubleJumpActivated = false;
 
     private float _jumpTimeCounter;
@@ -54,10 +59,10 @@ public class PlayerMovementController : MonoBehaviour
     private bool _underSun = false;
     private bool _affectedBySun = false;
     private bool _singleJumpActive = false;
+    private bool _isCollidingWithAnEnemy = false;
 
     private int _coyoteFramesLeft;
     
-
     private GameObject box;
 
     void Start()
@@ -173,7 +178,7 @@ public class PlayerMovementController : MonoBehaviour
     private bool CanPlayerMoveRight()
     {
        
-        if (Input.GetKey(_playerMoveLeft))
+        if (Input.GetKey(_playerMoveLeft) && !_isCollidingWithAnEnemy)
         {
             return true;
         }
@@ -185,7 +190,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private bool CanPlayerMoveLeft()
     {
-        if (Input.GetKey(_playerMoveRight))
+        if (Input.GetKey(_playerMoveRight) && !_isCollidingWithAnEnemy)
         {
             return true;
         }
@@ -341,7 +346,7 @@ public class PlayerMovementController : MonoBehaviour
             }
 
         }
-        else
+        else if (!_isCollidingWithAnEnemy)
         {
             _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
         }
@@ -443,6 +448,11 @@ public class PlayerMovementController : MonoBehaviour
         }
     }
 
+    private void ReloadUnderSun()
+    {
+        _underSun = false;
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Coin"))
@@ -451,8 +461,34 @@ public class PlayerMovementController : MonoBehaviour
         }
     }
 
-    private void ReloadUnderSun()
+    // pushing back the player when collide with an enemy
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        _underSun = false;
-    } 
+        if (collision.gameObject.layer == 12)
+        {
+            _isCollidingWithAnEnemy = true;
+            if (FacingLeft())
+            {
+                _rigidbody2D.AddForce(new Vector2(_horizontalPush, _verticalPush), ForceMode2D.Impulse);
+            }
+            else
+            {
+                _rigidbody2D.AddForce(new Vector2(-_horizontalPush, _verticalPush), ForceMode2D.Impulse);
+            }
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == 12)
+        {
+            StartCoroutine(PushInertia());
+        }
+    }
+
+    private IEnumerator PushInertia()
+    {
+        yield return new WaitForSeconds(_inertiaTime);
+        _isCollidingWithAnEnemy = false;
+    }
 }
