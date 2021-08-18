@@ -13,6 +13,7 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private Animator _animator;
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private LayerMask _boxMask;
+    [SerializeField] private PlayerController _playerController;
 
     [Header("Controls")]
     [SerializeField] private KeyCode _playerMoveLeft;
@@ -44,6 +45,7 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private float _horizontalPush = 800f;
     [SerializeField] private float _verticalPush = 300f;
     [SerializeField] private float _inertiaTime = 0.1f;
+    [SerializeField] private int _pushDamage = 1;
 
     [HideInInspector] public bool doubleJumpActivated = false;
 
@@ -464,9 +466,10 @@ public class PlayerMovementController : MonoBehaviour
     // pushing back the player when collide with an enemy
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == 12)
+        if (collision.gameObject.layer == 12 && !IsAttacking())
         {
             _isCollidingWithAnEnemy = true;
+            _playerController.currentHealth -= _pushDamage;
             if (FacingLeft())
             {
                 _rigidbody2D.AddForce(new Vector2(_horizontalPush, _verticalPush), ForceMode2D.Impulse);
