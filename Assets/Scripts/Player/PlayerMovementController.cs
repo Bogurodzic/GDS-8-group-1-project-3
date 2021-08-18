@@ -470,6 +470,8 @@ public class PlayerMovementController : MonoBehaviour
         {
             _isCollidingWithAnEnemy = true;
             _playerController.currentHealth -= _pushDamage;
+            DeactivateBatMode(true);
+
             if (FacingLeft())
             {
                 _rigidbody2D.AddForce(new Vector2(_horizontalPush, _verticalPush), ForceMode2D.Impulse);
