@@ -31,6 +31,8 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private float _playerMass;
     [SerializeField] private float _dash;
 
+    [SerializeField] private int _coyoteTimeFrames = 4;
+
     [Header("Bat Movement Parameters")]
     [SerializeField] private float _batMovementSpeed;
     [SerializeField] private float _doubleJumpForce;
@@ -52,6 +54,8 @@ public class PlayerMovementController : MonoBehaviour
     private bool _underSun = false;
     private bool _affectedBySun = false;
     private bool _singleJumpActive = false;
+
+    private int _coyoteFramesLeft;
     
 
     private GameObject box;
@@ -59,6 +63,7 @@ public class PlayerMovementController : MonoBehaviour
     void Start()
     {
         LoadColliderSize();
+        _coyoteFramesLeft = _coyoteTimeFrames;
     }
 
     private void LoadColliderSize()
@@ -151,6 +156,8 @@ public class PlayerMovementController : MonoBehaviour
             ReloadDoubleJump();
             ReloadUnderSun();
             _affectedBySun = false;
+
+            _coyoteFramesLeft = _coyoteTimeFrames;
            
             _animator.SetBool("isJumping", false);
             _singleJumpActive = false;
@@ -212,9 +219,9 @@ public class PlayerMovementController : MonoBehaviour
 
             return true;
         }
-        
+
         else
-        {            
+        { 
             return false;
         }
     }
@@ -326,11 +333,11 @@ public class PlayerMovementController : MonoBehaviour
         {
             if (FacingLeft())
             {
-                _rigidbody2D.velocity -= new Vector2(_dash, 0);
+                _rigidbody2D.velocity = new Vector2(-_dash, _rigidbody2D.velocity.y);
             }
             else
             {
-                _rigidbody2D.velocity += new Vector2(_dash, 0);
+                _rigidbody2D.velocity = new Vector2(+_dash, _rigidbody2D.velocity.y);
             }
 
         }
@@ -373,6 +380,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private bool IsGrounded()
     {
+        
         if (doubleJumpActivated)
         {
             RaycastHit2D raycastHit2Dplatform = Physics2D.BoxCast(_boxCollider2D.bounds.center, new Vector2(_boxCollider2D.bounds.size.x / 2, _boxCollider2D.bounds.size.y), 0f,
@@ -380,7 +388,7 @@ public class PlayerMovementController : MonoBehaviour
             RaycastHit2D raycastHit2Dbox = Physics2D.BoxCast(_boxCollider2D.bounds.center, new Vector2(_boxCollider2D.bounds.size.x / 2, _boxCollider2D.bounds.size.y), 0f,
                 Vector2.down, .8f, _boxMask);
 
-            return (raycastHit2Dplatform.collider != null || raycastHit2Dbox.collider != null);  
+        return (raycastHit2Dplatform.collider != null || raycastHit2Dbox.collider != null);
         }
         else
         {
