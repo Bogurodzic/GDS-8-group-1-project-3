@@ -268,12 +268,16 @@ MonoBehaviour:
   _playerJumpSecondKey: 122
   _movementSpeed: 7.08
   _airMovementSpeed: 1000
-  _batMovementSpeed: 5
   _horizontalFriction: 0.931
   _jumpForce: 2.5
-  _doubleJumpForce: 4
+  _gravityScale: 0
   _jumpTime: 0.35
+  _playerMass: 0
+  _batMovementSpeed: 5
+  _doubleJumpForce: 4
+  _horizontalFrictionNosedive: 0
   _gravityMultiplier: 2
+  _batMass: 0
   doubleJumpActivated: 0
 --- !u!95 &6820323240941389630
 Animator:
@@ -310,7 +314,7 @@ MonoBehaviour:
   _damagePoint: {fileID: 6484529932508659972}
   _enemyLayer:
     serializedVersion: 2
-    m_Bits: 4096
+    m_Bits: 4608
   _movementController: {fileID: 6820323240941389624}
   _attackButton: 306
   _attackRange: 0.5

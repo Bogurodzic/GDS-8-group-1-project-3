@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 177929680}
   - component: {fileID: 177929681}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: SightRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -286,7 +286,6 @@ MonoBehaviour:
     type: 3}
   _patrolSpeed: 1
   _bulletSpeed: 100
-  _damage: 1
   _patrolLeftBound: 19
   _patrolRightBound: 28
   _goTowardsLeft: 1
