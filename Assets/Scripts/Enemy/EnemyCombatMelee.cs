@@ -7,6 +7,7 @@ public class EnemyCombatMelee : MonoBehaviour
     private enum State
     {
         Patrolling,
+        Attention,
         Combat
     }
 
@@ -19,6 +20,7 @@ public class EnemyCombatMelee : MonoBehaviour
     [SerializeField] private Transform _groundCheck;
     [SerializeField] private Animator _animator;
     [SerializeField] private Collider2D _spotRange;
+    [SerializeField] private GameObject _attentionMark;
 
 
     [Header("Speed Parameters")]
@@ -31,6 +33,7 @@ public class EnemyCombatMelee : MonoBehaviour
     [SerializeField] private float _attackRange = 0.5f;
     [SerializeField] private int _damage = 1;
     [SerializeField] private float _pushForce = 10f;
+    [SerializeField] private float _attentionTime = 2f;
 
     [Header("Patrol Constraints")]
     [SerializeField] private float _patrolLeftBound;
@@ -57,10 +60,20 @@ public class EnemyCombatMelee : MonoBehaviour
                 SpotPlayer();
                 FaceTowardsMovementDirection();
                 break;
+            case State.Attention:
+                StayAlert();
+                break;
             case State.Combat:
                 ChasePlayer();
                 FaceTowardsPlayer();
                 break;
+        }
+
+        if (_state == State.Attention && _spotRange.IsTouchingLayers(_playerLayer))
+        {
+            StopAllCoroutines();
+            _attentionMark.SetActive(false);
+            _state = State.Patrolling;
         }
     }
 
@@ -174,7 +187,7 @@ public class EnemyCombatMelee : MonoBehaviour
 
         if (!_spotRange.IsTouchingLayers(_playerLayer))
         {
-            _state = State.Patrolling;
+            _state = State.Attention;
         }
     }
 
@@ -209,5 +222,19 @@ public class EnemyCombatMelee : MonoBehaviour
                 hitPlayer.GetComponent<Rigidbody2D>().AddForce(new Vector2(_pushForce, 0f));
             }
         }
+    }
+
+    private void StayAlert()
+    {
+        StartCoroutine(ListeningForPlayer());
+    }
+
+    private IEnumerator ListeningForPlayer()
+    {
+        _attentionMark.SetActive(true);
+        _rigidbody2D.velocity = new Vector2(0, 0);
+        yield return new WaitForSeconds(_attentionTime);
+        _attentionMark.SetActive(false);
+        _state = State.Patrolling;
     }
 }

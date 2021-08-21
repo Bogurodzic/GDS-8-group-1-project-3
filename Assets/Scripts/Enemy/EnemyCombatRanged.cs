@@ -7,6 +7,7 @@ public class EnemyCombatRanged : MonoBehaviour
     private enum State
     {
         Patrolling,
+        Attention,
         Combat
     }
 
@@ -20,11 +21,14 @@ public class EnemyCombatRanged : MonoBehaviour
     [SerializeField] private Animator _animator;
     [SerializeField] private Collider2D _spotRange;
     [SerializeField] private GameObject _projectile;
+    [SerializeField] private GameObject _attentionMark;
 
 
     [Header("Speed Parameters")]
     [SerializeField] private float _patrolSpeed = 1f;
     [SerializeField] private float _bulletSpeed = 8f;
+
+    [SerializeField] private float _attentionTime = 2f;
     //[SerializeField] private float _chaseSpeed = 4.73f;
 
     //[Header("Combat Parameters")]
@@ -59,12 +63,21 @@ public class EnemyCombatRanged : MonoBehaviour
                 SpotPlayer();
                 FaceTowardsMovementDirection();
                 break;
+            case State.Attention:
+                StayAlert();
+                break;
             case State.Combat:
                 FaceTowardsPlayer();
                 Shoot();
                 break;
         }
 
+        if (_state == State.Attention && _spotRange.IsTouchingLayers(_playerLayer))
+        {
+            StopAllCoroutines();
+            _attentionMark.SetActive(false);
+            _state = State.Patrolling;
+        }
     }
 
     private void OnDrawGizmosSelected()
@@ -170,7 +183,21 @@ public class EnemyCombatRanged : MonoBehaviour
 
         if (!_spotRange.IsTouchingLayers(_playerLayer))
         {
-            _state = State.Patrolling;
+            _state = State.Attention;
         }
+    }
+
+    private void StayAlert()
+    {
+        StartCoroutine(ListeningForPlayer());
+    }
+
+    private IEnumerator ListeningForPlayer()
+    {
+        _attentionMark.SetActive(true);
+        _rigidbody2D.velocity = new Vector2(0, 0);
+        yield return new WaitForSeconds(_attentionTime);
+        _attentionMark.SetActive(false);
+        _state = State.Patrolling;
     }
 }
