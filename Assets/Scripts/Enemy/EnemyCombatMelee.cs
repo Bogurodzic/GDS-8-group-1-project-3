@@ -152,20 +152,26 @@ public class EnemyCombatMelee : MonoBehaviour
         }
         else
         {
-            //Vector2 _relativePosition = _player.position - gameObject.transform.position;
-            //_rigidbody2D.AddForce(new Vector2(_relativePosition.x, transform.position.y).normalized * _chaseSpeed * Time.deltaTime);
+
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(_player.position.x, transform.position.y), _chaseSpeed * Time.deltaTime);
 
             Collider2D _grounded = Physics2D.OverlapCircle(_groundCheck.position, 0.5f, _groundLayer);
             if (!_grounded)
             {
-                _state = State.Patrolling;
+                // temporary solution
+                if (transform.eulerAngles == new Vector3(0, 180, 0))
+                {
+                    transform.position = new Vector2(transform.position.x - 0.2f, transform.position.y);
+                }
+                else
+                {
+                    transform.position = new Vector2(transform.position.x + 0.2f, transform.position.y);
+                }
+
             }
 
-            //_rigidbody2D.velocity = new Vector2(_player.position.x, 0f).normalized * _chaseSpeed * Time.deltaTime;
         }
 
-        //Collider2D spotRange = Physics2D.OverlapCircle(transform.position, _sightRange, _playerLayer);
         if (!_spotRange.IsTouchingLayers(_playerLayer))
         {
             _state = State.Patrolling;
