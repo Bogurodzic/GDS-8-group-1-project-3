@@ -15,15 +15,28 @@ public class PlayerInventory : GenericSingletonClass<GameManager>
     {
         if (!_inventoryVisible && Input.GetKeyDown(KeyCode.I))
         {
-            _inventoryVisible = true;
-            _playerInventory.SetActive(true);
-            _playerInventory.GetComponent<PlayerInventoryUI>().ShowPlayerInventoryUI();
+            ShowInventory();
         } else if (_inventoryVisible && Input.GetKeyDown(KeyCode.I))
         {
-            _inventoryVisible = false;
-            _playerInventory.SetActive(false);
+            HideInventory();
         }
     }
+
+    private void ShowInventory()
+    {
+        Inventory.SetInventory(true);
+        _inventoryVisible = true;
+        _playerInventory.SetActive(true);
+        _playerInventory.GetComponent<PlayerInventoryUI>().ShowPlayerInventoryUI();
+    }
+
+    private void HideInventory()
+    {
+        Inventory.SetInventory(false);
+        _inventoryVisible = false;
+        _playerInventory.SetActive(false);
+    }
+    
 
     public void AddCollectible(Collectible collectible)
     {

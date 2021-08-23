@@ -21,7 +21,7 @@ public class PlayerCombat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(_attackButton) && !_movementController.doubleJumpActivated)
+        if (!Inventory.IsInventoryOpened && Input.GetKeyDown(_attackButton) && !_movementController.doubleJumpActivated)
         {
             Attack();
         }
