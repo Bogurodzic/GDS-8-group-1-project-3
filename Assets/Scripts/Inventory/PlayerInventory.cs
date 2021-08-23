@@ -7,7 +7,8 @@ public class PlayerInventory : GenericSingletonClass<GameManager>
 {
     [SerializeField] private GameObject _playerInventory;
     [SerializeField] private PlayerInventoryUI _playerInventoryUI;
-    
+    [SerializeField] private GameObject _inventoryShowcaseGameObject;
+
     private LinkedList<Collectible> _collectibles = new LinkedList<Collectible>();
 
     private bool _inventoryVisible = false;
@@ -28,6 +29,7 @@ public class PlayerInventory : GenericSingletonClass<GameManager>
         _inventoryVisible = true;
         _playerInventory.SetActive(true);
         _playerInventory.GetComponent<PlayerInventoryUI>().ShowPlayerInventoryUI();
+        _inventoryShowcaseGameObject.SetActive(true);
     }
 
     private void HideInventory()
@@ -35,6 +37,7 @@ public class PlayerInventory : GenericSingletonClass<GameManager>
         Inventory.SetInventory(false);
         _inventoryVisible = false;
         _playerInventory.SetActive(false);
+        _inventoryShowcaseGameObject.SetActive(false);
     }
     
 

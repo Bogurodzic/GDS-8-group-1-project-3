@@ -38,6 +38,11 @@ public class ItemUI : MonoBehaviour
         _collectible = collectible;
     }
 
+    public Collectible GetCollectible()
+    {
+        return _collectible;
+    }
+
     public void SetActive(bool isActive)
     {
         _isActive = isActive;

@@ -8,6 +8,7 @@ public class PlayerInventoryUI : MonoBehaviour
 {
     [SerializeField] private GameObject _inventoryItem;
     [SerializeField] private PlayerInventory _playerInventory;
+    [SerializeField] private InventoryShowcase _inventoryShowcase;
 
     private LinkedList<InventoryItem> _inventoryItems = new LinkedList<InventoryItem>();
     private int _currentIndex = 0;
@@ -83,7 +84,7 @@ public class PlayerInventoryUI : MonoBehaviour
         
         foreach (var collectible in collectibles)
         {
-            Vector3 itemPosition = new Vector3(transform.position.x, transform.position.y - 50 * index, transform.position.z);
+            Vector3 itemPosition = new Vector3(transform.position.x, transform.position.y - 75 * index, transform.position.z);
             GameObject inventoryItemGameObject = Instantiate(_inventoryItem, itemPosition, transform.rotation, transform);
             ItemUI playerInventoryItemUI = inventoryItemGameObject.GetComponent<ItemUI>();
             playerInventoryItemUI.AddCollectible(collectible);
@@ -97,6 +98,7 @@ public class PlayerInventoryUI : MonoBehaviour
         InventoryItem inventoryItem = _inventoryItems.ElementAt(index);
         inventoryItem.GetItemUI().SetActive(true);
         _currentIndex = index;
+        _inventoryShowcase.LoadItem(_inventoryItems.ElementAt(index).GetItemUI().GetCollectible());
     }
 
     public void HideItem(int index)
