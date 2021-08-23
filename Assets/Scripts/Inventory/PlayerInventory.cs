@@ -28,6 +28,9 @@ public class PlayerInventory : GenericSingletonClass<GameManager>
     public void AddCollectible(Collectible collectible)
     {
         _collectibles.AddLast(collectible);
+        
+        Debug.Log("ADDING COLLECTIBLE");
+        Debug.Log(_collectibles.Count);
     }
 
     public LinkedList<Collectible> GetCollectibles()
