@@ -469,7 +469,7 @@ public class PlayerMovementController : MonoBehaviour
         if (collision.gameObject.layer == 12 && !IsAttacking())
         {
             _isCollidingWithAnEnemy = true;
-            _playerController.currentHealth -= _pushDamage;
+            _playerController.TakeDamage(_pushDamage);
             DeactivateBatMode(true);
 
             if (FacingLeft())
