@@ -470,27 +470,26 @@ public class PlayerMovementController : MonoBehaviour
     {
         if (collision.gameObject.layer == 12 && !IsAttacking())
         {
-            _isCollidingWithAnEnemy = true;
             _playerController.TakeDamage(_pushDamage);
-            DeactivateBatMode(true);
-
-            if (FacingLeft())
-            {
-                _rigidbody2D.AddForce(new Vector2(_horizontalPush, _verticalPush), ForceMode2D.Impulse);
-            }
-            else
-            {
-                _rigidbody2D.AddForce(new Vector2(-_horizontalPush, _verticalPush), ForceMode2D.Impulse);
-            }
+            PushBack(_horizontalPush, _verticalPush);
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    public void PushBack(float horizontal, float vertical)
     {
-        if (collision.gameObject.layer == 12)
+        _isCollidingWithAnEnemy = true;
+        DeactivateBatMode(true);
+
+        if (FacingLeft())
         {
-            StartCoroutine(PushInertia());
+            _rigidbody2D.AddForce(new Vector2(horizontal, vertical), ForceMode2D.Impulse);
         }
+        else
+        {
+            _rigidbody2D.AddForce(new Vector2(-horizontal, vertical), ForceMode2D.Impulse);
+        }
+
+        StartCoroutine(PushInertia());
     }
 
     private IEnumerator PushInertia()

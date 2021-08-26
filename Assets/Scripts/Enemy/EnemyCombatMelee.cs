@@ -32,8 +32,11 @@ public class EnemyCombatMelee : MonoBehaviour
     [SerializeField] private float _attackDistance = 1f;
     [SerializeField] private float _attackRange = 0.5f;
     [SerializeField] private int _damage = 1;
-    [SerializeField] private float _pushForce = 10f;
     [SerializeField] private float _attentionTime = 2f;
+
+    [Header("Push Force")]
+    [SerializeField] private float _horizontalPush = 800f;
+    [SerializeField] private float _verticalPush = 300f;
 
     [Header("Patrol Constraints")]
     [SerializeField] private float _patrolLeftBound;
@@ -208,19 +211,13 @@ public class EnemyCombatMelee : MonoBehaviour
     {
         Collider2D hitPlayer = Physics2D.OverlapCircle(_damagePoint.position, _attackRange, _playerLayer);
 
+
         if (hitPlayer)
         {
             hitPlayer.GetComponent<ICharacter>().TakeDamage(_damage);
 
             // pushing the player - needs improvement
-            if (transform.eulerAngles == new Vector3(0, 180, 0))
-            {
-                hitPlayer.GetComponent<Rigidbody2D>().AddForce(new Vector2(-_pushForce, 0f));
-            }
-            else
-            {
-                hitPlayer.GetComponent<Rigidbody2D>().AddForce(new Vector2(_pushForce, 0f));
-            }
+            _player.GetComponent<PlayerMovementController>().PushBack(_horizontalPush, _verticalPush);
         }
     }
 
