@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour, ICharacter
     public float currentHealth;
 
     [SerializeField] private Animator _animator;
+    [SerializeField] private PlayerMovementController _playerMovementController;
     
     private Vector2 _startPosition;
 
@@ -21,10 +22,10 @@ public class PlayerController : MonoBehaviour, ICharacter
     public void TakeDamage (int _damage)
     {
         Debug.Log("Damage taken " + _damage);
+        _playerMovementController.DeactivateBatMode(true);
         _animator.SetTrigger("isDamaged");
         currentHealth -= _damage;
         Debug.Log("currentHealth " + currentHealth);
-
         if (currentHealth <= 0)
         {
             Die();

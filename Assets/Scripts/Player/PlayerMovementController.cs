@@ -29,6 +29,7 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private float _jumpForce;
     [SerializeField] private float _gravityScale;
     [SerializeField] private float _jumpTime;
+    [SerializeField] private float _minJump;
     [SerializeField] private float _playerMass;
     [SerializeField] private float _dash;
 
@@ -253,6 +254,7 @@ public class PlayerMovementController : MonoBehaviour
                 _jumpTimeCounter -= Time.deltaTime;
                 _singleJumpActive = true;
                 _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x * _horizontalFriction, _jumpForce);
+                _rigidbody2D.velocity += Vector2.up * _minJump;
             }
         }
     }
@@ -473,7 +475,7 @@ public class PlayerMovementController : MonoBehaviour
         if (collision.gameObject.layer == 12 && !IsAttacking())
         {
             _isCollidingWithAnEnemy = true;
-            _playerController.currentHealth -= _pushDamage;
+            _playerController.TakeDamage(_pushDamage);
             DeactivateBatMode(true);
 
             if (FacingLeft())
