@@ -7,6 +7,7 @@ public class EnemyController : MonoBehaviour, ICharacter
 {
     [SerializeField] private Animator _animator;
     [SerializeField] private GameObject _healthPickup;
+    [SerializeField] private int _healthPickupAmount;
 
     [SerializeField] private int _maxHealth = 5;
     [SerializeField] private float _pushForce = 5;
@@ -48,7 +49,12 @@ public class EnemyController : MonoBehaviour, ICharacter
 
     public void Die()
     {
-        Instantiate(_healthPickup, transform.position, transform.rotation);
+        for (int i = 0; i < _healthPickupAmount; i++)
+        {
+            Vector3 pickupPosition = new Vector3(transform.position.x - (1*i), transform.position.y, transform.position.z);
+            
+            Instantiate(_healthPickup, pickupPosition, transform.rotation);
+        }
         Destroy(gameObject);
     }
 }
