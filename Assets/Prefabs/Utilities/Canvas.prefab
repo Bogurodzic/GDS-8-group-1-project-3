@@ -525,6 +525,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerInventory
       objectReference: {fileID: 0}
+    - target: {fileID: 1588645508221431963, guid: 41ab41302f9584643a72e944aa12af75,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41ab41302f9584643a72e944aa12af75, type: 3}
 --- !u!224 &1867528787 stripped
@@ -649,6 +654,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerInventoryShowcase
+      objectReference: {fileID: 0}
+    - target: {fileID: 7111268287176892502, guid: 6b40d6ab49f044b4d8b6bf0d5b321688,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b40d6ab49f044b4d8b6bf0d5b321688, type: 3}

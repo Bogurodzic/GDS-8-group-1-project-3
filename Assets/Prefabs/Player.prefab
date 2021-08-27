@@ -106,6 +106,7 @@ GameObject:
   - component: {fileID: 1105568951677144104}
   - component: {fileID: 68974976460267704}
   - component: {fileID: 4754693482510392105}
+  - component: {fileID: 1347477482}
   m_Layer: 11
   m_Name: Player
   m_TagString: Player
@@ -238,8 +239,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 696560f82eeb54defbddf4274a6b381e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 5
-  currentHealth: 5
+  maxHealth: 100
+  currentHealth: 100
   _animator: {fileID: 6820323240941389630}
   _playerMovementController: {fileID: 6820323240941389624}
 --- !u!114 &6820323240941389624
@@ -256,7 +257,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _platformLayerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 768
   _rigidbody2D: {fileID: 6820323240941389604}
   _boxCollider2D: {fileID: 6820323240941389605}
   _batBoxCollider2D: {fileID: 6820323240819943734}
@@ -264,7 +265,7 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 6820323240941389626}
   _boxMask:
     serializedVersion: 2
-    m_Bits: 768
+    m_Bits: 512
   _playerController: {fileID: 0}
   _playerMoveLeft: 276
   _playerMoveRight: 275
@@ -358,9 +359,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.024544463, y: 0}
+  m_Offset: {x: -0.049277715, y: 0}
   serializedVersion: 2
-  m_Radius: 0.2318538
+  m_Radius: 0.20712054
 --- !u!114 &4754693482510392105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -373,3 +374,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a50bdcb1fe8c64728a0df63339e464db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerInventory: {fileID: 1347477482}
+--- !u!114 &1347477482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6820323240941389607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2465e691650f646acbbfa175aff44245, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerInventory: {fileID: 0}
+  _playerInventoryUI: {fileID: 0}
+  _inventoryShowcaseGameObject: {fileID: 0}
