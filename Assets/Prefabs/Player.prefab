@@ -241,6 +241,7 @@ MonoBehaviour:
   maxHealth: 5
   currentHealth: 5
   _animator: {fileID: 6820323240941389630}
+  _playerMovementController: {fileID: 6820323240941389624}
 --- !u!114 &6820323240941389624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,6 +265,7 @@ MonoBehaviour:
   _boxMask:
     serializedVersion: 2
     m_Bits: 768
+  _playerController: {fileID: 0}
   _playerMoveLeft: 276
   _playerMoveRight: 275
   _playerMoveDown: 274
@@ -275,12 +277,19 @@ MonoBehaviour:
   _jumpForce: 2.5
   _gravityScale: 0
   _jumpTime: 0.35
+  _minJump: 0
   _playerMass: 0
+  _dash: 0
+  _coyoteTimeFrames: 4
   _batMovementSpeed: 5
   _doubleJumpForce: 4
   _horizontalFrictionNosedive: 0
   _gravityMultiplier: 2
   _batMass: 0
+  _horizontalPush: 800
+  _verticalPush: 300
+  _inertiaTime: 0.1
+  _pushDamage: 1
   doubleJumpActivated: 0
 --- !u!95 &6820323240941389630
 Animator:
@@ -313,6 +322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb607cb7316ae284c916a04cc92e0a97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rigidbody2D: {fileID: 0}
   _animator: {fileID: 6820323240941389630}
   _damagePoint: {fileID: 6484529932508659972}
   _enemyLayer:
