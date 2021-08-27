@@ -86,8 +86,11 @@ public class PlayerMovementController : MonoBehaviour
 
     void Update()
     {
-        HandleMovement();
-        MoveBoxes();
+        if (!Inventory.IsInventoryOpened)
+        {
+            HandleMovement();
+            MoveBoxes();  
+        }
     }
 
     bool FacingLeft()
