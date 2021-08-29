@@ -10,6 +10,11 @@ public class NextStage : MonoBehaviour
     
     public void LoadNextStage()
     {
+        if (GameObject.FindGameObjectWithTag("Player"))
+        {
+            Destroy(GameObject.FindGameObjectWithTag("Player"));
+        }
+        
         SceneManager.LoadScene(sceneName);
     }
 }
