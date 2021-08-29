@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Lokacja1-kopia 1.unity
     guid: 7e3bc32b5989d634c8d94e480cfb4e48
+  - enabled: 1
+    path: Assets/Scenes/NowaLokacja2.unity
+    guid: ecd89b464722cf94c8637b5d33fca707
   m_configObjects: {}
