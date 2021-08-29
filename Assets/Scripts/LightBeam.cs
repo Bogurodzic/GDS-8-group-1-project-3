@@ -39,7 +39,39 @@ public class LightBeam : MonoBehaviour
         RaycastHit2D _hitDoor = Physics2D.BoxCast(transform.position, new Vector2(0.7f, 0.7f), 0, transform.right, _distanceRay, _doorButtonLayer);
         InteractWithDoors(_hitDoor);
 
-        TouchPlayer(_hitPlayer);
+        float normalHitDistance = 0;
+
+        //Debug.Log("TOUCH 0");
+        //Debug.Log(_hit.distance);
+        //Debug.Log(_hitPlayer.distance);
+
+        if (_hit)
+        {
+            normalHitDistance = _hit.distance;
+        }
+
+        float playerHitDistance = 0;
+            
+        if (_hitPlayer)
+        {
+            playerHitDistance = _hitPlayer.distance;
+        }
+
+        if (_hit && _hitPlayer && playerHitDistance < normalHitDistance)
+        {
+            Debug.Log("TOUCH 1");
+            Debug.Log(normalHitDistance);
+            Debug.Log(playerHitDistance);
+            TouchPlayer(_hitPlayer);
+        } else if (!_hit && _hitPlayer)
+        {
+            Debug.Log("TOUCH 2");
+            TouchPlayer(_hitPlayer);
+        }
+        else
+        {
+            Debug.Log("TOUCH 3");
+        }
         
         if (_hit)
         {
