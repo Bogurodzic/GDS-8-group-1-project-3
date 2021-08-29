@@ -59,18 +59,14 @@ public class LightBeam : MonoBehaviour
 
         if (_hit && _hitPlayer && playerHitDistance < normalHitDistance)
         {
-            Debug.Log("TOUCH 1");
-            Debug.Log(normalHitDistance);
-            Debug.Log(playerHitDistance);
             TouchPlayer(_hitPlayer);
         } else if (!_hit && _hitPlayer)
         {
-            Debug.Log("TOUCH 2");
             TouchPlayer(_hitPlayer);
         }
         else
         {
-            Debug.Log("TOUCH 3");
+            _playerIsAffectedBySun = false;
         }
         
         if (_hit)
