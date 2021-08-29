@@ -70,12 +70,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: cb95e59f9537aaf43acd0f6c8bfa6f4a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 866c7913ed9409946a7f3c33dca77ac9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.32, y: 0.32}
+  m_Size: {x: 0.5, y: 0.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -263,6 +263,7 @@ MonoBehaviour:
   _animator: {fileID: 8809545556179391047}
   _healthPickup: {fileID: 1778563846365517646, guid: 261c69bea67ec3144b8be0bf011a3ebd,
     type: 3}
+  _healthPickupAmount: 0
   _maxHealth: 5
   _pushForce: 5
 --- !u!95 &8809545556179391047
@@ -314,8 +315,9 @@ MonoBehaviour:
   _attackDistance: 1
   _attackRange: 0.5
   _damage: 1
-  _pushForce: 10
   _attentionTime: 2
+  _horizontalPush: 800
+  _verticalPush: 300
   _patrolLeftBound: 10
   _patrolRightBound: 18.69
   _goTowardsLeft: 1
