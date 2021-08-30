@@ -76,16 +76,18 @@ public class LightBeam : MonoBehaviour
             {
                 Vector2 reflectedPosition =
                     Vector2.Reflect(
-                        (_hit.point - new Vector2(transform.position.x, transform.position.y)) * _distanceRay,
+                        (_hit.point - new Vector2(transform.position.x, transform.position.y)) * (_distanceRay/2),
                         _hit.normal);
                 
                 //Raycast to find door button
-                RaycastHit2D _hitDoorReflected = Physics2D.BoxCast(_hit.point, new Vector2(0.7f, 0.7f), 0, reflectedPosition, _distanceRay, _doorButtonLayer);
+                RaycastHit2D _hitDoorReflected = Physics2D.BoxCast(_hit.point, new Vector2(0.7f, 0.7f), 0, reflectedPosition,
+                    (_distanceRay/2), _doorButtonLayer);
                 InteractWithDoors(_hitDoorReflected);
 
                 
                 _lineRenderer.SetPosition(2, reflectedPosition);
-                RaycastHit2D _hitPlayerMirrored = Physics2D.Raycast(_hit.point, _lineRenderer.GetPosition(2), _distanceRay, _playerLayer);
+                RaycastHit2D _hitPlayerMirrored = Physics2D.Raycast(_hit.point, _lineRenderer.GetPosition(2),
+                    (_distanceRay/2), _playerLayer);
                 TouchPlayer(_hitPlayerMirrored);
             }
             else
