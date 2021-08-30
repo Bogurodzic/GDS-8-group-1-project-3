@@ -239,7 +239,7 @@ MonoBehaviour:
   _animator: {fileID: 2053602825}
   _healthPickup: {fileID: 1778563846365517646, guid: 261c69bea67ec3144b8be0bf011a3ebd,
     type: 3}
-  _healthPickupAmount: 0
+  _healthPickupAmount: 3
   _maxHealth: 5
   _pushForce: 5
 --- !u!95 &2053602825
