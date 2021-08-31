@@ -221,7 +221,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 3
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 8036bf28e96a6de4386ef0f3b877be67, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 0
   m_CollisionDetection: 1
@@ -265,27 +265,27 @@ MonoBehaviour:
   _boxMask:
     serializedVersion: 2
     m_Bits: 512
-  _playerController: {fileID: 0}
+  _playerController: {fileID: 6820323240941389625}
   _playerMoveLeft: 276
   _playerMoveRight: 275
   _playerMoveDown: 274
   _playerJumpFirstKey: 32
   _playerJumpSecondKey: 122
-  _movementSpeed: 7.08
+  _movementSpeed: 6
   _airMovementSpeed: 1000
-  _horizontalFriction: 0.931
-  _jumpForce: 2.5
-  _gravityScale: 0
-  _jumpTime: 0.35
+  _horizontalFriction: 0.967
+  _jumpForce: 3
+  _gravityScale: 2
+  _jumpTime: 0.32
   _minJump: 0
-  _playerMass: 0
-  _dash: 0
+  _playerMass: 100
+  _dash: 0.7
   _coyoteTimeFrames: 4
-  _batMovementSpeed: 5
-  _doubleJumpForce: 4
+  _batMovementSpeed: 4.2
+  _doubleJumpForce: 6.8
   _horizontalFrictionNosedive: 0
-  _gravityMultiplier: 2
-  _batMass: 0
+  _gravityMultiplier: 0.8
+  _batMass: 1
   _horizontalPush: 800
   _verticalPush: 300
   _inertiaTime: 0.1
@@ -322,7 +322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb607cb7316ae284c916a04cc92e0a97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rigidbody2D: {fileID: 0}
+  _rigidbody2D: {fileID: 6820323240941389604}
   _animator: {fileID: 6820323240941389630}
   _damagePoint: {fileID: 6484529932508659972}
   _enemyLayer:
@@ -332,7 +332,7 @@ MonoBehaviour:
   _attackButton: 306
   _attackRange: 0.5
   _attackDamage: 2
-  _pushForce: 0
+  _pushForce: 500
 --- !u!114 &1105568951677144104
 MonoBehaviour:
   m_ObjectHideFlags: 0

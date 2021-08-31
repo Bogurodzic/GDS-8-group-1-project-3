@@ -40,13 +40,13 @@ public class PlayerCombat : MonoBehaviour
 
             enemy.GetComponent<ICharacter>().TakeDamage(_attackDamage);
 
-            if (transform.eulerAngles == new Vector3(0, 180, 0))
+            if (enemy.GetComponent<EnemyCombatMelee>())
             {
-                enemy.GetComponent<Rigidbody2D>().AddForce(new Vector2(-_pushForce, 0f));
+                enemy.GetComponent<EnemyCombatMelee>().PushBack(_pushForce, 0);
             }
-            else
+            else if (enemy.GetComponent<EnemyCombatRanged>())
             {
-                enemy.GetComponent<Rigidbody2D>().AddForce(new Vector2(_pushForce, 0f));
+                enemy.GetComponent<EnemyCombatRanged>().PushBack(_pushForce, 0);
             }
         }
     }
