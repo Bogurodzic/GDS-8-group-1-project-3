@@ -20,6 +20,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1780139469, guid: 213804b8c5e64492cb2308602a0cf0cf, type: 3}
+      propertyPath: m_Size.x
+      value: 3.6561332
+      objectReference: {fileID: 0}
+    - target: {fileID: 1780139469, guid: 213804b8c5e64492cb2308602a0cf0cf, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.061796367
+      objectReference: {fileID: 0}
     - target: {fileID: 6974450364879314867, guid: 213804b8c5e64492cb2308602a0cf0cf,
         type: 3}
       propertyPath: m_Mass
@@ -38,12 +46,12 @@ PrefabInstance:
     - target: {fileID: 6974450364879314868, guid: 213804b8c5e64492cb2308602a0cf0cf,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -61.6
+      value: -18.403954
       objectReference: {fileID: 0}
     - target: {fileID: 6974450364879314868, guid: 213804b8c5e64492cb2308602a0cf0cf,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.79338324
+      value: -0.8367176
       objectReference: {fileID: 0}
     - target: {fileID: 6974450364879314868, guid: 213804b8c5e64492cb2308602a0cf0cf,
         type: 3}
@@ -88,7 +96,7 @@ PrefabInstance:
     - target: {fileID: 6974450364879314871, guid: 213804b8c5e64492cb2308602a0cf0cf,
         type: 3}
       propertyPath: m_Name
-      value: RespawningBox
+      value: RespawningBox (4)
       objectReference: {fileID: 0}
     - target: {fileID: 6974450364879314871, guid: 213804b8c5e64492cb2308602a0cf0cf,
         type: 3}
