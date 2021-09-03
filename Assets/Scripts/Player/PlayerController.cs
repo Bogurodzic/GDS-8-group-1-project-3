@@ -38,6 +38,11 @@ public class PlayerController : MonoBehaviour, ICharacter
         //transform.position = _startPosition;
         currentHealth = maxHealth;
 
+        if (GameObject.FindGameObjectWithTag("Player"))
+        {
+            Destroy(GameObject.FindGameObjectWithTag("Player"));
+        }
+
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.name);
         
