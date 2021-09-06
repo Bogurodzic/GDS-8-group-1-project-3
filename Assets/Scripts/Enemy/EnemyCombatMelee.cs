@@ -214,10 +214,13 @@ public class EnemyCombatMelee : MonoBehaviour
 
         if (hitPlayer)
         {
-            hitPlayer.GetComponent<ICharacter>().TakeDamage(_damage);
 
             // pushing the player - needs improvement
-            _player.GetComponent<PlayerMovementController>().PushBack(_horizontalPush, _verticalPush);
+            if (_player.GetComponent<PlayerController>().isInvulnerable == false)
+            {
+                _player.GetComponent<PlayerMovementController>().PushBack(_horizontalPush, _verticalPush);
+            }
+            hitPlayer.GetComponent<ICharacter>().TakeDamage(_damage);
         }
     }
 
