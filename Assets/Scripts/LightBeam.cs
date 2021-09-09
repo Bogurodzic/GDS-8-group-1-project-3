@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class LightBeam : MonoBehaviour
 {
-    
+    [SerializeField] private PlayerMovementController _playerMovementController;
     [SerializeField] private LineRenderer _lineRenderer;
     [SerializeField] private LayerMask _platformLayers;
     [SerializeField] private LayerMask _doorButtonLayer;
@@ -32,7 +32,7 @@ public class LightBeam : MonoBehaviour
     private void CastLight()
     {
         RaycastHit2D _hit = Physics2D.Raycast(transform.position, transform.right, _distanceRay, _platformLayers);
-        RaycastHit2D _hitPlayer = Physics2D.BoxCast(transform.position, new Vector2(0.7f, 0.7f), 0, transform.right, _distanceRay, _playerLayer);
+        RaycastHit2D _hitPlayer = Physics2D.BoxCast(transform.position, new Vector2(0.6f, 0.6f), 0, transform.right, _distanceRay, _playerLayer);
 
         //It can be enabled if we want to use light to open door without reflecting it
 
@@ -40,10 +40,6 @@ public class LightBeam : MonoBehaviour
         InteractWithDoors(_hitDoor);
 
         float normalHitDistance = 0;
-
-        //Debug.Log("TOUCH 0");
-        //Debug.Log(_hit.distance);
-        //Debug.Log(_hitPlayer.distance);
 
         if (_hit)
         {
@@ -66,6 +62,12 @@ public class LightBeam : MonoBehaviour
         }
         else
         {
+            if (_playerIsAffectedBySun)
+            {
+                _playerMovementController.doubleJumpActivated = false;
+                _playerMovementController.ReloadUnderSun();        
+            }
+            
             _playerIsAffectedBySun = false;
         }
         
@@ -145,12 +147,12 @@ public class LightBeam : MonoBehaviour
     {
         if (_playerIsAffectedBySun && !_damageDealingProcessStarded && !_firstDamageDealed)
         {
-            Debug.Log("TryDealDamageToPlayer 1");
+            //Debug.Log("TryDealDamageToPlayer 1");
             _damageDealingProcessStarded = true;
             Invoke("DealDamage", _firstTimeDamageToPlayerDelay);
         } else if (_playerIsAffectedBySun && !_damageDealingProcessStarded && _firstDamageDealed)
         {
-            Debug.Log("TryDealDamageToPlayer 2");
+            //Debug.Log("TryDealDamageToPlayer 2");
 
             _damageDealingProcessStarded = true;
             Invoke("DealDamage", _regularTimeDamageToPlayerDelay);
@@ -170,10 +172,10 @@ public class LightBeam : MonoBehaviour
 
     private void DealDamage()
     {
-        Debug.Log("DEAL DAMAGE 1");
+        //Debug.Log("DEAL DAMAGE 1");
         if (_playerIsAffectedBySun && !_firstDamageDealed)
         {
-            Debug.Log("DEAL DAMAGE 2");
+            //Debug.Log("DEAL DAMAGE 2");
 
             //_playerController.TakeDamage(_damageToPlayer);
             _playerController.GetComponent<ICharacter>().TakeDamage(_damageToPlayer);
@@ -181,7 +183,7 @@ public class LightBeam : MonoBehaviour
             _firstDamageDealed = true;
         } else if (_playerIsAffectedBySun && _firstDamageDealed)
         {
-            Debug.Log("DEAL DAMAGE 3");
+            //Debug.Log("DEAL DAMAGE 3");
 
             //_playerController.TakeDamage(_damageToPlayer);
             _playerController.GetComponent<ICharacter>().TakeDamage(_damageToPlayer);

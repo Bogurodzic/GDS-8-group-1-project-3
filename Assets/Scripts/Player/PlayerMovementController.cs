@@ -219,7 +219,8 @@ public class PlayerMovementController : MonoBehaviour
     }
 
     private bool CanPlayerJump()
-    {
+    {   
+
         if ((IsGrounded() || !doubleJumpActivated) && (Input.GetKey(_playerJumpFirstKey) || Input.GetKey(_playerJumpSecondKey)))
         {
             //temporary
@@ -455,7 +456,7 @@ public class PlayerMovementController : MonoBehaviour
         }
     }
 
-    private void ReloadUnderSun()
+    public void ReloadUnderSun()
     {
         _underSun = false;
     }
