@@ -12,7 +12,7 @@ public class LightBeam : MonoBehaviour
     [SerializeField] private LayerMask _mirrorLayer;
     [SerializeField] private LayerMask _playerLayer;
     [SerializeField] private float _distanceRay = 100f;
-
+    [SerializeField] private float _reflectedRayDistance = 10f;
     [SerializeField] private GameObject _playerController;
     
     [SerializeField] private int _firstTimeDamageToPlayerDelay;
@@ -74,20 +74,21 @@ public class LightBeam : MonoBehaviour
             DrawBeam(transform.position, _hit.point);
             if (_hit.collider.tag == "Mirror")
             {
-                Vector2 reflectedPosition =
+                Vector2 reflectedPositionEndPoint =
                     Vector2.Reflect(
                         (_hit.point - new Vector2(transform.position.x, transform.position.y)) * (_distanceRay/2),
                         _hit.normal);
+                Vector2 reflectedPosition = Vector2.MoveTowards(_hit.point, reflectedPositionEndPoint, _reflectedRayDistance);
                 
                 //Raycast to find door button
                 RaycastHit2D _hitDoorReflected = Physics2D.BoxCast(_hit.point, new Vector2(0.7f, 0.7f), 0, reflectedPosition,
-                    (_distanceRay/2), _doorButtonLayer);
+                    _reflectedRayDistance, _doorButtonLayer);
                 InteractWithDoors(_hitDoorReflected);
 
                 
                 _lineRenderer.SetPosition(2, reflectedPosition);
                 RaycastHit2D _hitPlayerMirrored = Physics2D.Raycast(_hit.point, _lineRenderer.GetPosition(2),
-                    (_distanceRay/2), _playerLayer);
+                    _reflectedRayDistance, _playerLayer);
                 TouchPlayer(_hitPlayerMirrored);
             }
             else
