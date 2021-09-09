@@ -89,7 +89,7 @@ public class LightBeam : MonoBehaviour
 
                 
                 _lineRenderer.SetPosition(2, reflectedPosition);
-                RaycastHit2D _hitPlayerMirrored = Physics2D.Raycast(_hit.point, _lineRenderer.GetPosition(2),
+                RaycastHit2D _hitPlayerMirrored = Physics2D.Raycast(_hit.point, reflectedPositionEndPoint,
                     _reflectedRayDistance, _playerLayer);
                 TouchPlayer(_hitPlayerMirrored);
             }
