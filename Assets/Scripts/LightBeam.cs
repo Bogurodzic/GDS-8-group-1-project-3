@@ -83,8 +83,8 @@ public class LightBeam : MonoBehaviour
                 Vector2 reflectedPosition = Vector2.MoveTowards(_hit.point, reflectedPositionEndPoint, _reflectedRayDistance);
                 
                 //Raycast to find door button
-                RaycastHit2D _hitDoorReflected = Physics2D.BoxCast(_hit.point, new Vector2(0.7f, 0.7f), 0, reflectedPosition,
-                    _reflectedRayDistance, _doorButtonLayer);
+                RaycastHit2D _hitDoorReflected = Physics2D.BoxCast(_hit.point, new Vector2(0.7f, 0.7f), 0, reflectedPositionEndPoint,
+                    _reflectedRayDistance + 30, _doorButtonLayer);
                 InteractWithDoors(_hitDoorReflected);
 
                 
@@ -110,6 +110,7 @@ public class LightBeam : MonoBehaviour
 
     private void InteractWithDoors(RaycastHit2D hitDoor)
     {
+
         if (hitDoor)
         {
             DoorButtonController doorButtonController = hitDoor.collider.gameObject.GetComponent<DoorButtonController>();
