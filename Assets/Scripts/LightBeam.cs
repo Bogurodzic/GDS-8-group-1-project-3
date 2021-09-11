@@ -65,7 +65,8 @@ public class LightBeam : MonoBehaviour
             if (_playerIsAffectedBySun)
             {
                 _playerMovementController.doubleJumpActivated = false;
-                _playerMovementController.ReloadUnderSun();        
+                _playerMovementController.ReloadUnderSun(); 
+                _playerController.GetComponent<PlayerController>().GetAnimator().SetBool("underSun", false);
             }
             
             _playerIsAffectedBySun = false;
@@ -124,6 +125,7 @@ public class LightBeam : MonoBehaviour
         {
             hitPlayer.collider.gameObject.GetComponent<PlayerMovementController>().HandleSunEffect();
             _playerIsAffectedBySun = true;
+            hitPlayer.collider.gameObject.GetComponent<PlayerController>().GetAnimator().SetBool("underSun", true);
         }
         else
         {

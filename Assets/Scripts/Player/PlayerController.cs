@@ -31,6 +31,11 @@ public class PlayerController : MonoBehaviour, ICharacter
             Die();
         }
     }
+    
+    public Animator GetAnimator()
+    {
+        return _animator;
+    }
 
     public void Die()
     {
