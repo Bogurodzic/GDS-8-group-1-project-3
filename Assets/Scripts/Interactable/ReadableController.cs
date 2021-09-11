@@ -16,7 +16,7 @@ public class ReadableController : MonoBehaviour
     private bool _textDisplayed = false;
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R) && !_textDisplayed)
+        if (Input.GetKeyDown(KeyCode.R) && !_textDisplayed && _canInteract)
         {
             ShowReadableText();
         }
