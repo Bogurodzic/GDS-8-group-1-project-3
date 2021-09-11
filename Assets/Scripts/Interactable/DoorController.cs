@@ -6,16 +6,16 @@ using Random = System.Random;
 
 public class DoorController : MonoBehaviour
 {
-    [SerializeField] private SpriteRenderer _spriteRenderer;
-    [SerializeField] private BoxCollider2D _boxCollider2D;
-    [SerializeField] private Sprite _lockedDoorSprite;
-    [SerializeField] private Sprite _openedDoorSprite;
-    [SerializeField] private bool _doorLocked;
-    [SerializeField] private float _lockDelay = 0.5f;
+    [SerializeField] protected SpriteRenderer _spriteRenderer;
+    [SerializeField] protected BoxCollider2D _boxCollider2D;
+    [SerializeField] protected Sprite _lockedDoorSprite;
+    [SerializeField] protected Sprite _openedDoorSprite;
+    [SerializeField] public bool _doorLocked;
+    [SerializeField] protected float _lockDelay = 0.5f;
     
-    private String _lastUnlockedDoorId;
-    private String _doorIdToCheck;
-    private bool _doorUnderChecking = false;
+    protected String _lastUnlockedDoorId;
+    protected String _doorIdToCheck;
+    protected bool _doorUnderChecking = false;
     void Start()
     {
         
@@ -27,7 +27,7 @@ public class DoorController : MonoBehaviour
         TryUnlockDoors();
     }
 
-    void ReloadDoorSprite()
+    protected void ReloadDoorSprite()
     {
         if (_doorLocked)
         {
@@ -42,11 +42,14 @@ public class DoorController : MonoBehaviour
     public void UnlockDoors()
     {
         _doorLocked = false;
-        _boxCollider2D.enabled = false;
+        if (_boxCollider2D)
+        {
+            _boxCollider2D.enabled = false;
+        }
         _lastUnlockedDoorId = CreateRandomIdString();
     }
 
-    private void TryUnlockDoors()
+    protected void TryUnlockDoors()
     {
         if (!_doorUnderChecking)
         {
@@ -56,23 +59,26 @@ public class DoorController : MonoBehaviour
         }
     }
     
-    private void LockDoors()
+    protected void LockDoors()
     {
         if (CheckIfDoorsCanBeLocked())
         {
             _doorLocked = true;
-            _boxCollider2D.enabled = true;  
+            if (_boxCollider2D)
+            {
+                _boxCollider2D.enabled = true;
+            }
         }
 
         _doorUnderChecking = false;
     }
 
-    private bool CheckIfDoorsCanBeLocked()
+    protected bool CheckIfDoorsCanBeLocked()
     {
         return _lastUnlockedDoorId == _doorIdToCheck;
     }
 
-    private String CreateRandomIdString()
+    protected String CreateRandomIdString()
     {
         var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         var stringChars = new char[8];

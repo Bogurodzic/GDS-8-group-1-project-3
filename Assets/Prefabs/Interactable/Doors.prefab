@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2844809563269032806}
   - component: {fileID: 2844809563269032807}
-  - component: {fileID: 2844809563269032800}
   - component: {fileID: 2844809563269032801}
+  - component: {fileID: 1332827888}
   m_Layer: 0
   m_Name: Doors
   m_TagString: Untagged
@@ -84,25 +84,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2844809563269032800
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2844809563269032802}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5edc2fd0bcc484195ab03604f6496db7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _spriteRenderer: {fileID: 2844809563269032807}
-  _boxCollider2D: {fileID: 2844809563269032801}
-  _lockedDoorSprite: {fileID: -7341407202210888751, guid: fae988105710147979e2a528fdbf60ea,
-    type: 3}
-  _openedDoorSprite: {fileID: -4935834299494285922, guid: fae988105710147979e2a528fdbf60ea,
-    type: 3}
-  _doorLocked: 1
 --- !u!61 &2844809563269032801
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -129,3 +110,26 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.75, y: 1.35}
   m_EdgeRadius: 0
+--- !u!114 &1332827888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2844809563269032802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a615b59be7974af0a044affae36c1e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spriteRenderer: {fileID: 2844809563269032807}
+  _boxCollider2D: {fileID: 2844809563269032801}
+  _lockedDoorSprite: {fileID: -7341407202210888751, guid: fae988105710147979e2a528fdbf60ea,
+    type: 3}
+  _openedDoorSprite: {fileID: -4935834299494285922, guid: fae988105710147979e2a528fdbf60ea,
+    type: 3}
+  _doorLocked: 0
+  _lockDelay: 0.5
+  lightsToUnlock:
+  - {fileID: 0}
+  - {fileID: 0}
