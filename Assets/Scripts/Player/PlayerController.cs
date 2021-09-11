@@ -21,15 +21,19 @@ public class PlayerController : MonoBehaviour, ICharacter
 
     public void TakeDamage (int _damage)
     {
-        Debug.Log("Damage taken " + _damage);
-        _playerMovementController.DeactivateBatMode(true);
-        _animator.SetTrigger("isDamaged");
-        currentHealth -= _damage;
-        Debug.Log("currentHealth " + currentHealth);
-        if (currentHealth <= 0)
+        if (!Inventory.IsInventoryOpened)
         {
-            Die();
+            Debug.Log("Damage taken " + _damage);
+            _playerMovementController.DeactivateBatMode(true);
+            _animator.SetTrigger("isDamaged");
+            currentHealth -= _damage;
+            Debug.Log("currentHealth " + currentHealth);
+            if (currentHealth <= 0)
+            {
+                Die();
+            } 
         }
+
     }
     
     public Animator GetAnimator()
