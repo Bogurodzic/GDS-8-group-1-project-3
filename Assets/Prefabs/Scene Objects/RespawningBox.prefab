@@ -13,6 +13,44 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   respawnTimer: 2
+  _audioController: {fileID: 1562575663601632592}
+--- !u!114 &1562575663601632592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 212731233563047184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01f5deacefa4440c7a6bfb3ee26fb0df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audioSource: {fileID: 0}
+  _playerMissedAttackWithWeapon: {fileID: 0}
+  _playerHittedAttackWithWeapon: {fileID: 0}
+  _playerRecievedDamageInHumanForm: {fileID: 0}
+  _playerJumpedFromGround: {fileID: 0}
+  _playerLandedOnHumanForm: {fileID: 0}
+  _playerTransformedToBat: {fileID: 0}
+  _playerLandedOnBatForm: {fileID: 0}
+  _playerIsUnderSun: {fileID: 0}
+  _playerRecievedDamageInBatForm: {fileID: 0}
+  _playerDeath: {fileID: 0}
+  _batFlying: {fileID: 0}
+  _playerCollectedBlood: {fileID: 0}
+  _playerIsMovingBox: {fileID: 0}
+  _boxCrashed: {fileID: 0}
+  _boxCrashedByPlayer: {fileID: 0}
+  _boxRespawned: {fileID: 8300000, guid: 111d05d22fa084a96b95502010a2a937, type: 3}
+  _mirrorCrashed: {fileID: 8300000, guid: 054d4201c4be9440b9a8ca886c717784, type: 3}
+  _mirrorCrashedByPlayer: {fileID: 0}
+  _collectibleCollected: {fileID: 0}
+  _collectibleRead: {fileID: 0}
+  _doorOpen: {fileID: 0}
+  _lightOn: {fileID: 0}
+  _playerReadingMonument: {fileID: 0}
+  _boxFallingDown: {fileID: 8300000, guid: 054d4201c4be9440b9a8ca886c717784, type: 3}
 --- !u!1001 &7077965682521828007
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37,13 +75,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6974450364879314868, guid: 213804b8c5e64492cb2308602a0cf0cf,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.17690787
+      objectReference: {fileID: 0}
+    - target: {fileID: 6974450364879314868, guid: 213804b8c5e64492cb2308602a0cf0cf,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.16940787
+      objectReference: {fileID: 0}
+    - target: {fileID: 6974450364879314868, guid: 213804b8c5e64492cb2308602a0cf0cf,
+        type: 3}
       propertyPath: m_LocalPosition.x
-      value: -61.6
+      value: -12.92
       objectReference: {fileID: 0}
     - target: {fileID: 6974450364879314868, guid: 213804b8c5e64492cb2308602a0cf0cf,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.79338324
+      value: -16.93
       objectReference: {fileID: 0}
     - target: {fileID: 6974450364879314868, guid: 213804b8c5e64492cb2308602a0cf0cf,
         type: 3}

@@ -46,16 +46,31 @@ public class BoxController : MonoBehaviour, ICharacter
 
     public void TakeDamage (int _damage)
     {
+        if (_isBox)
+        {
+            _audioController.mirrorCrashedByPlayer();
+        }
+        else
+        {
+            _audioController.boxCrashedByPlayer();
+        }
+
         _currentHP -= _damage;
+
 
         if (_currentHP <= 0)
         {
+            if (!_isBox)
+            {
+                _audioController.mirrorCrashed();
+            }
             Die();
         }
     }
 
     public void Die()
     {
+
         if (GetComponent<DestroyingObjectController>() == null)
         {
             return;
