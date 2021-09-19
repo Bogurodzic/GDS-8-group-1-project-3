@@ -132,11 +132,19 @@ public class PlayerMovementController : MonoBehaviour
         }
         else if (Input.GetKeyUp(KeyCode.LeftShift) && box)
         {
+            _audioController.stopPlayerIsMovingBox();
+
             if (box.GetComponent<FixedJoint2D>() == null)
             {
                 return;
             }
             box.GetComponent<FixedJoint2D>().enabled = false;
+        }
+
+        if (box && box.GetComponent<FixedJoint2D>() != null && box.GetComponent<FixedJoint2D>().enabled &&
+            (Input.GetKeyDown(_playerMoveLeft) || Input.GetKeyDown(_playerMoveRight)))
+        {
+            _audioController.playerIsMovingBox();
         }
     }
 
