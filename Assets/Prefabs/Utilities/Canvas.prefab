@@ -148,6 +148,7 @@ MonoBehaviour:
   _name: {fileID: 461723299}
   _image: {fileID: 9143054214308746777}
   _description: {fileID: 5844047149682692723}
+  _audioController: {fileID: 0}
 --- !u!1 &1849149903
 GameObject:
   m_ObjectHideFlags: 0
