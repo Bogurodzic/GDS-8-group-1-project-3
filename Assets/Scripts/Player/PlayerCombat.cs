@@ -10,6 +10,7 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private Transform _damagePoint;
     [SerializeField] private LayerMask _enemyLayer;
     [SerializeField] private PlayerMovementController _movementController;
+    [SerializeField] private AudioController _audioController;
 
     [Header("Controls")]
     [SerializeField] private KeyCode _attackButton;
@@ -34,6 +35,15 @@ public class PlayerCombat : MonoBehaviour
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(_damagePoint.position, _attackRange, _enemyLayer);
 
+        if (hitEnemies.Length > 0)
+        {
+            _audioController.playerAttackedOpponentWithWeapon();
+        }
+        else
+        {
+            _audioController.playerMissedAttackWithWeapon();
+        }
+        
         foreach(Collider2D enemy in hitEnemies)
         {
             Debug.Log("Target hit: " + enemy.gameObject.name);

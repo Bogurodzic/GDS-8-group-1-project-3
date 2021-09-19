@@ -10,7 +10,8 @@ public class PlayerController : MonoBehaviour, ICharacter
 
     [SerializeField] private Animator _animator;
     [SerializeField] private PlayerMovementController _playerMovementController;
-    
+    [SerializeField] private AudioController _audioController;
+
     private Vector2 _startPosition;
 
     void Start()
@@ -23,6 +24,7 @@ public class PlayerController : MonoBehaviour, ICharacter
     {
         if (!Inventory.IsInventoryOpened)
         {
+            _audioController.playerRecievedDamageInHumanForm();
             Debug.Log("Damage taken " + _damage);
             _playerMovementController.DeactivateBatMode(true);
             _animator.SetTrigger("isDamaged");
