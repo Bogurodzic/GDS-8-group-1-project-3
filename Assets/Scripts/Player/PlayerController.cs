@@ -24,7 +24,18 @@ public class PlayerController : MonoBehaviour, ICharacter
     {
         if (!Inventory.IsInventoryOpened)
         {
-            _audioController.playerRecievedDamageInHumanForm();
+            if (_animator.GetBool("isBat"))
+            {
+                if (_audioController.isBatFlying())
+                {
+                    _audioController.stopBatFlying();
+                }
+                _audioController.playerRecievedDamageInBatForm();
+                Debug.Log("BAT DAMAGE");
+            } else
+            {
+                _audioController.playerRecievedDamageInHumanForm();
+            }
             Debug.Log("Damage taken " + _damage);
             _playerMovementController.DeactivateBatMode(true);
             _animator.SetTrigger("isDamaged");
@@ -47,6 +58,7 @@ public class PlayerController : MonoBehaviour, ICharacter
     {
         //Destroy(gameObject);
         //transform.position = _startPosition;
+        _audioController.playerDeath();
         currentHealth = maxHealth;
 
         Scene currentScene = SceneManager.GetActiveScene();

@@ -18,6 +18,7 @@ public class LightBeam : MonoBehaviour
     [SerializeField] private int _firstTimeDamageToPlayerDelay;
     [SerializeField] private int _regularTimeDamageToPlayerDelay;
     [SerializeField] private int _damageToPlayer;
+    [SerializeField] private AudioController _audioController;
 
     private bool _playerIsAffectedBySun = false;
     private bool _damageDealingProcessStarded = false;
@@ -67,6 +68,9 @@ public class LightBeam : MonoBehaviour
                 _playerMovementController.doubleJumpActivated = false;
                 _playerMovementController.ReloadUnderSun(); 
                 _playerController.GetComponent<PlayerController>().GetAnimator().SetBool("underSun", false);
+                _audioController.stopPlayerIsUnderSun();
+
+
             }
             
             _playerIsAffectedBySun = false;
@@ -125,6 +129,12 @@ public class LightBeam : MonoBehaviour
         {
             hitPlayer.collider.gameObject.GetComponent<PlayerMovementController>().HandleSunEffect();
             _playerIsAffectedBySun = true;
+            
+            if (!_audioController.isPlayerIsUnderSun())
+            {
+                _audioController.playerIsUnderSun();
+            }
+            
             hitPlayer.collider.gameObject.GetComponent<PlayerController>().GetAnimator().SetBool("underSun", true);
         }
         else
