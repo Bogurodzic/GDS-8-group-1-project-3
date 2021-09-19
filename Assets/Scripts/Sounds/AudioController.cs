@@ -30,7 +30,7 @@ public class AudioController : MonoBehaviour
     [SerializeField] private AudioClip _doorOpen;
     [SerializeField] private AudioClip _lightOn;
     [SerializeField] private AudioClip _playerReadingMonument;
-    
+    [SerializeField] private AudioClip _boxFallingDown;
     public void playerMissedAttackWithWeapon()
     {
         playSound(_playerMissedAttackWithWeapon);
@@ -151,6 +151,11 @@ public class AudioController : MonoBehaviour
     public void stopPlayerIsMovingBox()
     {
         _audioSource.Stop();
+    }
+
+    public void boxFallingDown()
+    {
+        playSound(_boxFallingDown);
     }
 
     public void boxCrashed()

@@ -9,8 +9,10 @@ public class BoxController : MonoBehaviour, ICharacter
     [SerializeField] private Rigidbody2D _rigidbody;
     [SerializeField] private Transform _groundPoint;
     [SerializeField] private LayerMask _groundLayers;
-
+    [SerializeField] private bool _isBox = true;
     [SerializeField] private float _maxHP = 6;
+
+    [SerializeField] private AudioController _audioController;
     private float _currentHP;
 
     private void Start()
@@ -69,6 +71,10 @@ public class BoxController : MonoBehaviour, ICharacter
         if (groundCheck)
         {
             _rigidbody.velocity = new Vector2(0f, _rigidbody.velocity.y);
+            if (_isBox)
+            {
+               // _audioController.boxFallingDown();
+            }
         }
     }
 }
