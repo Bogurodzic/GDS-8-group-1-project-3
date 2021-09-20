@@ -200,4 +200,18 @@ public class EnemyCombatRanged : MonoBehaviour
         _attentionMark.SetActive(false);
         _state = State.Patrolling;
     }
+
+    public void PushBack(float horizontal, float vertical)
+    {
+
+        if (_goTowardsLeft)
+        {
+            _rigidbody2D.AddForce(new Vector2(horizontal, vertical), ForceMode2D.Impulse);
+        }
+        else
+        {
+            _rigidbody2D.AddForce(new Vector2(-horizontal, vertical), ForceMode2D.Impulse);
+        }
+
+    }
 }

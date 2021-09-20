@@ -214,10 +214,13 @@ public class EnemyCombatMelee : MonoBehaviour
 
         if (hitPlayer)
         {
-            hitPlayer.GetComponent<ICharacter>().TakeDamage(_damage);
 
             // pushing the player - needs improvement
-            _player.GetComponent<PlayerMovementController>().PushBack(_horizontalPush, _verticalPush);
+            if (_player.GetComponent<PlayerController>().isInvulnerable == false)
+            {
+                _player.GetComponent<PlayerMovementController>().PushBack(_horizontalPush, _verticalPush);
+            }
+            hitPlayer.GetComponent<ICharacter>().TakeDamage(_damage);
         }
     }
 
@@ -233,5 +236,19 @@ public class EnemyCombatMelee : MonoBehaviour
         yield return new WaitForSeconds(_attentionTime);
         _attentionMark.SetActive(false);
         _state = State.Patrolling;
+    }
+
+    public void PushBack(float horizontal, float vertical)
+    {
+
+        if (_goTowardsLeft)
+        {
+            _rigidbody2D.AddForce(new Vector2(horizontal, vertical), ForceMode2D.Impulse);
+        }
+        else
+        {
+            _rigidbody2D.AddForce(new Vector2(-horizontal, vertical), ForceMode2D.Impulse);
+        }
+
     }
 }
