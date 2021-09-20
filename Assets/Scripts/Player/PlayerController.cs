@@ -76,6 +76,11 @@ public class PlayerController : MonoBehaviour, ICharacter
         }
     }
 
+    public Animator GetAnimator()
+    {
+        return _animator;
+    }
+
     public void Die()
     {
         //Destroy(gameObject);
