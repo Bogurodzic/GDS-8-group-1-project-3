@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class LightBeam : MonoBehaviour
 {
-    
+    [SerializeField] private PlayerMovementController _playerMovementController;
     [SerializeField] private LineRenderer _lineRenderer;
     [SerializeField] private LayerMask _platformLayers;
     [SerializeField] private LayerMask _doorButtonLayer;
     [SerializeField] private LayerMask _mirrorLayer;
     [SerializeField] private LayerMask _playerLayer;
     [SerializeField] private float _distanceRay = 100f;
-
+    [SerializeField] private float _reflectedRayDistance = 10f;
     [SerializeField] private GameObject _playerController;
     
     [SerializeField] private int _firstTimeDamageToPlayerDelay;
@@ -32,7 +32,7 @@ public class LightBeam : MonoBehaviour
     private void CastLight()
     {
         RaycastHit2D _hit = Physics2D.Raycast(transform.position, transform.right, _distanceRay, _platformLayers);
-        RaycastHit2D _hitPlayer = Physics2D.BoxCast(transform.position, new Vector2(0.7f, 0.7f), 0, transform.right, _distanceRay, _playerLayer);
+        RaycastHit2D _hitPlayer = Physics2D.BoxCast(transform.position, new Vector2(0.6f, 0.6f), 0, transform.right, _distanceRay, _playerLayer);
 
         //It can be enabled if we want to use light to open door without reflecting it
 
@@ -40,10 +40,6 @@ public class LightBeam : MonoBehaviour
         InteractWithDoors(_hitDoor);
 
         float normalHitDistance = 0;
-
-        //Debug.Log("TOUCH 0");
-        //Debug.Log(_hit.distance);
-        //Debug.Log(_hitPlayer.distance);
 
         if (_hit)
         {
@@ -66,6 +62,13 @@ public class LightBeam : MonoBehaviour
         }
         else
         {
+            if (_playerIsAffectedBySun)
+            {
+                _playerMovementController.doubleJumpActivated = false;
+                _playerMovementController.ReloadUnderSun(); 
+                _playerController.GetComponent<PlayerController>().GetAnimator().SetBool("underSun", false);
+            }
+            
             _playerIsAffectedBySun = false;
         }
         
@@ -74,20 +77,21 @@ public class LightBeam : MonoBehaviour
             DrawBeam(transform.position, _hit.point);
             if (_hit.collider.tag == "Mirror")
             {
-                Vector2 reflectedPosition =
+                Vector2 reflectedPositionEndPoint =
                     Vector2.Reflect(
                         (_hit.point - new Vector2(transform.position.x, transform.position.y)) * (_distanceRay/2),
                         _hit.normal);
+                Vector2 reflectedPosition = Vector2.MoveTowards(_hit.point, reflectedPositionEndPoint, _reflectedRayDistance);
                 
                 //Raycast to find door button
-                RaycastHit2D _hitDoorReflected = Physics2D.BoxCast(_hit.point, new Vector2(0.7f, 0.7f), 0, reflectedPosition,
-                    (_distanceRay/2), _doorButtonLayer);
+                RaycastHit2D _hitDoorReflected = Physics2D.BoxCast(_hit.point, new Vector2(0.7f, 0.7f), 0, reflectedPositionEndPoint,
+                    _reflectedRayDistance + 30, _doorButtonLayer);
                 InteractWithDoors(_hitDoorReflected);
 
                 
                 _lineRenderer.SetPosition(2, reflectedPosition);
-                RaycastHit2D _hitPlayerMirrored = Physics2D.Raycast(_hit.point, _lineRenderer.GetPosition(2),
-                    (_distanceRay/2), _playerLayer);
+                RaycastHit2D _hitPlayerMirrored = Physics2D.Raycast(_hit.point, reflectedPositionEndPoint,
+                    _reflectedRayDistance, _playerLayer);
                 TouchPlayer(_hitPlayerMirrored);
             }
             else
@@ -107,6 +111,7 @@ public class LightBeam : MonoBehaviour
 
     private void InteractWithDoors(RaycastHit2D hitDoor)
     {
+
         if (hitDoor)
         {
             DoorButtonController doorButtonController = hitDoor.collider.gameObject.GetComponent<DoorButtonController>();
@@ -120,6 +125,7 @@ public class LightBeam : MonoBehaviour
         {
             hitPlayer.collider.gameObject.GetComponent<PlayerMovementController>().HandleSunEffect();
             _playerIsAffectedBySun = true;
+            hitPlayer.collider.gameObject.GetComponent<PlayerController>().GetAnimator().SetBool("underSun", true);
         }
         else
         {
@@ -144,12 +150,12 @@ public class LightBeam : MonoBehaviour
     {
         if (_playerIsAffectedBySun && !_damageDealingProcessStarded && !_firstDamageDealed)
         {
-            Debug.Log("TryDealDamageToPlayer 1");
+            //Debug.Log("TryDealDamageToPlayer 1");
             _damageDealingProcessStarded = true;
             Invoke("DealDamage", _firstTimeDamageToPlayerDelay);
         } else if (_playerIsAffectedBySun && !_damageDealingProcessStarded && _firstDamageDealed)
         {
-            Debug.Log("TryDealDamageToPlayer 2");
+            //Debug.Log("TryDealDamageToPlayer 2");
 
             _damageDealingProcessStarded = true;
             Invoke("DealDamage", _regularTimeDamageToPlayerDelay);
@@ -169,10 +175,10 @@ public class LightBeam : MonoBehaviour
 
     private void DealDamage()
     {
-        Debug.Log("DEAL DAMAGE 1");
+        //Debug.Log("DEAL DAMAGE 1");
         if (_playerIsAffectedBySun && !_firstDamageDealed)
         {
-            Debug.Log("DEAL DAMAGE 2");
+            //Debug.Log("DEAL DAMAGE 2");
 
             //_playerController.TakeDamage(_damageToPlayer);
             _playerController.GetComponent<ICharacter>().TakeDamage(_damageToPlayer);
@@ -180,7 +186,7 @@ public class LightBeam : MonoBehaviour
             _firstDamageDealed = true;
         } else if (_playerIsAffectedBySun && _firstDamageDealed)
         {
-            Debug.Log("DEAL DAMAGE 3");
+            //Debug.Log("DEAL DAMAGE 3");
 
             //_playerController.TakeDamage(_damageToPlayer);
             _playerController.GetComponent<ICharacter>().TakeDamage(_damageToPlayer);

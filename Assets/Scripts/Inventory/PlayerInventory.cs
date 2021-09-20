@@ -14,7 +14,7 @@ public class PlayerInventory : GenericSingletonClass<GameManager>
     private bool _inventoryVisible = false;
     public void Update()
     {
-        if (!_inventoryVisible && Input.GetKeyDown(KeyCode.I))
+        if (!_inventoryVisible && Input.GetKeyDown(KeyCode.I) && _collectibles.Count > 0)
         {
             ShowInventory();
         } else if (_inventoryVisible && Input.GetKeyDown(KeyCode.I))

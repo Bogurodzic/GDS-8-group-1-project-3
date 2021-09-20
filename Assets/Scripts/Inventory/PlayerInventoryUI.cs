@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerInventoryUI : MonoBehaviour
 {
@@ -84,8 +85,9 @@ public class PlayerInventoryUI : MonoBehaviour
         
         foreach (var collectible in collectibles)
         {
-            Vector3 itemPosition = new Vector3(transform.position.x, transform.position.y - 75 * index, transform.position.z);
+            Vector3 itemPosition = new Vector3(transform.position.x, transform.position.y + 3f - (0.75f * index), transform.position.z);
             GameObject inventoryItemGameObject = Instantiate(_inventoryItem, itemPosition, transform.rotation, transform);
+            inventoryItemGameObject.GetComponentInChildren<Text>().text = collectible.GetName();
             ItemUI playerInventoryItemUI = inventoryItemGameObject.GetComponent<ItemUI>();
             playerInventoryItemUI.AddCollectible(collectible);
             _inventoryItems.AddLast(new InventoryItem(inventoryItemGameObject, playerInventoryItemUI));

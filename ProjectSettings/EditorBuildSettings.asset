@@ -6,12 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Lokacja1-kopia 1.unity
+    path: Assets/Scenes/Lokacja1.unity
     guid: 7e3bc32b5989d634c8d94e480cfb4e48
   - enabled: 1
-    path: Assets/Scenes/NowaLokacja2.unity
+    path: Assets/Scenes/Lokacja2.unity
     guid: ecd89b464722cf94c8637b5d33fca707
   - enabled: 1
-    path: Assets/Scenes/Lokacja 3 kopia.unity
+    path: Assets/Scenes/Lokacja3.unity
     guid: 55c88c05779e16543a1959dca142a016
   m_configObjects: {}
