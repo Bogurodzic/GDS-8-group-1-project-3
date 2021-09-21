@@ -22,11 +22,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1780139469, guid: 213804b8c5e64492cb2308602a0cf0cf, type: 3}
       propertyPath: m_Size.x
-      value: 3.6561332
+      value: 4.594663
+      objectReference: {fileID: 0}
+    - target: {fileID: 1780139469, guid: 213804b8c5e64492cb2308602a0cf0cf, type: 3}
+      propertyPath: m_Size.y
+      value: 0.20174803
       objectReference: {fileID: 0}
     - target: {fileID: 1780139469, guid: 213804b8c5e64492cb2308602a0cf0cf, type: 3}
       propertyPath: m_Offset.x
-      value: -0.061796367
+      value: 0.04649663
+      objectReference: {fileID: 0}
+    - target: {fileID: 1780139469, guid: 213804b8c5e64492cb2308602a0cf0cf, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.057619415
       objectReference: {fileID: 0}
     - target: {fileID: 6974450364879314867, guid: 213804b8c5e64492cb2308602a0cf0cf,
         type: 3}
@@ -96,7 +104,7 @@ PrefabInstance:
     - target: {fileID: 6974450364879314871, guid: 213804b8c5e64492cb2308602a0cf0cf,
         type: 3}
       propertyPath: m_Name
-      value: RespawningBox (4)
+      value: RespawningBox
       objectReference: {fileID: 0}
     - target: {fileID: 6974450364879314871, guid: 213804b8c5e64492cb2308602a0cf0cf,
         type: 3}
