@@ -78,6 +78,11 @@ public class EnemyCombatRanged : MonoBehaviour
             _attentionMark.SetActive(false);
             _state = State.Patrolling;
         }
+
+        if (_rigidbody2D.velocity.x <= 0.05f && _rigidbody2D.velocity.x >= -0.05f)
+        {
+            _animator.SetBool("Walking", false);
+        }
     }
 
     private void OnDrawGizmosSelected()
@@ -114,6 +119,7 @@ public class EnemyCombatRanged : MonoBehaviour
 
     public void Patrol()
     {
+        _animator.SetBool("Walking", true);
         if (transform.position.x <= _patrolLeftBound)
         {
             _goTowardsLeft = false;
