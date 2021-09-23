@@ -26,7 +26,7 @@ public class BoxController : MonoBehaviour, ICharacter
 
     void Update()
     {
-        if (_rigidbody.velocity.y < 0f && _killingArea != null)
+        if (_rigidbody.velocity.y < -0.1f && _killingArea != null)
         {
             _killingArea.SetActive(true);
         }
