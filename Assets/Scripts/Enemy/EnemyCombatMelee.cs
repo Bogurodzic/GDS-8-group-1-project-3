@@ -168,14 +168,13 @@ public class EnemyCombatMelee : MonoBehaviour
             return;
         }
 
-        _animator.SetBool("Walking", true);
         if (Vector2.Distance(transform.position, _player.position) <= _attackDistance)
         {
             Attack();
         }
         else
         {
-
+            _animator.SetBool("Walking", true);
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(_player.position.x, transform.position.y), _chaseSpeed * Time.deltaTime);
 
             Collider2D _grounded = Physics2D.OverlapCircle(_groundCheck.position, 0.5f, _groundLayer);

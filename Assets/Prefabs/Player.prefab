@@ -242,6 +242,8 @@ MonoBehaviour:
   currentHealth: 100
   _animator: {fileID: 6820323240941389630}
   _playerMovementController: {fileID: 6820323240941389624}
+  _invulnerableTime: 0
+  isInvulnerable: 0
 --- !u!114 &6820323240941389624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -329,10 +331,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4608
   _movementController: {fileID: 6820323240941389624}
+  _playerController: {fileID: 6820323240941389625}
   _attackButton: 306
   _attackRange: 0.5
   _attackDamage: 2
-  _pushForce: 500
+  _pushForceHorizontal: 0
+  _pushForceVertical: 0
 --- !u!114 &1105568951677144104
 MonoBehaviour:
   m_ObjectHideFlags: 0

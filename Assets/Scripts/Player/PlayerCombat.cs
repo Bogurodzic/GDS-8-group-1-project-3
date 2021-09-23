@@ -10,6 +10,7 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private Transform _damagePoint;
     [SerializeField] private LayerMask _enemyLayer;
     [SerializeField] private PlayerMovementController _movementController;
+    [SerializeField] private PlayerController _playerController;
 
     [Header("Controls")]
     [SerializeField] private KeyCode _attackButton;
@@ -34,6 +35,11 @@ public class PlayerCombat : MonoBehaviour
         _animator.SetTrigger("Attack");
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(_damagePoint.position, _attackRange, _enemyLayer);
+        if (_playerController.isInvulnerable)
+        {
+            return;
+        }
+
 
         foreach(Collider2D enemy in hitEnemies)
         {
