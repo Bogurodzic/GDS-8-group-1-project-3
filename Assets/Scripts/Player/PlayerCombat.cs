@@ -17,7 +17,8 @@ public class PlayerCombat : MonoBehaviour
     [Header("Player Combat Stats")]
     [SerializeField] private float _attackRange = 0.5f;
     [SerializeField] private int _attackDamage = 5;
-    [SerializeField] private float _pushForce = 500f;
+    [SerializeField] private float _pushForceHorizontal;
+    [SerializeField] private float _pushForceVertical;
 
     // Update is called once per frame
     void Update()
@@ -42,11 +43,11 @@ public class PlayerCombat : MonoBehaviour
 
             if (enemy.GetComponent<EnemyCombatMelee>())
             {
-                enemy.GetComponent<EnemyCombatMelee>().PushBack(_pushForce, 0);
+                enemy.GetComponent<EnemyCombatMelee>().PushBack(_pushForceHorizontal, _pushForceVertical);
             }
             else if (enemy.GetComponent<EnemyCombatRanged>())
             {
-                enemy.GetComponent<EnemyCombatRanged>().PushBack(_pushForce, 0);
+                enemy.GetComponent<EnemyCombatRanged>().PushBack(_pushForceHorizontal, _pushForceVertical);
             }
         }
     }
