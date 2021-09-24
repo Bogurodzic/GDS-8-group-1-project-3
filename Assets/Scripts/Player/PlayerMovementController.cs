@@ -94,7 +94,7 @@ public class PlayerMovementController : MonoBehaviour
         }
     }
 
-    bool FacingLeft()
+    public bool FacingLeft()
     {
         if (transform.eulerAngles == new Vector3(0, 0, 0))
         {

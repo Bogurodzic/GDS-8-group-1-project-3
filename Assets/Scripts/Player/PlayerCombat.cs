@@ -49,11 +49,26 @@ public class PlayerCombat : MonoBehaviour
 
             if (enemy.GetComponent<EnemyCombatMelee>())
             {
-                enemy.GetComponent<EnemyCombatMelee>().PushBack(_pushForceHorizontal, _pushForceVertical);
+                if (_movementController.FacingLeft() == false)
+                {
+                    enemy.GetComponent<EnemyCombatMelee>().PushBack(_pushForceHorizontal, _pushForceVertical);
+                }
+                else if (_movementController.FacingLeft())
+                {
+                    enemy.GetComponent<EnemyCombatMelee>().PushBack(-_pushForceHorizontal, _pushForceVertical);
+                }
+
             }
             else if (enemy.GetComponent<EnemyCombatRanged>())
-            {
-                enemy.GetComponent<EnemyCombatRanged>().PushBack(_pushForceHorizontal, _pushForceVertical);
+            {               
+                if (_movementController.FacingLeft() == false)
+                {
+                    enemy.GetComponent<EnemyCombatRanged>().PushBack(_pushForceHorizontal, _pushForceVertical);
+                }
+                else if (_movementController.FacingLeft())
+                {
+                    enemy.GetComponent<EnemyCombatRanged>().PushBack(-_pushForceHorizontal, _pushForceVertical);
+                }
             }
         }
     }
