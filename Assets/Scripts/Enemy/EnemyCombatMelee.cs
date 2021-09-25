@@ -78,6 +78,11 @@ public class EnemyCombatMelee : MonoBehaviour
             _attentionMark.SetActive(false);
             _state = State.Patrolling;
         }
+
+        if (_rigidbody2D.velocity.x <= 0.05f && _rigidbody2D.velocity.x >= -0.05f)
+        {
+            _animator.SetBool("Walking", false);
+        }
     }
 
     private void OnDrawGizmosSelected()
@@ -116,6 +121,7 @@ public class EnemyCombatMelee : MonoBehaviour
 
     public void Patrol()
     {
+        _animator.SetBool("Walking", true);
         if (transform.position.x <= _patrolLeftBound)
         {
             _goTowardsLeft = false;
@@ -168,7 +174,7 @@ public class EnemyCombatMelee : MonoBehaviour
         }
         else
         {
-
+            _animator.SetBool("Walking", true);
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(_player.position.x, transform.position.y), _chaseSpeed * Time.deltaTime);
 
             Collider2D _grounded = Physics2D.OverlapCircle(_groundCheck.position, 0.5f, _groundLayer);

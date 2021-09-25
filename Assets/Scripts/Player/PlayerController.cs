@@ -55,8 +55,10 @@ public class PlayerController : MonoBehaviour, ICharacter
     private IEnumerator GetInvulnerable()
     {
         isInvulnerable = true;
+        _animator.SetBool("isInvulnerable", true);
         yield return new WaitForSeconds(_invulnerableTime);
         isInvulnerable = false;
+        _animator.SetBool("isInvulnerable", false);
     }
 
     private void IgnoreEnemyCollider()

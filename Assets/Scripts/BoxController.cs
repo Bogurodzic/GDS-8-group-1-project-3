@@ -9,6 +9,7 @@ public class BoxController : MonoBehaviour, ICharacter
     [SerializeField] private Rigidbody2D _rigidbody;
     [SerializeField] private Transform _groundPoint;
     [SerializeField] private LayerMask _groundLayers;
+    [SerializeField] private GameObject _killingArea;
 
     [SerializeField] private float _maxHP = 6;
     private float _currentHP;
@@ -21,6 +22,18 @@ public class BoxController : MonoBehaviour, ICharacter
     private void FixedUpdate()
     {
         FallDown();
+    }
+
+    void Update()
+    {
+        if (_rigidbody.velocity.y < -0.1f && _killingArea != null)
+        {
+            _killingArea.SetActive(true);
+        }
+        else if (_killingArea != null)
+        {
+            _killingArea.SetActive(false);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)

@@ -34,6 +34,15 @@ public class EnemyController : MonoBehaviour, ICharacter
                 collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(1, 1) * _pushForce);
             }
         }
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 17)
+        {
+            Die();
+        }
     }
 
     public void TakeDamage(int _damage)
