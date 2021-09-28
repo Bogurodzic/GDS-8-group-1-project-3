@@ -1,7 +1,25 @@
 fileFormatVersion: 2
 guid: 5fc367747a349604282a414a7b6b6e62
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 2071445188046632509
+    second: green scroll anim_0
+  - first:
+      213: 5919359805979811856
+    second: green scroll anim_1
+  - first:
+      213: -9091076686679986479
+    second: green scroll anim_2
+  - first:
+      213: -987785976561594356
+    second: green scroll anim_3
+  - first:
+      213: -3915466197459046025
+    second: green scroll anim_4
+  - first:
+      213: 2354242799100567785
+    second: green scroll anim_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -85,7 +103,133 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: green scroll anim_0
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 138
+        width: 58
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d36363d6c604fbc10800000000000000
+      internalID: 2071445188046632509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: green scroll anim_1
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 138
+        width: 58
+        height: 60
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 010e625a16ac52250800000000000000
+      internalID: 5919359805979811856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: green scroll anim_2
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 138
+        width: 58
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1deaa988be106d180800000000000000
+      internalID: -9091076686679986479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: green scroll anim_3
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 30
+        width: 58
+        height: 60
+      alignment: 9
+      pivot: {x: 0.5, y: 0.7}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c001fe843edaa42f0800000000000000
+      internalID: -987785976561594356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: green scroll anim_4
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 28
+        width: 58
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 771776a0d3879a9c0800000000000000
+      internalID: -3915466197459046025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: green scroll anim_5
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 27
+        width: 58
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e0296b3a53fba020800000000000000
+      internalID: 2354242799100567785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
