@@ -58,12 +58,19 @@ public class EnemyController : MonoBehaviour, ICharacter
 
     public void Die()
     {
+        _animator.SetTrigger("Die");
+    }
+
+    private void Death()
+    {
         for (int i = 0; i < _healthPickupAmount; i++)
         {
-            Vector3 pickupPosition = new Vector3(transform.position.x - (1*i), transform.position.y, transform.position.z);
-            
+            Vector3 pickupPosition = new Vector3(transform.position.x - (1 * i), transform.position.y, transform.position.z);
+
             Instantiate(_healthPickup, pickupPosition, transform.rotation);
         }
         Destroy(gameObject);
     }
+
+    
 }
