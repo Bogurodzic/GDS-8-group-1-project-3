@@ -255,6 +255,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   _killingArea: {fileID: 1780139467}
+  _animator: {fileID: 5630555432569273062}
   _maxHP: 6
 --- !u!255 &820714147
 FixedJoint2D:
@@ -284,7 +285,7 @@ Animator:
   m_GameObject: {fileID: 6974450364879314871}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: aae5b0c17edf6c442982554a1d81037d, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
