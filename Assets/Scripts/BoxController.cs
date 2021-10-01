@@ -74,6 +74,7 @@ public class BoxController : MonoBehaviour, ICharacter
         }
 
         GetComponent<DestroyingObjectController>().StartRespawningObject();
+        _animator.SetTrigger("Return");
         _currentHP = _maxHP;
     }
 
