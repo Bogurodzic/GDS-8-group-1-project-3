@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 177929680}
   - component: {fileID: 177929681}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: SightRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}

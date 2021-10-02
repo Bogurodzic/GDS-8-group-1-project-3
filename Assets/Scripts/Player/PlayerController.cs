@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour, ICharacter
 
     void Start()
     {
+
         _startPosition = transform.position;
         currentHealth = maxHealth;
         isInvulnerable = false;
@@ -29,6 +30,14 @@ public class PlayerController : MonoBehaviour, ICharacter
     void FixedUpdate()
     {
         IgnoreEnemyCollider();
+    }
+
+    void Update()
+    {
+        if (isInvulnerable)
+        {
+            InvulnerableFX();
+        }
     }
 
     public void TakeDamage (int _damage)
@@ -55,26 +64,34 @@ public class PlayerController : MonoBehaviour, ICharacter
     private IEnumerator GetInvulnerable()
     {
         isInvulnerable = true;
-        _animator.SetBool("isInvulnerable", true);
         yield return new WaitForSeconds(_invulnerableTime);
         isInvulnerable = false;
-        _animator.SetBool("isInvulnerable", false);
+    }
+
+    private void InvulnerableFX()
+    {
+        Color tmp = _sprite.color;
+        if (tmp.a == 255)
+        {
+            tmp.a = 0;
+            _sprite.color = tmp;
+        } 
+        else if (tmp.a == 0)
+        {
+            tmp.a = 255;
+            _sprite.color = tmp;
+        }
     }
 
     private void IgnoreEnemyCollider()
     {
-        Color tmp = _sprite.color;
         if (isInvulnerable)
         {
             Physics2D.IgnoreLayerCollision(11, 12, true);
-            tmp.a = 0.5f;
-            _sprite.color = tmp;
         }
         else
         {
             Physics2D.IgnoreLayerCollision(11, 12, false);
-            tmp.a = 1f;
-            _sprite.color = tmp;
         }
     }
 

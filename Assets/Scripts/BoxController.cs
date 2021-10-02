@@ -10,6 +10,7 @@ public class BoxController : MonoBehaviour, ICharacter
     [SerializeField] private Transform _groundPoint;
     [SerializeField] private LayerMask _groundLayers;
     [SerializeField] private GameObject _killingArea;
+    [SerializeField] private Animator _animator;
 
     [SerializeField] private float _maxHP = 6;
     private float _currentHP;
@@ -61,7 +62,7 @@ public class BoxController : MonoBehaviour, ICharacter
 
         if (_currentHP <= 0)
         {
-            Die();
+            _animator.SetTrigger("Destroy");
         }
     }
 
@@ -73,6 +74,7 @@ public class BoxController : MonoBehaviour, ICharacter
         }
 
         GetComponent<DestroyingObjectController>().StartRespawningObject();
+        _animator.SetTrigger("Return");
         _currentHP = _maxHP;
     }
 
