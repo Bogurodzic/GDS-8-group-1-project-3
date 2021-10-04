@@ -8,7 +8,8 @@ public class PlayerInventory : GenericSingletonClass<GameManager>
     [SerializeField] private GameObject _playerInventory;
     [SerializeField] private PlayerInventoryUI _playerInventoryUI;
     [SerializeField] private GameObject _inventoryShowcaseGameObject;
-
+    [SerializeField] private AudioController _audioController;
+    
     private LinkedList<Collectible> _collectibles = new LinkedList<Collectible>();
 
     private bool _inventoryVisible = false;
@@ -44,6 +45,7 @@ public class PlayerInventory : GenericSingletonClass<GameManager>
     public void AddCollectible(Collectible collectible)
     {
         _collectibles.AddLast(collectible);
+        _audioController.collectibleCollected();
         
         Debug.Log("ADDING COLLECTIBLE");
         Debug.Log(_collectibles.Count);

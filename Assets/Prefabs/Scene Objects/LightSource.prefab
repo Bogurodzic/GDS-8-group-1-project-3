@@ -70,7 +70,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Positions:
   - {x: -42.365448, y: 12.538861, z: 0}
   - {x: -35.15861, y: -2.7027931, z: 0}
@@ -104,8 +104,8 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 0.4627451}
-      key1: {r: 1, g: 1, b: 1, a: 0}
+      key0: {r: 1, g: 1, b: 1, a: 0.7058824}
+      key1: {r: 1, g: 1, b: 1, a: 0.49803922}
       key2: {r: 0, g: 0, b: 0, a: 1}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -151,6 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b90b8ed08caaf24196b7d9990a0d1a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerMovementController: {fileID: 0}
   _lineRenderer: {fileID: 5180537753095742504}
   _platformLayers:
     serializedVersion: 2
@@ -165,7 +166,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   _distanceRay: 70
+  _reflectedRayDistance: 10
   _playerController: {fileID: 0}
-  _firstTimeDamageToPlayerDelay: 3
-  _regularTimeDamageToPlayerDelay: 5
+  _firstTimeDamageToPlayerDelay: 1
+  _regularTimeDamageToPlayerDelay: 1
   _damageToPlayer: 1
+  _audioController: {fileID: 0}
