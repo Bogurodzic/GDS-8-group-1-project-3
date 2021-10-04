@@ -105,7 +105,7 @@ LineRenderer:
     colorGradient:
       serializedVersion: 2
       key0: {r: 1, g: 1, b: 1, a: 0.7058824}
-      key1: {r: 1, g: 1, b: 1, a: 0.38039216}
+      key1: {r: 1, g: 1, b: 1, a: 0.49803922}
       key2: {r: 0, g: 0, b: 0, a: 1}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -168,7 +168,7 @@ MonoBehaviour:
   _distanceRay: 70
   _reflectedRayDistance: 10
   _playerController: {fileID: 0}
-  _firstTimeDamageToPlayerDelay: 2
-  _regularTimeDamageToPlayerDelay: 2
+  _firstTimeDamageToPlayerDelay: 1
+  _regularTimeDamageToPlayerDelay: 1
   _damageToPlayer: 1
   _audioController: {fileID: 0}

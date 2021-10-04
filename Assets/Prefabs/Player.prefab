@@ -224,7 +224,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 3
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 8036bf28e96a6de4386ef0f3b877be67, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 0
   m_CollisionDetection: 1
@@ -269,7 +269,7 @@ MonoBehaviour:
   _boxMask:
     serializedVersion: 2
     m_Bits: 512
-  _playerController: {fileID: 0}
+  _playerController: {fileID: 6820323240941389625}
   _audioController: {fileID: 1775396170354078686}
   _playerMoveLeft: 276
   _playerMoveRight: 275
@@ -379,6 +379,7 @@ MonoBehaviour:
   _playerInventory: {fileID: 0}
   _playerInventoryUI: {fileID: 0}
   _inventoryShowcaseGameObject: {fileID: 0}
+  _audioController: {fileID: 1775396170354078686}
 --- !u!81 &806169074669882808
 AudioListener:
   m_ObjectHideFlags: 0
@@ -520,10 +521,13 @@ MonoBehaviour:
   _boxCrashed: {fileID: 0}
   _boxCrashedByPlayer: {fileID: 0}
   _boxRespawned: {fileID: 0}
-  _mirrorCrashed: {fileID: 0}
-  _mirrorCrashedByPlayer: {fileID: 0}
-  _collectibleCollected: {fileID: 0}
-  _collectibleRead: {fileID: 0}
+  _mirrorCrashed: {fileID: 8300000, guid: bc2ddc81dc19d4785a322ecdf256363b, type: 3}
+  _mirrorCrashedByPlayer: {fileID: 8300000, guid: bc2ddc81dc19d4785a322ecdf256363b,
+    type: 3}
+  _collectibleCollected: {fileID: 8300000, guid: bc2ddc81dc19d4785a322ecdf256363b,
+    type: 3}
+  _collectibleRead: {fileID: 8300000, guid: bc2ddc81dc19d4785a322ecdf256363b, type: 3}
   _doorOpen: {fileID: 0}
   _lightOn: {fileID: 0}
   _playerReadingMonument: {fileID: 0}
+  _boxFallingDown: {fileID: 0}
