@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4593764771496531099}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.338, y: 0.034, z: 0}
+  m_LocalPosition: {x: 0.429, y: 0.034, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6820323240941389627}
@@ -241,11 +241,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 696560f82eeb54defbddf4274a6b381e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  currentHealth: 100
+  maxHealth: 25
+  currentHealth: 25
   _animator: {fileID: 6820323240941389630}
   _playerMovementController: {fileID: 6820323240941389624}
+  _invulnerableTime: 10
   _audioController: {fileID: 1775396170354078686}
+  isInvulnerable: 0
 --- !u!114 &6820323240941389624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -334,11 +336,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4608
   _movementController: {fileID: 6820323240941389624}
+  _playerController: {fileID: 6820323240941389625}
   _audioController: {fileID: 1775396170354078686}
   _attackButton: 306
-  _attackRange: 0.5
+  _attackRange: 0.6
   _attackDamage: 5
-  _pushForce: 0
+  _pushForceHorizontal: 0
+  _pushForceVertical: 0
 --- !u!114 &1105568951677144104
 MonoBehaviour:
   m_ObjectHideFlags: 0
