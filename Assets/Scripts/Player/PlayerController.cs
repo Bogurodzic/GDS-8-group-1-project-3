@@ -70,16 +70,16 @@ public class PlayerController : MonoBehaviour, ICharacter
 
     private void InvulnerableFX()
     {
-        Color tmp = _sprite.color;
-        if (tmp.a == 255)
+        StartCoroutine(DamageFlicker());
+    }
+
+    private IEnumerator DamageFlicker()
+    {
+        for (int i = 0; i < 6; i++)
         {
-            tmp.a = 0;
-            _sprite.color = tmp;
-        } 
-        else if (tmp.a == 0)
-        {
-            tmp.a = 255;
-            _sprite.color = tmp;
+            _sprite.color = new Color(1f, 1f, 1f, 0.3f);
+            yield return new WaitForSecondsRealtime(_invulnerableTime/6);
+            _sprite.color = Color.white;
         }
     }
 
