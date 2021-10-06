@@ -12,7 +12,10 @@ public class BoxController : MonoBehaviour, ICharacter
     [SerializeField] private GameObject _killingArea;
     [SerializeField] private Animator _animator;
 
+    [SerializeField] private bool _isBox = true;
     [SerializeField] private float _maxHP = 6;
+
+    [SerializeField] private AudioController _audioController;
     private float _currentHP;
 
     private void Start()
@@ -58,16 +61,32 @@ public class BoxController : MonoBehaviour, ICharacter
 
     public void TakeDamage (int _damage)
     {
+        if (_isBox)
+        {
+            _audioController.mirrorCrashedByPlayer();
+        }
+        else
+        {
+            _audioController.boxCrashedByPlayer();
+        }
+
         _currentHP -= _damage;
+
 
         if (_currentHP <= 0)
         {
             _animator.SetTrigger("Destroy");
+            if (!_isBox)
+            {
+                _audioController.mirrorCrashed();
+            }
+            Die();
         }
     }
 
     public void Die()
     {
+
         if (GetComponent<DestroyingObjectController>() == null)
         {
             return;
@@ -84,6 +103,10 @@ public class BoxController : MonoBehaviour, ICharacter
         if (groundCheck)
         {
             _rigidbody.velocity = new Vector2(0f, _rigidbody.velocity.y);
+            if (_isBox)
+            {
+               // _audioController.boxFallingDown();
+            }
         }
     }
 }

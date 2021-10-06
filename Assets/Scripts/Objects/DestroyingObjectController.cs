@@ -6,6 +6,7 @@ public class DestroyingObjectController : MonoBehaviour
 {
     public int respawnTimer;
     private Vector2 _initialPosition;
+    [SerializeField] private AudioController _audioController;
     
     void Start()
     {
@@ -32,6 +33,7 @@ public class DestroyingObjectController : MonoBehaviour
     {
         SetObjectActive();
         PlaceObjectAtInitialPosition();
+        _audioController.boxRespawned();
     }
 
     private void SetObjectInactive()

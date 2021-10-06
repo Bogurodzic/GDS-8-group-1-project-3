@@ -14,6 +14,7 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private LayerMask _boxMask;
     [SerializeField] private PlayerController _playerController;
+    [SerializeField] private AudioController _audioController;
 
     [Header("Controls")]
     [SerializeField] private KeyCode _playerMoveLeft;
@@ -68,6 +69,9 @@ public class PlayerMovementController : MonoBehaviour
     
     private GameObject box;
 
+    private float _lastY;
+    private bool _landSoundPlayed = true;
+
     void Start()
     {
         LoadColliderSize();
@@ -90,7 +94,15 @@ public class PlayerMovementController : MonoBehaviour
         if (!Inventory.IsInventoryOpened)
         {
             HandleMovement();
-            MoveBoxes();  
+            MoveBoxes();
+            
+            if (doubleJumpActivated && !_audioController.isBatFlying())
+            {
+                _audioController.batFlying();
+            } else if (!doubleJumpActivated && _audioController.isBatFlying())
+            {
+                _audioController.stopBatFlying();
+            }
         }
     }
 
@@ -120,11 +132,19 @@ public class PlayerMovementController : MonoBehaviour
         }
         else if (Input.GetKeyUp(KeyCode.LeftShift) && box)
         {
+            _audioController.stopPlayerIsMovingBox();
+
             if (box.GetComponent<FixedJoint2D>() == null)
             {
                 return;
             }
             box.GetComponent<FixedJoint2D>().enabled = false;
+        }
+
+        if (box && box.GetComponent<FixedJoint2D>() != null && box.GetComponent<FixedJoint2D>().enabled &&
+            (Input.GetKeyDown(_playerMoveLeft) || Input.GetKeyDown(_playerMoveRight)))
+        {
+            _audioController.playerIsMovingBox();
         }
     }
 
@@ -164,15 +184,23 @@ public class PlayerMovementController : MonoBehaviour
 
         if (IsGrounded())
         {
+            
             ReloadDoubleJump();
             ReloadUnderSun();
             _affectedBySun = false;
 
             _coyoteFramesLeft = _coyoteTimeFrames;
-           
+
+            if (_animator.GetBool("isJumping"))
+            {
+                _audioController.playerLandedOnHumanForm();
+            }
             _animator.SetBool("isJumping", false);
-            _singleJumpActive = false;
+            
+ 
             _jumpTimeCounter = _jumpTime;
+            _singleJumpActive = false;
+
         }
         else if (!IsGrounded() && !_animator.GetBool("isBat"))
         {
@@ -230,8 +258,7 @@ public class PlayerMovementController : MonoBehaviour
             }
 
             return true;
-        }
-
+        } 
         else
         { 
             return false;
@@ -240,6 +267,11 @@ public class PlayerMovementController : MonoBehaviour
 
     private void Jump()
     {
+        if (_singleJumpActive && IsGrounded() &&  (Input.GetKeyDown(_playerJumpFirstKey) || Input.GetKeyDown(_playerJumpSecondKey)))
+        {
+            _audioController.playerJumpedFromGround();
+        }
+        
         if (!IsGrounded() && (Input.GetKeyDown(_playerJumpFirstKey) || Input.GetKeyDown(_playerJumpSecondKey)))
         {
             if (!_underSun)
@@ -385,6 +417,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private void ActivateBatMode()
     {
+        _audioController.playerTransformedToBat();
         doubleJumpActivated = true;
         _rigidbody2D.mass = _batMass;
         _rigidbody2D.gravityScale = 1f / _gravityMultiplier;
@@ -477,6 +510,7 @@ public class PlayerMovementController : MonoBehaviour
             _playerController.TakeDamage(_pushDamage);
             PushBack(_horizontalPush, _verticalPush);
         }
+        
     }
 
     public void PushBack(float horizontal, float vertical)

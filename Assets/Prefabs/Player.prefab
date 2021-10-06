@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4593764771496531099}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.338, y: 0.034, z: 0}
+  m_LocalPosition: {x: 0.429, y: 0.034, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6820323240941389627}
@@ -106,6 +106,9 @@ GameObject:
   - component: {fileID: 1105568951677144104}
   - component: {fileID: 4754693482510392105}
   - component: {fileID: 1347477482}
+  - component: {fileID: 806169074669882808}
+  - component: {fileID: 6775910845165092621}
+  - component: {fileID: 1775396170354078686}
   m_Layer: 11
   m_Name: Player
   m_TagString: Player
@@ -238,11 +241,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 696560f82eeb54defbddf4274a6b381e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  currentHealth: 100
+  maxHealth: 25
+  currentHealth: 25
   _animator: {fileID: 6820323240941389630}
   _playerMovementController: {fileID: 6820323240941389624}
-  _invulnerableTime: 0
+  _invulnerableTime: 10
+  _audioController: {fileID: 1775396170354078686}
   isInvulnerable: 0
 --- !u!114 &6820323240941389624
 MonoBehaviour:
@@ -268,6 +272,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   _playerController: {fileID: 6820323240941389625}
+  _audioController: {fileID: 1775396170354078686}
   _playerMoveLeft: 276
   _playerMoveRight: 275
   _playerMoveDown: 274
@@ -281,7 +286,7 @@ MonoBehaviour:
   _jumpTime: 0.32
   _minJump: 0
   _playerMass: 100
-  _dash: 0.7
+  _dash: 0
   _coyoteTimeFrames: 4
   _batMovementSpeed: 4.2
   _doubleJumpForce: 6.8
@@ -332,9 +337,10 @@ MonoBehaviour:
     m_Bits: 4608
   _movementController: {fileID: 6820323240941389624}
   _playerController: {fileID: 6820323240941389625}
+  _audioController: {fileID: 1775396170354078686}
   _attackButton: 306
-  _attackRange: 0.5
-  _attackDamage: 2
+  _attackRange: 0.6
+  _attackDamage: 5
   _pushForceHorizontal: 0
   _pushForceVertical: 0
 --- !u!114 &1105568951677144104
@@ -377,3 +383,155 @@ MonoBehaviour:
   _playerInventory: {fileID: 0}
   _playerInventoryUI: {fileID: 0}
   _inventoryShowcaseGameObject: {fileID: 0}
+  _audioController: {fileID: 1775396170354078686}
+--- !u!81 &806169074669882808
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6820323240941389607}
+  m_Enabled: 1
+--- !u!82 &6775910845165092621
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6820323240941389607}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 5
+  Pan2D: 0
+  rolloffMode: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &1775396170354078686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6820323240941389607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01f5deacefa4440c7a6bfb3ee26fb0df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audioSource: {fileID: 6775910845165092621}
+  _playerMissedAttackWithWeapon: {fileID: 8300000, guid: df9dae9d8c1224de7b46636234d0874d,
+    type: 3}
+  _playerHittedAttackWithWeapon: {fileID: 8300000, guid: bc2ddc81dc19d4785a322ecdf256363b,
+    type: 3}
+  _playerRecievedDamageInHumanForm: {fileID: 8300000, guid: 40df90939f49c41ceb2dfe355dacfe88,
+    type: 3}
+  _playerJumpedFromGround: {fileID: 8300000, guid: 18f8b814962974ede8e571560fbea7d3,
+    type: 3}
+  _playerLandedOnHumanForm: {fileID: 8300000, guid: 18f8b814962974ede8e571560fbea7d3,
+    type: 3}
+  _playerTransformedToBat: {fileID: 8300000, guid: 34937b0a2014349b39851ffe3ee89aa7,
+    type: 3}
+  _playerLandedOnBatForm: {fileID: 0}
+  _playerIsUnderSun: {fileID: 8300000, guid: 3fa62f0e4af064634901e206b5df70fa, type: 3}
+  _playerRecievedDamageInBatForm: {fileID: 8300000, guid: c8ac606fbe5ef426bb97226bc7f4f1ad,
+    type: 3}
+  _playerDeath: {fileID: 0}
+  _batFlying: {fileID: 8300000, guid: 34937b0a2014349b39851ffe3ee89aa7, type: 3}
+  _playerCollectedBlood: {fileID: 8300000, guid: c14d942f8dd684b749055245bf8a6672,
+    type: 3}
+  _playerIsMovingBox: {fileID: 0}
+  _boxCrashed: {fileID: 0}
+  _boxCrashedByPlayer: {fileID: 0}
+  _boxRespawned: {fileID: 0}
+  _mirrorCrashed: {fileID: 8300000, guid: bc2ddc81dc19d4785a322ecdf256363b, type: 3}
+  _mirrorCrashedByPlayer: {fileID: 8300000, guid: bc2ddc81dc19d4785a322ecdf256363b,
+    type: 3}
+  _collectibleCollected: {fileID: 8300000, guid: bc2ddc81dc19d4785a322ecdf256363b,
+    type: 3}
+  _collectibleRead: {fileID: 8300000, guid: bc2ddc81dc19d4785a322ecdf256363b, type: 3}
+  _doorOpen: {fileID: 0}
+  _lightOn: {fileID: 0}
+  _playerReadingMonument: {fileID: 0}
+  _boxFallingDown: {fileID: 0}
