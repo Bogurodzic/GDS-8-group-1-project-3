@@ -7,9 +7,9 @@ public class PlayerTriggerController : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D other)
     {
-       // if (other.CompareTag("NextStage"))
-        //{
-         //   other.gameObject.GetComponent<NextStage>().LoadNextStage();
-        // }
+       if (other.CompareTag("NextStage"))
+       { 
+           other.gameObject.GetComponent<NextStage>().LoadNextStage();
+       }
     }
 }
