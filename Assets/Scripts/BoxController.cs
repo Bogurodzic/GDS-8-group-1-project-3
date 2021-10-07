@@ -80,7 +80,7 @@ public class BoxController : MonoBehaviour, ICharacter
             {
                 _audioController.mirrorCrashed();
             }
-            Die();
+            Invoke("Die", _animator.GetCurrentAnimatorClipInfo(0).Length);
         }
     }
 
