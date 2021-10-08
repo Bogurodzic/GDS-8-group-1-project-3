@@ -32,10 +32,6 @@ public class PlayerCombat : MonoBehaviour
 
     void Attack()
     {
-        if (_playerController.isInvulnerable)
-        {
-            return;
-        }
         _animator.SetTrigger("Attack");
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(_damagePoint.position, _attackRange, _enemyLayer);
