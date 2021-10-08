@@ -64,14 +64,15 @@ public class PlayerMovementController : MonoBehaviour
     private bool _singleJumpActive = false;
     private bool _isCollidingWithAnEnemy = false;
 
-    private int _coyoteFramesLeft;
+    //private int _coyoteFramesLeft;
     
     private GameObject box;
 
     void Start()
     {
         LoadColliderSize();
-        _coyoteFramesLeft = _coyoteTimeFrames;
+        _jumpTimeCounter = _jumpTime;
+        //_coyoteFramesLeft = _coyoteTimeFrames;
     }
 
     private void LoadColliderSize()
@@ -141,6 +142,8 @@ public class PlayerMovementController : MonoBehaviour
         {
             Jump();
         }
+        
+        ResetJump();
 
         if (CanPlayerMoveLeft())
         {
@@ -168,17 +171,25 @@ public class PlayerMovementController : MonoBehaviour
             ReloadUnderSun();
             _affectedBySun = false;
 
-            _coyoteFramesLeft = _coyoteTimeFrames;
+            //_coyoteFramesLeft = _coyoteTimeFrames;
            
             _animator.SetBool("isJumping", false);
-            _singleJumpActive = false;
-            _jumpTimeCounter = _jumpTime;
+            //_singleJumpActive = false;
+
         }
         else if (!IsGrounded() && !_animator.GetBool("isBat"))
         {
             _animator.SetBool("isJumping", true);
         }
 
+    }
+
+    private void ResetJump()
+    {
+        if (Input.GetKeyUp(_playerJumpFirstKey) || Input.GetKeyUp(_playerJumpSecondKey))
+        {
+            _jumpTimeCounter = _jumpTime;
+        }
     }
 
     private bool CanPlayerMoveRight()
@@ -231,7 +242,6 @@ public class PlayerMovementController : MonoBehaviour
 
             return true;
         }
-
         else
         { 
             return false;
@@ -252,7 +262,7 @@ public class PlayerMovementController : MonoBehaviour
             if (_jumpTimeCounter > 0)
             {
                 _jumpTimeCounter -= Time.deltaTime;
-                _singleJumpActive = true;
+                //_singleJumpActive = true;
                 _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x * _horizontalFriction, _jumpForce);
                 _rigidbody2D.velocity += Vector2.up * _minJump;
             }
