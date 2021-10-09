@@ -1,10 +1,17 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class HealthPickup : MonoBehaviour
 {
     [SerializeField] private int _health = 1;
+    [SerializeField] private AudioController _audioController;
+
+    public void Start()
+    {
+        _audioController = GameObject.Find("Player").GetComponent<AudioController>();
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -20,6 +27,7 @@ public class HealthPickup : MonoBehaviour
                 }
             }
 
+            _audioController.playerCollectedBlood();
             Destroy(gameObject);
         }
     }

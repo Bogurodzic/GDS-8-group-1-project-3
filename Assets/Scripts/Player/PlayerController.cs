@@ -10,8 +10,8 @@ public class PlayerController : MonoBehaviour, ICharacter
 
     [SerializeField] private Animator _animator;
     [SerializeField] private PlayerMovementController _playerMovementController;
-
     [SerializeField] private float _invulnerableTime;
+    [SerializeField] private AudioController _audioController;
 
     private Vector2 _startPosition;
     [HideInInspector] public bool isInvulnerable;
@@ -46,11 +46,22 @@ public class PlayerController : MonoBehaviour, ICharacter
         {
             return;
         }
-        Debug.Log("Damage taken " + _damage);
         _playerMovementController.DeactivateBatMode(true);
         _animator.SetTrigger("isDamaged");
         currentHealth -= _damage;
-        Debug.Log("currentHealth " + currentHealth);
+
+        if (_animator.GetBool("isBat"))
+        {
+            if (_audioController.isBatFlying())
+            {
+                _audioController.stopBatFlying();
+            }
+            _audioController.playerRecievedDamageInBatForm();
+        } else
+        {
+            _audioController.playerRecievedDamageInHumanForm();
+        }
+
         if (currentHealth <= 0)
         {
             Die();
@@ -104,6 +115,7 @@ public class PlayerController : MonoBehaviour, ICharacter
     {
         //Destroy(gameObject);
         //transform.position = _startPosition;
+        _audioController.playerDeath();
         currentHealth = maxHealth;
 
         if (GameObject.FindGameObjectWithTag("Player"))
