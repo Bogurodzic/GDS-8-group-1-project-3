@@ -255,6 +255,7 @@ public class PlayerMovementController : MonoBehaviour
             if (!_underSun)
             {
                 DoubleJump();
+                _playerController.PlayPuffFX();
             }
         }
         else
@@ -387,6 +388,7 @@ public class PlayerMovementController : MonoBehaviour
         {
             doubleJumpActivated = false;
         }
+
         _rigidbody2D.mass = _playerMass;
         _rigidbody2D.gravityScale = _gravityScale;
         _animator.SetBool("isBat", false);

@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour, ICharacter
     [SerializeField] private PlayerMovementController _playerMovementController;
     [SerializeField] private float _invulnerableTime;
     [SerializeField] private AudioController _audioController;
+    [SerializeField] private GameObject _puffFX;
 
     private Vector2 _startPosition;
     [HideInInspector] public bool isInvulnerable;
@@ -37,6 +38,14 @@ public class PlayerController : MonoBehaviour, ICharacter
         if (isInvulnerable)
         {
             InvulnerableFX();
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if ((collision.gameObject.layer == 8 || collision.gameObject.layer == 9) && _playerMovementController.doubleJumpActivated)
+        {
+            PlayPuffFX();
         }
     }
 
@@ -126,5 +135,11 @@ public class PlayerController : MonoBehaviour, ICharacter
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.name);
         
+    }
+
+    public void PlayPuffFX()
+    {
+        GameObject puff = Instantiate(_puffFX, transform.position, transform.rotation);
+        Destroy(puff, 0.6f);
     }
 }

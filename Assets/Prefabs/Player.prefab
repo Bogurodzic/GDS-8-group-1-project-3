@@ -247,6 +247,7 @@ MonoBehaviour:
   _playerMovementController: {fileID: 6820323240941389624}
   _invulnerableTime: 10
   _audioController: {fileID: 1775396170354078686}
+  _puffFX: {fileID: 8407218306456407042, guid: 4df1b3fc313657347aa05b7f77697037, type: 3}
   isInvulnerable: 0
 --- !u!114 &6820323240941389624
 MonoBehaviour:
@@ -272,7 +273,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   _playerController: {fileID: 6820323240941389625}
-  _audioController: {fileID: 1775396170354078686}
   _playerMoveLeft: 276
   _playerMoveRight: 275
   _playerMoveDown: 274
