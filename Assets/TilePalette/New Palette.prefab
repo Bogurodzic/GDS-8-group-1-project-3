@@ -3997,7 +3997,7 @@ Tilemap:
       serializedVersion: 2
       m_TileIndex: 534
       m_TileSpriteIndex: 534
-      m_TileMatrixIndex: 8
+      m_TileMatrixIndex: 3
       m_TileColorIndex: 67
       m_TileObjectToInstantiateIndex: 65535
       m_AllTileFlags: 1073741825
@@ -4006,7 +4006,7 @@ Tilemap:
       serializedVersion: 2
       m_TileIndex: 535
       m_TileSpriteIndex: 535
-      m_TileMatrixIndex: 8
+      m_TileMatrixIndex: 3
       m_TileColorIndex: 67
       m_TileObjectToInstantiateIndex: 65535
       m_AllTileFlags: 1073741825
@@ -4015,7 +4015,7 @@ Tilemap:
       serializedVersion: 2
       m_TileIndex: 536
       m_TileSpriteIndex: 536
-      m_TileMatrixIndex: 8
+      m_TileMatrixIndex: 3
       m_TileColorIndex: 67
       m_TileObjectToInstantiateIndex: 65535
       m_AllTileFlags: 1073741825
@@ -12861,15 +12861,15 @@ Tilemap:
   - m_RefCount: 906
     m_Data:
       e00: 1
-      e01: -0.00000017484555
-      e02: -0
+      e01: 0
+      e02: 0
       e03: 0
-      e10: 0.00000017484555
+      e10: 0
       e11: 1
       e12: 0
       e13: 0
       e20: 0
-      e21: -0
+      e21: 0
       e22: 1
       e23: 0
       e30: 0
@@ -12912,7 +12912,7 @@ Tilemap:
       e31: 0
       e32: 0
       e33: 1
-  - m_RefCount: 13
+  - m_RefCount: 16
     m_Data:
       e00: 0.000000059604645
       e01: 0.99999994
@@ -13002,42 +13002,42 @@ Tilemap:
       e31: 0
       e32: 0
       e33: 1
-  - m_RefCount: 3
-    m_Data:
-      e00: -0.17364812
-      e01: 0.9848078
-      e02: 0
-      e03: 0
-      e10: -0.9848078
-      e11: -0.17364812
-      e12: 0
-      e13: 0
-      e20: 0
-      e21: 0
-      e22: 1
-      e23: 0
-      e30: 0
-      e31: 0
-      e32: 0
-      e33: 1
   - m_RefCount: 0
     m_Data:
-      e00: 1.0243582e-29
+      e00: 2.0644785e-15
       e01: NaN
       e02: 0
-      e03: 1.024357e-29
-      e10: 3.48e-43
+      e03: 2.064475e-15
+      e10: 3.15e-43
       e11: NaN
       e12: 7.34684e-40
-      e13: 3.48e-43
+      e13: 3.15e-43
       e20: 0
       e21: NaN
-      e22: 1.1419126e+38
+      e22: -1.6014728e-24
       e23: 0
       e30: 0
       e31: NaN
       e32: 4.5905e-41
       e33: 0
+  - m_RefCount: 0
+    m_Data:
+      e00: NaN
+      e01: 0
+      e02: 1.05e-43
+      e03: 0
+      e10: NaN
+      e11: 0
+      e12: NaN
+      e13: 0
+      e20: 1.05e-43
+      e21: 0
+      e22: 0
+      e23: -3.08365e-17
+      e30: 3.15e-43
+      e31: NaN
+      e32: 0
+      e33: 7.13e-43
   m_TileColorArray:
   - m_RefCount: 0
     m_Data: {r: 7.2830505, g: 7.2830505, b: 7.2830505, a: 7.2830505}
