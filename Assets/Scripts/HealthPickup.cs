@@ -6,11 +6,13 @@ using UnityEngine;
 public class HealthPickup : MonoBehaviour
 {
     [SerializeField] private int _health = 1;
+    [SerializeField] private float _destroyAfterTime = 1;
     [SerializeField] private AudioController _audioController;
 
     public void Start()
     {
         _audioController = GameObject.Find("Player").GetComponent<AudioController>();
+        Invoke("DestroyAfterSetTime", _destroyAfterTime);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -30,5 +32,10 @@ public class HealthPickup : MonoBehaviour
             _audioController.playerCollectedBlood();
             Destroy(gameObject);
         }
+    }
+
+    private void DestroyAfterSetTime()
+    {
+        Destroy(gameObject);
     }
 }

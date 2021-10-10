@@ -63,17 +63,7 @@ public class LightBeam : MonoBehaviour
         }
         else
         {
-            if (_playerIsAffectedBySun)
-            {
-                _playerMovementController.doubleJumpActivated = false;
-                _playerMovementController.ReloadUnderSun(); 
-                _playerController.GetComponent<PlayerController>().GetAnimator().SetBool("underSun", false);
-                _audioController.stopPlayerIsUnderSun();
-
-
-            }
-            
-            _playerIsAffectedBySun = false;
+            ResetSunEffect();
         }
         
         if (_hit)
@@ -139,8 +129,20 @@ public class LightBeam : MonoBehaviour
         }
         else
         {
-            _playerIsAffectedBySun = false;
+            ResetSunEffect();
         }
+    }
+
+    private void ResetSunEffect()
+    {
+        if (_playerIsAffectedBySun)
+        {
+            _playerMovementController.doubleJumpActivated = false;
+            _playerMovementController.ReloadUnderSun(); 
+            _playerController.GetComponent<PlayerController>().GetAnimator().SetBool("underSun", false);
+            _audioController.stopPlayerIsUnderSun();
+            _playerIsAffectedBySun = false;
+        }  
     }
 
     private void DrawBeam(Vector2 startPosition, Vector2 endPosition)

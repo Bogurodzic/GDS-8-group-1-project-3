@@ -82,7 +82,8 @@ public class AudioController : MonoBehaviour
 
     public void stopBatFlying()
     {
-        _audioSource.Stop();
+        _audioSource.clip = null;
+        _audioSource.loop = false;
     }
 
     public void playerLandedOnBatForm()
@@ -225,6 +226,7 @@ public class AudioController : MonoBehaviour
     public void stopPlayerReadingMonument()
     {
         _audioSource.Stop();
+        
     }
     
 

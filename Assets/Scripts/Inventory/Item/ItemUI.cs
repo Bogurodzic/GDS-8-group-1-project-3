@@ -5,7 +5,10 @@ using UnityEngine.UI;
 
 public class ItemUI : MonoBehaviour
 {
-    [SerializeField] private Image _itemImage;
+    [SerializeField] private Sprite _itemImage;
+    [SerializeField] private Sprite _itemImageOpen;
+    [SerializeField] private GameObject _itemName;
+    [SerializeField] private Image _imageSource;
     private bool _isActive = false;
     private Collectible _collectible;
         
@@ -24,12 +27,13 @@ public class ItemUI : MonoBehaviour
     {
         if (!_isActive)
         {
-            _itemImage.color = Color.white;
+            _itemName.SetActive(false);
+            _imageSource.sprite = _itemImage;
         }
         else
         {
-            _itemImage.color = Color.yellow;
-
+            _itemName.SetActive(true);
+            _imageSource.sprite = _itemImageOpen;
         }
     }
 
