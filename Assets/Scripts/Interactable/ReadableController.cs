@@ -10,10 +10,14 @@ public class ReadableController : MonoBehaviour
     [SerializeField] private GameObject _interactGameObject;
     [SerializeField] private String _readableText;
     [SerializeField] private GameObject _readableTextGameObject;
-    [SerializeField] private TMPro.TextMeshProUGUI _readableTextMeshPro;
+    [SerializeField] private TextMeshProUGUI _readableTextMeshPro;
+    [SerializeField] private PlayerColletibleController _player;
     
     private bool _canInteract = false;
     private bool _textDisplayed = false;
+
+    [HideInInspector] public bool isDiscovered = false;
+
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.R) && !_textDisplayed && _canInteract)
@@ -30,6 +34,11 @@ public class ReadableController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            if (!isDiscovered)
+            {
+                _player.readableCount++;
+            }
+            isDiscovered = true;
             ShowInteract();
             EnableInteract();
         }
