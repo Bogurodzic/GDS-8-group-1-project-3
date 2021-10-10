@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class NextStage : MonoBehaviour
 {
     [SerializeField] private String sceneName;
+    [SerializeField] private Animator _transition;
     
     public void LoadNextStage()
     {
@@ -14,7 +15,16 @@ public class NextStage : MonoBehaviour
         {
             Destroy(GameObject.FindGameObjectWithTag("Player"));
         }
-        
+
+        StartCoroutine(LoadLevel(sceneName));
+    }
+
+    private IEnumerator LoadLevel(string sceneName)
+    {
+        _transition.SetTrigger("Start");
+
+        yield return new WaitForSeconds(1f);
+
         SceneManager.LoadScene(sceneName);
     }
 }
