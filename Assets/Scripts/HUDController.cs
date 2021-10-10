@@ -13,7 +13,6 @@ public class HUDController : MonoBehaviour
     [Space(10)]
     [SerializeField] private PlayerController _player;
 
-    [Space(10)]
     [Header("Max Counts")]
     [SerializeField] private byte _maxCollectibleCount;
     [SerializeField] private byte _maxReadableCount;
