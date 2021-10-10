@@ -26,6 +26,7 @@ public class PlayerInventory : GenericSingletonClass<GameManager>
 
     private void ShowInventory()
     {
+        PauseGame();
         Inventory.SetInventory(true);
         _inventoryVisible = true;
         _playerInventory.SetActive(true);
@@ -35,6 +36,7 @@ public class PlayerInventory : GenericSingletonClass<GameManager>
 
     private void HideInventory()
     {
+        ResumeGame();
         Inventory.SetInventory(false);
         _inventoryVisible = false;
         _playerInventory.SetActive(false);
@@ -54,5 +56,15 @@ public class PlayerInventory : GenericSingletonClass<GameManager>
     public LinkedList<Collectible> GetCollectibles()
     {
         return Collectibles.collectibles;
+    }
+    
+    void PauseGame ()
+    {
+        Time.timeScale = 0;
+    }
+
+    void ResumeGame ()
+    {
+        Time.timeScale = 1;
     }
 }
