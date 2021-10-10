@@ -14,7 +14,6 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private LayerMask _boxMask;
     [SerializeField] private PlayerController _playerController;
-    [SerializeField] private AudioController _audioController;
 
     [Header("Controls")]
     [SerializeField] private KeyCode _playerMoveLeft;
@@ -65,17 +64,15 @@ public class PlayerMovementController : MonoBehaviour
     private bool _singleJumpActive = false;
     private bool _isCollidingWithAnEnemy = false;
 
-    private int _coyoteFramesLeft;
+    //private int _coyoteFramesLeft;
     
     private GameObject box;
-
-    private float _lastY;
-    private bool _landSoundPlayed = true;
 
     void Start()
     {
         LoadColliderSize();
-        _coyoteFramesLeft = _coyoteTimeFrames;
+        _jumpTimeCounter = _jumpTime;
+        //_coyoteFramesLeft = _coyoteTimeFrames;
     }
 
     private void LoadColliderSize()
@@ -94,15 +91,7 @@ public class PlayerMovementController : MonoBehaviour
         if (!Inventory.IsInventoryOpened)
         {
             HandleMovement();
-            MoveBoxes();
-            
-            if (doubleJumpActivated && !_audioController.isBatFlying())
-            {
-                _audioController.batFlying();
-            } else if (!doubleJumpActivated && _audioController.isBatFlying())
-            {
-                _audioController.stopBatFlying();
-            }
+            MoveBoxes();  
         }
     }
 
@@ -132,19 +121,11 @@ public class PlayerMovementController : MonoBehaviour
         }
         else if (Input.GetKeyUp(KeyCode.LeftShift) && box)
         {
-            _audioController.stopPlayerIsMovingBox();
-
             if (box.GetComponent<FixedJoint2D>() == null)
             {
                 return;
             }
             box.GetComponent<FixedJoint2D>().enabled = false;
-        }
-
-        if (box && box.GetComponent<FixedJoint2D>() != null && box.GetComponent<FixedJoint2D>().enabled &&
-            (Input.GetKeyDown(_playerMoveLeft) || Input.GetKeyDown(_playerMoveRight)))
-        {
-            _audioController.playerIsMovingBox();
         }
     }
 
@@ -161,6 +142,8 @@ public class PlayerMovementController : MonoBehaviour
         {
             Jump();
         }
+        
+        ResetJump();
 
         if (CanPlayerMoveLeft())
         {
@@ -184,22 +167,14 @@ public class PlayerMovementController : MonoBehaviour
 
         if (IsGrounded())
         {
-            
             ReloadDoubleJump();
             ReloadUnderSun();
             _affectedBySun = false;
 
-            _coyoteFramesLeft = _coyoteTimeFrames;
-
-            if (_animator.GetBool("isJumping"))
-            {
-                _audioController.playerLandedOnHumanForm();
-            }
+            //_coyoteFramesLeft = _coyoteTimeFrames;
+           
             _animator.SetBool("isJumping", false);
-            
- 
-            _jumpTimeCounter = _jumpTime;
-            _singleJumpActive = false;
+            //_singleJumpActive = false;
 
         }
         else if (!IsGrounded() && !_animator.GetBool("isBat"))
@@ -207,6 +182,14 @@ public class PlayerMovementController : MonoBehaviour
             _animator.SetBool("isJumping", true);
         }
 
+    }
+
+    private void ResetJump()
+    {
+        if (Input.GetKeyUp(_playerJumpFirstKey) || Input.GetKeyUp(_playerJumpSecondKey))
+        {
+            _jumpTimeCounter = _jumpTime;
+        }
     }
 
     private bool CanPlayerMoveRight()
@@ -258,7 +241,7 @@ public class PlayerMovementController : MonoBehaviour
             }
 
             return true;
-        } 
+        }
         else
         { 
             return false;
@@ -267,16 +250,12 @@ public class PlayerMovementController : MonoBehaviour
 
     private void Jump()
     {
-        if (_singleJumpActive && IsGrounded() &&  (Input.GetKeyDown(_playerJumpFirstKey) || Input.GetKeyDown(_playerJumpSecondKey)))
-        {
-            _audioController.playerJumpedFromGround();
-        }
-        
         if (!IsGrounded() && (Input.GetKeyDown(_playerJumpFirstKey) || Input.GetKeyDown(_playerJumpSecondKey)))
         {
             if (!_underSun)
             {
                 DoubleJump();
+                _playerController.PlayPuffFX();
             }
         }
         else
@@ -284,7 +263,7 @@ public class PlayerMovementController : MonoBehaviour
             if (_jumpTimeCounter > 0)
             {
                 _jumpTimeCounter -= Time.deltaTime;
-                _singleJumpActive = true;
+                //_singleJumpActive = true;
                 _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x * _horizontalFriction, _jumpForce);
                 _rigidbody2D.velocity += Vector2.up * _minJump;
             }
@@ -409,6 +388,7 @@ public class PlayerMovementController : MonoBehaviour
         {
             doubleJumpActivated = false;
         }
+
         _rigidbody2D.mass = _playerMass;
         _rigidbody2D.gravityScale = _gravityScale;
         _animator.SetBool("isBat", false);
@@ -417,7 +397,6 @@ public class PlayerMovementController : MonoBehaviour
 
     private void ActivateBatMode()
     {
-        _audioController.playerTransformedToBat();
         doubleJumpActivated = true;
         _rigidbody2D.mass = _batMass;
         _rigidbody2D.gravityScale = 1f / _gravityMultiplier;
@@ -426,26 +405,32 @@ public class PlayerMovementController : MonoBehaviour
 
     private bool IsGrounded()
     {
-        
-        if (doubleJumpActivated)
-        {
-            RaycastHit2D raycastHit2Dplatform = Physics2D.BoxCast(_boxCollider2D.bounds.center, new Vector2(_boxCollider2D.bounds.size.x / 2, _boxCollider2D.bounds.size.y), 0f,
-                Vector2.down, .8f, _platformLayerMask);
-            RaycastHit2D raycastHit2Dbox = Physics2D.BoxCast(_boxCollider2D.bounds.center, new Vector2(_boxCollider2D.bounds.size.x / 2, _boxCollider2D.bounds.size.y), 0f,
-                Vector2.down, .8f, _boxMask);
+
+        //if (doubleJumpActivated)
+        //{
+        //    RaycastHit2D raycastHit2Dplatform = Physics2D.BoxCast(_boxCollider2D.bounds.center, new Vector2(_boxCollider2D.bounds.size.x / 2, _boxCollider2D.bounds.size.y), 0f,
+        //        Vector2.down, .8f, _platformLayerMask);
+        //    RaycastHit2D raycastHit2Dbox = Physics2D.BoxCast(_boxCollider2D.bounds.center, new Vector2(_boxCollider2D.bounds.size.x / 2, _boxCollider2D.bounds.size.y), 0f,
+        //        Vector2.down, .8f, _boxMask);
+
+        //    return (raycastHit2Dplatform.collider != null || raycastHit2Dbox.collider != null);
+        //}
+        //else
+        //{
+        //    RaycastHit2D raycastHit2Dplatform = Physics2D.BoxCast(_boxCollider2D.bounds.center, new Vector2(_boxCollider2D.bounds.size.x / 2, _boxCollider2D.bounds.size.y), 0f,
+        //        Vector2.down, .3f, _platformLayerMask);
+        //    RaycastHit2D raycastHit2Dbox = Physics2D.BoxCast(_boxCollider2D.bounds.center, new Vector2(_boxCollider2D.bounds.size.x / 2, _boxCollider2D.bounds.size.y), 0f,
+        //        Vector2.down, .3f, _boxMask);
+
+        //    return (raycastHit2Dplatform.collider != null || raycastHit2Dbox.collider != null);
+        //}
+
+        RaycastHit2D raycastHit2Dplatform = Physics2D.BoxCast(_boxCollider2D.bounds.center, new Vector2(_boxCollider2D.bounds.size.x / 2, _boxCollider2D.bounds.size.y), 0f,
+            Vector2.down, .3f, _platformLayerMask);
+        RaycastHit2D raycastHit2Dbox = Physics2D.BoxCast(_boxCollider2D.bounds.center, new Vector2(_boxCollider2D.bounds.size.x / 2, _boxCollider2D.bounds.size.y), 0f,
+            Vector2.down, .3f, _boxMask);
 
         return (raycastHit2Dplatform.collider != null || raycastHit2Dbox.collider != null);
-        }
-        else
-        {
-            RaycastHit2D raycastHit2Dplatform = Physics2D.BoxCast(_boxCollider2D.bounds.center, new Vector2(_boxCollider2D.bounds.size.x / 2, _boxCollider2D.bounds.size.y), 0f,
-                Vector2.down, .3f, _platformLayerMask);
-            RaycastHit2D raycastHit2Dbox = Physics2D.BoxCast(_boxCollider2D.bounds.center, new Vector2(_boxCollider2D.bounds.size.x / 2, _boxCollider2D.bounds.size.y), 0f,
-                Vector2.down, .3f, _boxMask);
-
-            return (raycastHit2Dplatform.collider != null || raycastHit2Dbox.collider != null);
-        }
-
     }
 
     private bool IsAttacking()
@@ -510,7 +495,6 @@ public class PlayerMovementController : MonoBehaviour
             _playerController.TakeDamage(_pushDamage);
             PushBack(_horizontalPush, _verticalPush);
         }
-        
     }
 
     public void PushBack(float horizontal, float vertical)

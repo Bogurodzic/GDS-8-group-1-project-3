@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour, ICharacter
     [SerializeField] private PlayerMovementController _playerMovementController;
     [SerializeField] private float _invulnerableTime;
     [SerializeField] private AudioController _audioController;
+    [SerializeField] private GameObject _puffFX;
 
     private Vector2 _startPosition;
     [HideInInspector] public bool isInvulnerable;
@@ -37,6 +38,14 @@ public class PlayerController : MonoBehaviour, ICharacter
         if (isInvulnerable)
         {
             InvulnerableFX();
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if ((collision.gameObject.layer == 8 || collision.gameObject.layer == 9) && _playerMovementController.doubleJumpActivated)
+        {
+            PlayPuffFX();
         }
     }
 
@@ -81,16 +90,16 @@ public class PlayerController : MonoBehaviour, ICharacter
 
     private void InvulnerableFX()
     {
-        Color tmp = _sprite.color;
-        if (tmp.a == 255)
+        StartCoroutine(DamageFlicker());
+    }
+
+    private IEnumerator DamageFlicker()
+    {
+        for (int i = 0; i < 3; i++)
         {
-            tmp.a = 0;
-            _sprite.color = tmp;
-        } 
-        else if (tmp.a == 0)
-        {
-            tmp.a = 255;
-            _sprite.color = tmp;
+            _sprite.color = new Color(1f, 1f, 1f, 0.3f);
+            yield return new WaitForSecondsRealtime(_invulnerableTime/3);
+            _sprite.color = Color.white;
         }
     }
 
@@ -126,5 +135,11 @@ public class PlayerController : MonoBehaviour, ICharacter
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.name);
         
+    }
+
+    public void PlayPuffFX()
+    {
+        GameObject puff = Instantiate(_puffFX, transform.position, transform.rotation);
+        Destroy(puff, 0.6f);
     }
 }
