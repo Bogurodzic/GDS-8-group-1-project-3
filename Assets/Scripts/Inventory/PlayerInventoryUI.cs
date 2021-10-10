@@ -85,7 +85,7 @@ public class PlayerInventoryUI : MonoBehaviour
         
         foreach (var collectible in collectibles)
         {
-            Vector3 itemPosition = new Vector3(transform.position.x, transform.position.y + 3f - (0.75f * index), transform.position.z);
+            Vector3 itemPosition = new Vector3(transform.position.x + 3.13f, transform.position.y + 3f - (0.95f * index), transform.position.z);
             GameObject inventoryItemGameObject = Instantiate(_inventoryItem, itemPosition, transform.rotation, transform);
             inventoryItemGameObject.GetComponentInChildren<Text>().text = collectible.GetName();
             ItemUI playerInventoryItemUI = inventoryItemGameObject.GetComponent<ItemUI>();
