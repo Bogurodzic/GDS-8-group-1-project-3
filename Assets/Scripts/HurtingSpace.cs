@@ -30,7 +30,7 @@ public class HurtingSpace : MonoBehaviour
 
     private void Hurt(Collider2D character)
     {
-        if (character.GetComponent<ICharacter>() == null && character.gameObject.layer != 9)
+        if (character.GetComponent<ICharacter>() == null || character.gameObject.layer == 9)
         {
             return;
         }
