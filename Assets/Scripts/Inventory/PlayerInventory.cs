@@ -10,12 +10,12 @@ public class PlayerInventory : GenericSingletonClass<GameManager>
     [SerializeField] private GameObject _inventoryShowcaseGameObject;
     [SerializeField] private AudioController _audioController;
     
-    private LinkedList<Collectible> _collectibles = new LinkedList<Collectible>();
+    //private LinkedList<Collectible> _collectibles = new LinkedList<Collectible>();
 
     private bool _inventoryVisible = false;
     public void Update()
     {
-        if (!_inventoryVisible && Input.GetKeyDown(KeyCode.I) && _collectibles.Count > 0)
+        if (!_inventoryVisible && Input.GetKeyDown(KeyCode.I) && Collectibles.collectibles.Count > 0)
         {
             ShowInventory();
         } else if (_inventoryVisible && Input.GetKeyDown(KeyCode.I))
@@ -26,6 +26,7 @@ public class PlayerInventory : GenericSingletonClass<GameManager>
 
     private void ShowInventory()
     {
+        PauseGame();
         Inventory.SetInventory(true);
         _inventoryVisible = true;
         _playerInventory.SetActive(true);
@@ -35,6 +36,7 @@ public class PlayerInventory : GenericSingletonClass<GameManager>
 
     private void HideInventory()
     {
+        ResumeGame();
         Inventory.SetInventory(false);
         _inventoryVisible = false;
         _playerInventory.SetActive(false);
@@ -44,15 +46,25 @@ public class PlayerInventory : GenericSingletonClass<GameManager>
 
     public void AddCollectible(Collectible collectible)
     {
-        _collectibles.AddLast(collectible);
+        Collectibles.collectibles.AddLast(collectible);
         _audioController.collectibleCollected();
         
         Debug.Log("ADDING COLLECTIBLE");
-        Debug.Log(_collectibles.Count);
+        Debug.Log(Collectibles.collectibles.Count);
     }
 
     public LinkedList<Collectible> GetCollectibles()
     {
-        return _collectibles;
+        return Collectibles.collectibles;
+    }
+    
+    void PauseGame ()
+    {
+        Time.timeScale = 0;
+    }
+
+    void ResumeGame ()
+    {
+        Time.timeScale = 1;
     }
 }
