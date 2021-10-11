@@ -13,10 +13,12 @@ public class EnemyController : MonoBehaviour, ICharacter
     [SerializeField] private float _pushForce = 5;
 
     private int _currentHealth;
+    private Collider2D _collider;
     
     void Start()
     {
         _currentHealth = _maxHealth;
+        _collider = GetComponent<Collider2D>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -59,6 +61,7 @@ public class EnemyController : MonoBehaviour, ICharacter
     public void Die()
     {
         _animator.SetTrigger("Die");
+        _collider.enabled = false;
     }
 
     private void Death()

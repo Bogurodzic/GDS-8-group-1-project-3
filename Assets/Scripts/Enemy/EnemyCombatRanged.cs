@@ -17,7 +17,6 @@ public class EnemyCombatRanged : MonoBehaviour
     [SerializeField] private LayerMask _groundLayer;
     [SerializeField] private Transform _player;
     [SerializeField] private Transform _damagePoint;
-    //[SerializeField] private Transform _groundCheck;
     [SerializeField] private Animator _animator;
     [SerializeField] private Collider2D _spotRange;
     [SerializeField] private GameObject _projectile;
@@ -29,14 +28,6 @@ public class EnemyCombatRanged : MonoBehaviour
     [SerializeField] private float _bulletSpeed = 8f;
 
     [SerializeField] private float _attentionTime = 2f;
-    //[SerializeField] private float _chaseSpeed = 4.73f;
-
-    //[Header("Combat Parameters")]
-    //[SerializeField] private float _sightRange = 2f;
-    //[SerializeField] private float _attackDistance = 1f;
-    //[SerializeField] private float _attackRange = 0.5f;
-    //[SerializeField] private int _damage = 1;
-    //[SerializeField] private float _pushForce = 10f;
 
     [Header("Patrol Constraints")]
     [SerializeField] private float _patrolLeftBound;
