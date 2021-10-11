@@ -53,4 +53,9 @@ public class MainMenuController : MonoBehaviour
         _canStartGame = true;
     }
 
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
 }
