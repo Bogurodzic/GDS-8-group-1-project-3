@@ -12,6 +12,7 @@ TagManager:
   - DoorButton
   - BoxRespawn
   - NextStage
+  - Door
   layers:
   - Default
   - TransparentFX
