@@ -214,7 +214,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 200
+  m_Mass: 800
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -264,6 +264,7 @@ MonoBehaviour:
   _animator: {fileID: 8809545556179391047}
   _healthPickup: {fileID: 1778563846365517646, guid: 261c69bea67ec3144b8be0bf011a3ebd,
     type: 3}
+  _rigidbody2D: {fileID: 6396016169824847536}
   _healthPickupAmount: 5
   _maxHealth: 15
   _pushForce: 5
@@ -312,7 +313,7 @@ MonoBehaviour:
   _spotRange: {fileID: 8809545556978045343}
   _attentionMark: {fileID: 3615796587131790709}
   _patrolSpeed: 1
-  _chaseSpeed: 4.73
+  _chaseSpeed: 3
   _attackDistance: 1
   _attackRange: 0.5
   _damage: 5

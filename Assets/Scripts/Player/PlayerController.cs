@@ -96,11 +96,12 @@ public class PlayerController : MonoBehaviour, ICharacter
 
     private IEnumerator DamageFlicker()
     {
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 12; i++)
         {
-            _sprite.color = new Color(1f, 1f, 1f, 0.3f);
-            yield return new WaitForSecondsRealtime(_invulnerableTime/3);
+            _sprite.color = new Color(1f, 0f, 0f, 1f);
+            yield return new WaitForSeconds(_invulnerableTime/12);
             _sprite.color = Color.white;
+            yield return new WaitForSeconds(_invulnerableTime / 12);
         }
     }
 

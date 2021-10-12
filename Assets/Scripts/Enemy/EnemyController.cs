@@ -7,16 +7,19 @@ public class EnemyController : MonoBehaviour, ICharacter
 {
     [SerializeField] private Animator _animator;
     [SerializeField] private GameObject _healthPickup;
+    [SerializeField] private Rigidbody2D _rigidbody2D;
     [SerializeField] private int _healthPickupAmount;
 
     [SerializeField] private int _maxHealth = 5;
     [SerializeField] private float _pushForce = 5;
 
     private int _currentHealth;
+    private Collider2D _collider;
     
     void Start()
     {
         _currentHealth = _maxHealth;
+        _collider = GetComponent<Collider2D>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -59,6 +62,8 @@ public class EnemyController : MonoBehaviour, ICharacter
     public void Die()
     {
         _animator.SetTrigger("Die");
+        _collider.enabled = false;
+        _rigidbody2D.bodyType = RigidbodyType2D.Static;
     }
 
     private void Death()
