@@ -1368,7 +1368,7 @@ GameObject:
   - component: {fileID: 1286556825}
   - component: {fileID: 1286556824}
   m_Layer: 5
-  m_Name: OptionsButton
+  m_Name: ControlsButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

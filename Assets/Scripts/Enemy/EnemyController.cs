@@ -7,6 +7,7 @@ public class EnemyController : MonoBehaviour, ICharacter
 {
     [SerializeField] private Animator _animator;
     [SerializeField] private GameObject _healthPickup;
+    [SerializeField] private Rigidbody2D _rigidbody2D;
     [SerializeField] private int _healthPickupAmount;
 
     [SerializeField] private int _maxHealth = 5;
@@ -62,6 +63,7 @@ public class EnemyController : MonoBehaviour, ICharacter
     {
         _animator.SetTrigger("Die");
         _collider.enabled = false;
+        _rigidbody2D.bodyType = RigidbodyType2D.Static;
     }
 
     private void Death()
