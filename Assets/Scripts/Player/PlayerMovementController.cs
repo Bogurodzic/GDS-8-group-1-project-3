@@ -33,7 +33,7 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private float _playerMass;
     [SerializeField] private float _dash;
 
-    [SerializeField] private int _coyoteTimeFrames = 4;
+    //[SerializeField] private int _coyoteTimeFrames = 4;
 
     [Header("Bat Movement Parameters")]
     [SerializeField] private float _batMovementSpeed;

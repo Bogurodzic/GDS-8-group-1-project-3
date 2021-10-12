@@ -8,6 +8,8 @@ public class NextStage : MonoBehaviour
 {
     [SerializeField] private String sceneName;
     [SerializeField] private Animator _transition;
+
+    [SerializeField] private float _transitionTime = 1f;
     
     public void LoadNextStage()
     {
@@ -23,7 +25,7 @@ public class NextStage : MonoBehaviour
     {
         _transition.SetTrigger("Start");
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(_transitionTime);
 
         SceneManager.LoadScene(sceneName);
     }
