@@ -83,6 +83,10 @@ public class EnemyCombatMelee : MonoBehaviour
         {
             _animator.SetBool("Walking", false);
         }
+        else
+        {
+            _animator.SetBool("Walking", true);
+        }
     }
 
     private void OnDrawGizmosSelected()
