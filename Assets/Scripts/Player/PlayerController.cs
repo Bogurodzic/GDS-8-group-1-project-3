@@ -1,4 +1,5 @@
-﻿    using System.Collections;
+﻿    using System;
+    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -122,8 +123,6 @@ public class PlayerController : MonoBehaviour, ICharacter
 
     public void Die()
     {
-        //Destroy(gameObject);
-        //transform.position = _startPosition;
         _audioController.playerDeath();
         currentHealth = maxHealth;
 
@@ -141,5 +140,14 @@ public class PlayerController : MonoBehaviour, ICharacter
     {
         GameObject puff = Instantiate(_puffFX, transform.position, transform.rotation);
         Destroy(puff, 0.6f);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Door"))
+        {
+            HugeDoor hugeDoor = other.gameObject.GetComponent<HugeDoor>();
+            hugeDoor.Open();
+        }
     }
 }
