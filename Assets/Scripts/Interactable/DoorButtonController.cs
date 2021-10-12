@@ -5,6 +5,9 @@ using UnityEngine;
 public class DoorButtonController : MonoBehaviour
 {
     [SerializeField] private DoorController _doorController;
+    [SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] private Sprite _lockedButton;
+    [SerializeField] private Sprite _unlockedButton;
 
     void Start()
     {
@@ -18,6 +21,7 @@ public class DoorButtonController : MonoBehaviour
 
     public void Interact()
     {
+        _spriteRenderer.sprite = _unlockedButton;
         _doorController.UnlockDoors();
     }
     
