@@ -289,7 +289,7 @@ MonoBehaviour:
     type: 3}
   _attentionMark: {fileID: 8100487204993488845}
   _patrolSpeed: 1
-  _bulletSpeed: 100
+  _bulletSpeed: 90
   _attentionTime: 2
   _patrolLeftBound: 19
   _patrolRightBound: 28
