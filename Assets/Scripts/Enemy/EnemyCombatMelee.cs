@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyCombatMelee : MonoBehaviour
 {
-    private enum State
+    public enum State
     {
         Patrolling,
         Attention,
@@ -43,19 +43,19 @@ public class EnemyCombatMelee : MonoBehaviour
     [SerializeField] private float _patrolRightBound;
     [SerializeField] private bool _goTowardsLeft = true;
 
-    private State _state;
+    public State state;
     private float _priorPosition;
 
     private void Awake()
     {
-        _state = State.Patrolling;
+        state = State.Patrolling;
         _priorPosition = transform.position.x;
     }
 
     // Update is called once per frame
     void Update()
     {
-        switch (_state)
+        switch (state)
         {
             default:
             case State.Patrolling:
@@ -67,16 +67,16 @@ public class EnemyCombatMelee : MonoBehaviour
                 StayAlert();
                 break;
             case State.Combat:
-                ChasePlayer();
                 FaceTowardsPlayer();
+                ChasePlayer();
                 break;
         }
 
-        if (_state == State.Attention && _spotRange.IsTouchingLayers(_playerLayer))
+        if (state == State.Attention && _spotRange.IsTouchingLayers(_playerLayer))
         {
             StopAllCoroutines();
             _attentionMark.SetActive(false);
-            _state = State.Patrolling;
+            state = State.Patrolling;
         }
 
         if (_rigidbody2D.velocity.x <= 0.05f && _rigidbody2D.velocity.x >= -0.05f)
@@ -161,7 +161,7 @@ public class EnemyCombatMelee : MonoBehaviour
                 return;
             }
 
-            _state = State.Combat;
+            state = State.Combat;
         }
     }
 
@@ -200,7 +200,7 @@ public class EnemyCombatMelee : MonoBehaviour
 
         if (!_spotRange.IsTouchingLayers(_playerLayer))
         {
-            _state = State.Attention;
+            state = State.Attention;
         }
     }
 
@@ -245,7 +245,7 @@ public class EnemyCombatMelee : MonoBehaviour
         _rigidbody2D.velocity = new Vector2(0, 0);
         yield return new WaitForSeconds(_attentionTime);
         _attentionMark.SetActive(false);
-        _state = State.Patrolling;
+        state = State.Patrolling;
     }
 
     public void PushBack(float horizontal, float vertical)

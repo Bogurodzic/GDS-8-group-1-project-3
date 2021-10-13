@@ -15,11 +15,25 @@ public class EnemyController : MonoBehaviour, ICharacter
 
     private int _currentHealth;
     private Collider2D _collider;
+    private EnemyCombatMelee _meleeController;
     
     void Start()
     {
         _currentHealth = _maxHealth;
         _collider = GetComponent<Collider2D>();
+    }
+
+    private bool EnemyIsMelee()
+    {
+        if (GetComponent<EnemyCombatMelee>() != null)
+        {
+            _meleeController = GetComponent<EnemyCombatMelee>();
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -37,7 +51,6 @@ public class EnemyController : MonoBehaviour, ICharacter
                 collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(1, 1) * _pushForce);
             }
         }
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -56,6 +69,11 @@ public class EnemyController : MonoBehaviour, ICharacter
         if (_currentHealth <= 0)
         {
             Die();
+        }
+
+        if (EnemyIsMelee())
+        {
+            _meleeController.state = EnemyCombatMelee.State.Combat;
         }
     }
 

@@ -7,26 +7,32 @@ public class PauseController : MonoBehaviour
 {
     [SerializeField] private GameObject _pauseMenu;
     [SerializeField] private Animator _crossfade;
+    [SerializeField] private GameObject _tutorial;
 
-    private bool gamePaused = false;
+    private bool _gamePaused = false;
 
     // Update is called once per frame
     void Update()
     {
-        if (!gamePaused)
+        if (!_gamePaused)
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 _pauseMenu.SetActive(true);
                 Time.timeScale = 0f;
-                gamePaused = true;
+                _gamePaused = true;
             }
         }
-        else if (gamePaused)
+        else if (_gamePaused)
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 Unpause();
+            }
+
+            if (_tutorial.activeSelf && Input.anyKeyDown)
+            {
+                _tutorial.SetActive(false);
             }
         }
     }
@@ -35,7 +41,7 @@ public class PauseController : MonoBehaviour
     {
         _pauseMenu.SetActive(false);
         Time.timeScale = 1f;
-        gamePaused = false;
+        _gamePaused = false;
     }
 
     public void QuitToMenu()
@@ -51,5 +57,15 @@ public class PauseController : MonoBehaviour
         yield return new WaitForSecondsRealtime(1f);
 
         SceneManager.LoadScene(0);
+    }
+
+    public void ReloadLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void ShowTutorial()
+    {
+        _tutorial.SetActive(true);
     }
 }

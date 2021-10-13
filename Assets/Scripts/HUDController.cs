@@ -9,6 +9,7 @@ public class HUDController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _hpText;
     [SerializeField] private TextMeshProUGUI _collectibleText;
     [SerializeField] private TextMeshProUGUI _readableObjText;
+    [SerializeField] private CanvasGroup _damageIndicator;
 
     [Space(10)]
     [SerializeField] private PlayerController _player;
@@ -31,6 +32,7 @@ public class HUDController : MonoBehaviour
         UpdateHPText();
         UpdateCollectibleText();
         UpdateReadableObjText();
+        DamageIndicator();
     }
 
     private void UpdateCollectibleText()
@@ -48,4 +50,21 @@ public class HUDController : MonoBehaviour
         _readableObjText.text = ReadableCount.value + "/" + _maxReadableCount;
     }
 
+    private void DamageIndicator()
+    {
+        if (_player.currentHealth > 4)
+        {
+            _damageIndicator.alpha = 0f;
+            return;
+        } 
+        else if (_player.currentHealth <= 4 && _player.currentHealth > 2)
+        {
+            _damageIndicator.alpha = 0.3f;
+            return;
+        }
+        else if (_player.currentHealth <= 2)
+        {
+            _damageIndicator.alpha = 0.6f;
+        }
+    }
 }
