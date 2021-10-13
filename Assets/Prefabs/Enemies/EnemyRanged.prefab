@@ -241,8 +241,8 @@ MonoBehaviour:
   _healthPickup: {fileID: 1778563846365517646, guid: 261c69bea67ec3144b8be0bf011a3ebd,
     type: 3}
   _rigidbody2D: {fileID: 2486829031149169406}
-  _healthPickupAmount: 3
-  _maxHealth: 15
+  _healthPickupAmount: 1
+  _maxHealth: 6
   _pushForce: 5
 --- !u!95 &2053602825
 Animator:

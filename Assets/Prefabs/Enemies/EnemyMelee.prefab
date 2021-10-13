@@ -105,7 +105,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5554350336333985686}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.66, y: 0, z: 0}
+  m_LocalPosition: {x: -0.595, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6396016169824847542}
@@ -265,8 +265,8 @@ MonoBehaviour:
   _healthPickup: {fileID: 1778563846365517646, guid: 261c69bea67ec3144b8be0bf011a3ebd,
     type: 3}
   _rigidbody2D: {fileID: 6396016169824847536}
-  _healthPickupAmount: 5
-  _maxHealth: 15
+  _healthPickupAmount: 1
+  _maxHealth: 8
   _pushForce: 5
 --- !u!95 &8809545556179391047
 Animator:
@@ -316,7 +316,7 @@ MonoBehaviour:
   _chaseSpeed: 3
   _attackDistance: 1
   _attackRange: 0.5
-  _damage: 5
+  _damage: 3
   _attentionTime: 2
   _horizontalPush: 800
   _verticalPush: 300
@@ -397,7 +397,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -2.6774263, y: 0.031343997}
+  m_Offset: {x: -2.843389, y: 0.031343997}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -408,5 +408,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 7.3857756, y: 1.0626879}
+  m_Size: {x: 7.05385, y: 1.0626879}
   m_EdgeRadius: 0
