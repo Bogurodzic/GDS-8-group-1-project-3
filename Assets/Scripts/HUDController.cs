@@ -45,7 +45,7 @@ public class HUDController : MonoBehaviour
 
     private void UpdateReadableObjText()
     {
-        _readableObjText.text = _playerColletibleController.readableCount + "/" + _maxReadableCount;
+        _readableObjText.text = ReadableCount.value + "/" + _maxReadableCount;
     }
 
 }

@@ -44,6 +44,7 @@ public class PlayerColletibleController : MonoBehaviour
                 if (collectibleInInventory.GetName() == collectibleOnMap.GetName())
                 {
                     Destroy(o);
+                    collectibleCount++;
                 }
             }
 

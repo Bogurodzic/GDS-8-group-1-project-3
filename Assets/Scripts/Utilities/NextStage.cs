@@ -19,6 +19,8 @@ public class NextStage : MonoBehaviour
         }
 
         StartCoroutine(LoadLevel(sceneName));
+
+        ReadableCount.value = 0;
     }
 
     private IEnumerator LoadLevel(string sceneName)
