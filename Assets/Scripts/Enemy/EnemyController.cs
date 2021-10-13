@@ -51,7 +51,6 @@ public class EnemyController : MonoBehaviour, ICharacter
                 collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(1, 1) * _pushForce);
             }
         }
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -76,7 +75,6 @@ public class EnemyController : MonoBehaviour, ICharacter
         {
             _meleeController.state = EnemyCombatMelee.State.Combat;
         }
-
     }
 
     public void Die()

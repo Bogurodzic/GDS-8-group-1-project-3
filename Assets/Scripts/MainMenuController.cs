@@ -8,6 +8,7 @@ public class MainMenuController : MonoBehaviour
 {
     [SerializeField] private NextStage _nextStage;
     [SerializeField] private Animator _crossfade;
+    [SerializeField] private Animator _storyScreen;
     [SerializeField] private GameObject _tutorialScreen;
 
     [SerializeField] private string _startText;
@@ -22,6 +23,7 @@ public class MainMenuController : MonoBehaviour
 
     private void Update()
     {
+
         if (_canStartGame)
         {
             if (Input.anyKeyDown)
@@ -60,7 +62,17 @@ public class MainMenuController : MonoBehaviour
 
         _fakeLoadingIcon.SetActive(false);
         _fakeLoadingText.text = _startText;
+        
+        while (!Input.anyKeyDown)
+        {
+            yield return null;
+        }
+        _storyScreen.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(0.5f);
+
         _canStartGame = true;
+
     }
 
     public void StartControlsMenu()
