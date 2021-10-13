@@ -14,7 +14,7 @@ public class PlayerColletibleController : MonoBehaviour
 
     public void Start()
     {
-        //LoadComponents();
+        RemoveCollectedItemsFromMap();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -31,14 +31,22 @@ public class PlayerColletibleController : MonoBehaviour
                 collectibleCount++;
                 _coinIsCollecting = false;
             }
-
-            
-
         }
     }
 
-    //private void LoadComponents()
-    //{
-    //    _playerInventory = GameObject.Find("PlayerInventory").GetComponent<PlayerInventory>();
-    //}
+    private void RemoveCollectedItemsFromMap()
+    {
+        foreach (var o in GameObject.FindGameObjectsWithTag("Coin"))
+        {
+            Collectible collectibleOnMap = o.GetComponent<Collectible>();
+            foreach (var collectibleInInventory in _playerInventory.GetCollectibles())
+            {
+                if (collectibleInInventory.GetName() == collectibleOnMap.GetName())
+                {
+                    Destroy(o);
+                }
+            }
+
+        }
+    }
 }
