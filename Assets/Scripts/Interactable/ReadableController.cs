@@ -36,7 +36,7 @@ public class ReadableController : MonoBehaviour
         {
             if (!isDiscovered)
             {
-                _player.readableCount++;
+                ReadableCount.value++;
             }
             isDiscovered = true;
             ShowInteract();
