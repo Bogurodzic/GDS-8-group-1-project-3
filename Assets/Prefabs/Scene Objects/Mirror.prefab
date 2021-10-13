@@ -221,7 +221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72333e8d54d8942d1af444eb1a7e71e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  respawnTimer: 5
+  respawnTimer: 2
   _audioController: {fileID: 1892736538}
 --- !u!82 &1892736539
 AudioSource:

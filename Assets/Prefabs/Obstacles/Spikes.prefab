@@ -287,8 +287,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc9d5d69d3e624a4b828ed04c27b84b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeInterval: 6
-  _damage: 1
+  _timeInterval: 3
+  _damage: 2
 --- !u!19719996 &1667763234655948935
 TilemapCollider2D:
   m_ObjectHideFlags: 0
