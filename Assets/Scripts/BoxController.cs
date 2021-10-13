@@ -3,26 +3,50 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoxController : MonoBehaviour
+public class BoxController : MonoBehaviour, ICharacter
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private BoxCollider2D _boxCollider2D;
+    [SerializeField] private Rigidbody2D _rigidbody;
+    [SerializeField] private Transform _groundPoint;
+    [SerializeField] private LayerMask _groundLayers;
+    [SerializeField] private GameObject _killingArea;
+    [SerializeField] private Animator _animator;
+
+    [SerializeField] private bool _isBox = true;
+    [SerializeField] private float _maxHP = 6;
+
+    [SerializeField] private AudioController _audioController;
+    private float _currentHP;
+
+    private void Start()
     {
-        
+        _currentHP = _maxHP;    
     }
 
-    // Update is called once per frame
+    private void FixedUpdate()
+    {
+        FallDown();
+    }
+
     void Update()
     {
-        
+        if (_rigidbody.velocity.y < -0.1f && _killingArea != null)
+        {
+            _killingArea.SetActive(true);
+        }
+        else if (_killingArea != null)
+        {
+            _killingArea.SetActive(false);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Sun"))
         {
+            float endOfSunPosition = _boxCollider2D.bounds.min.y;
             Debug.Log("Sun enter");
-            other.gameObject.GetComponent<SunController>().SetNewPosition(transform.position.y);
+            other.gameObject.GetComponent<SunController>().SetNewPosition(endOfSunPosition);
         }
     }
 
@@ -32,6 +56,57 @@ public class BoxController : MonoBehaviour
         {
             Debug.Log("Sun exit");
             other.gameObject.GetComponent<SunController>().ResetPosition();
+        }
+    }
+
+    public void TakeDamage (int _damage)
+    {
+        if (_isBox)
+        {
+            _audioController.mirrorCrashedByPlayer();
+        }
+        else
+        {
+            _audioController.boxCrashedByPlayer();
+        }
+
+        _currentHP -= _damage;
+
+
+        if (_currentHP <= 0)
+        {
+            _animator.SetTrigger("Destroy");
+            if (!_isBox)
+            {
+                _audioController.mirrorCrashed();
+            }
+            Invoke("Die", _animator.GetCurrentAnimatorClipInfo(0).Length);
+        }
+    }
+
+    public void Die()
+    {
+
+        if (GetComponent<DestroyingObjectController>() == null)
+        {
+            return;
+        }
+
+        GetComponent<DestroyingObjectController>().StartRespawningObject();
+        _animator.SetTrigger("Return");
+        _currentHP = _maxHP;
+    }
+
+    void FallDown()
+    {
+        RaycastHit2D groundCheck = Physics2D.BoxCast(_groundPoint.position, new Vector2(_boxCollider2D.bounds.size.x, _boxCollider2D.bounds.size.y / 2), 0f, Vector2.down, _groundLayers);
+        if (groundCheck)
+        {
+            _rigidbody.velocity = new Vector2(0f, _rigidbody.velocity.y);
+            if (_isBox)
+            {
+               // _audioController.boxFallingDown();
+            }
         }
     }
 }

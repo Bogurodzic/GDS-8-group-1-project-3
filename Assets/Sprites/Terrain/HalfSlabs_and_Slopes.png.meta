@@ -1,0 +1,1613 @@
+fileFormatVersion: 2
+guid: 614a3c00532a17444b18d2ce545aba6f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 629460512863352597
+    second: HalfSlabs_and_Slopes_0
+  - first:
+      213: 8554891363999522305
+    second: HalfSlabs_and_Slopes_1
+  - first:
+      213: -3233238967755623507
+    second: HalfSlabs_and_Slopes_2
+  - first:
+      213: 4160399706253269801
+    second: HalfSlabs_and_Slopes_3
+  - first:
+      213: -8128813975166162610
+    second: HalfSlabs_and_Slopes_4
+  - first:
+      213: 3028914360679616586
+    second: HalfSlabs_and_Slopes_5
+  - first:
+      213: 3656120770192353562
+    second: HalfSlabs_and_Slopes_6
+  - first:
+      213: -9069724120512872682
+    second: HalfSlabs_and_Slopes_7
+  - first:
+      213: 5664823710801314047
+    second: HalfSlabs_and_Slopes_8
+  - first:
+      213: 8799376593430622196
+    second: HalfSlabs_and_Slopes_9
+  - first:
+      213: 232215824925659624
+    second: HalfSlabs_and_Slopes_10
+  - first:
+      213: -5148711546577293540
+    second: HalfSlabs_and_Slopes_11
+  - first:
+      213: 8540739646840537044
+    second: HalfSlabs_and_Slopes_12
+  - first:
+      213: 8519828202208253716
+    second: HalfSlabs_and_Slopes_13
+  - first:
+      213: -7895322065881404711
+    second: HalfSlabs_and_Slopes_14
+  - first:
+      213: 1379060091437632606
+    second: HalfSlabs_and_Slopes_15
+  - first:
+      213: -5194556178840696747
+    second: HalfSlabs_and_Slopes_16
+  - first:
+      213: -5582425079957645144
+    second: HalfSlabs_and_Slopes_17
+  - first:
+      213: -4882328526352341641
+    second: HalfSlabs_and_Slopes_18
+  - first:
+      213: -4109485546250291568
+    second: HalfSlabs_and_Slopes_19
+  - first:
+      213: 8775807888605537098
+    second: HalfSlabs_and_Slopes_20
+  - first:
+      213: -4280395107159852020
+    second: HalfSlabs_and_Slopes_21
+  - first:
+      213: 1792550820465641775
+    second: HalfSlabs_and_Slopes_22
+  - first:
+      213: 1131088784281171284
+    second: HalfSlabs_and_Slopes_23
+  - first:
+      213: 7414401262071400838
+    second: HalfSlabs_and_Slopes_24
+  - first:
+      213: 7727446507039374337
+    second: HalfSlabs_and_Slopes_25
+  - first:
+      213: 6258502542478886451
+    second: HalfSlabs_and_Slopes_26
+  - first:
+      213: 6175128088302756847
+    second: HalfSlabs_and_Slopes_27
+  - first:
+      213: -7218274028762359260
+    second: HalfSlabs_and_Slopes_28
+  - first:
+      213: 7086205142301767054
+    second: HalfSlabs_and_Slopes_29
+  - first:
+      213: 4077039857228947205
+    second: HalfSlabs_and_Slopes_30
+  - first:
+      213: 4513019900357565634
+    second: HalfSlabs_and_Slopes_31
+  - first:
+      213: -1819580295190098719
+    second: HalfSlabs_and_Slopes_32
+  - first:
+      213: 5771650627491642463
+    second: HalfSlabs_and_Slopes_33
+  - first:
+      213: 6359408220283238928
+    second: HalfSlabs_and_Slopes_34
+  - first:
+      213: -3307060850863963183
+    second: HalfSlabs_and_Slopes_35
+  - first:
+      213: 5517204379220536345
+    second: HalfSlabs_and_Slopes_36
+  - first:
+      213: 4408578072643494714
+    second: HalfSlabs_and_Slopes_37
+  - first:
+      213: 6509616225821769449
+    second: HalfSlabs_and_Slopes_38
+  - first:
+      213: -4255792856153531442
+    second: HalfSlabs_and_Slopes_39
+  - first:
+      213: 3303062710031064793
+    second: HalfSlabs_and_Slopes_40
+  - first:
+      213: -4800475691121917683
+    second: HalfSlabs_and_Slopes_41
+  - first:
+      213: 1978451312623842109
+    second: HalfSlabs_and_Slopes_42
+  - first:
+      213: 4443687030708108535
+    second: HalfSlabs_and_Slopes_43
+  - first:
+      213: 2019279423406993481
+    second: HalfSlabs_and_Slopes_44
+  - first:
+      213: 2928785560414793527
+    second: HalfSlabs_and_Slopes_45
+  - first:
+      213: 7134184820496405040
+    second: HalfSlabs_and_Slopes_46
+  - first:
+      213: 1929686844119936860
+    second: HalfSlabs_and_Slopes_47
+  - first:
+      213: -8893879418128899048
+    second: HalfSlabs_and_Slopes_48
+  - first:
+      213: -1731990340862874817
+    second: HalfSlabs_and_Slopes_49
+  - first:
+      213: 8128642384955196329
+    second: HalfSlabs_and_Slopes_50
+  - first:
+      213: -7890773266886654417
+    second: HalfSlabs_and_Slopes_51
+  - first:
+      213: -8978290826855055731
+    second: HalfSlabs_and_Slopes_52
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 96
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: HalfSlabs_and_Slopes_0
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 180
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -9, y: 15}
+        - {x: -15, y: 15}
+        - {x: -15, y: -15}
+        - {x: 15, y: -15}
+        - {x: 15, y: 1}
+        - {x: -4, y: 10}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 517fa5d500b4cb800800000000000000
+      internalID: 629460512863352597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HalfSlabs_and_Slopes_1
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 180
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -4, y: -2}
+        - {x: -7, y: 1}
+        - {x: -15, y: 3}
+        - {x: -15, y: -15}
+        - {x: 15, y: -15}
+        - {x: 11, y: -9}
+        - {x: 3, y: -4}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10e9f3bae5419b670800000000000000
+      internalID: 8554891363999522305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HalfSlabs_and_Slopes_2
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 180
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -6, y: 12}
+        - {x: -15, y: 15}
+        - {x: -15, y: -15}
+        - {x: 15, y: -15}
+        - {x: 15, y: 2}
+        - {x: 5, y: 7}
+      tessellationDetail: 0
+      bones: []
+      spriteID: da3b9fc0a4a3123d0800000000000000
+      internalID: -3233238967755623507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HalfSlabs_and_Slopes_3
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 180
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -9, y: -1}
+        - {x: -15, y: 3}
+        - {x: -15, y: -15}
+        - {x: 15, y: -15}
+        - {x: 15, y: -11}
+        - {x: 5, y: -8}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92b9dd67d75bcb930800000000000000
+      internalID: 4160399706253269801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HalfSlabs_and_Slopes_4
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 180
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -15, y: 15}
+        - {x: -15, y: -15}
+        - {x: 15, y: -15}
+        - {x: 7, y: -5}
+        - {x: -8, y: 9}
+      tessellationDetail: 0
+      bones: []
+      spriteID: e496df402c6a03f80800000000000000
+      internalID: -8128813975166162610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HalfSlabs_and_Slopes_5
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 180
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -15, y: 15}
+        - {x: -15, y: -15}
+        - {x: -7, y: -10}
+        - {x: 10, y: 8}
+        - {x: 15, y: 15}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a40536b209dd80a20800000000000000
+      internalID: 3028914360679616586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HalfSlabs_and_Slopes_6
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 180
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -15, y: 15}
+        - {x: -15, y: -15}
+        - {x: -8, y: -8}
+        - {x: 15, y: 1}
+        - {x: 15, y: 15}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a192e3338762db230800000000000000
+      internalID: 3656120770192353562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HalfSlabs_and_Slopes_7
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 180
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -15, y: 15}
+        - {x: -15, y: 3}
+        - {x: 1, y: 8}
+        - {x: 15, y: 10}
+        - {x: 15, y: 15}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61fb90247fdd12280800000000000000
+      internalID: -9069724120512872682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HalfSlabs_and_Slopes_8
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 180
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -15, y: 15}
+        - {x: -15, y: -15}
+        - {x: 2, y: -12}
+        - {x: 15, y: -4}
+        - {x: 15, y: 15}
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff0c585c62f7d9e40800000000000000
+      internalID: 5664823710801314047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HalfSlabs_and_Slopes_9
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 180
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -15, y: 15}
+        - {x: -15, y: -3}
+        - {x: -11, y: 1}
+        - {x: 2, y: 6}
+        - {x: 15, y: 10}
+        - {x: 15, y: 15}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ffa150046aad1a70800000000000000
+      internalID: 8799376593430622196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HalfSlabs_and_Slopes_10
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 180
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -15, y: 15}
+        - {x: -15, y: -15}
+        - {x: -7, y: -10}
+        - {x: 2, y: -1}
+        - {x: 15, y: 9}
+        - {x: 15, y: 15}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e11bebff0ff83300800000000000000
+      internalID: 232215824925659624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HalfSlabs_and_Slopes_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 150
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -15, y: 15}
+        - {x: -15, y: -15}
+        - {x: 15, y: -15}
+        - {x: 9, y: -8}
+        - {x: -12, y: 12}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1fee4f902a1c88b0800000000000000
+      internalID: -5148711546577293540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HalfSlabs_and_Slopes_12
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 150
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -15, y: 15}
+        - {x: -15, y: -15}
+        - {x: 15, y: -15}
+        - {x: 15, y: 1}
+        - {x: -5, y: 10}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4df7601457dc68670800000000000000
+      internalID: 8540739646840537044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HalfSlabs_and_Slopes_13
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 150
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -9, y: 1}
+        - {x: -15, y: 1}
+        - {x: -15, y: -15}
+        - {x: 15, y: -15}
+        - {x: 15, y: -11}
+        - {x: 2, y: -6}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4175af32c928c3670800000000000000
+      internalID: 8519828202208253716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HalfSlabs_and_Slopes_14
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 150
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9dae5db896e2e6290800000000000000
+      internalID: -7895322065881404711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HalfSlabs_and_Slopes_15
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 150
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5cce0ab8d7632310800000000000000
+      internalID: 1379060091437632606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HalfSlabs_and_Slopes_16
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 150
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 558c3626daa39e7b0800000000000000
+      internalID: -5194556178840696747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HalfSlabs_and_Slopes_17
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 150
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -15, y: 15}
+        - {x: -15, y: -15}
+        - {x: -7, y: -5}
+        - {x: 15, y: 10}
+        - {x: 15, y: 15}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a894eb77fd3782b0800000000000000
+      internalID: -5582425079957645144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HalfSlabs_and_Slopes_18
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 150
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -15, y: 15}
+        - {x: -15, y: -15}
+        - {x: -5, y: -10}
+        - {x: 15, y: -2}
+        - {x: 15, y: 15}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 775230ea21c7e3cb0800000000000000
+      internalID: -4882328526352341641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HalfSlabs_and_Slopes_19
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 150
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -15, y: 15}
+        - {x: -15, y: -3}
+        - {x: -7, y: 1}
+        - {x: 8, y: 6}
+        - {x: 15, y: 10}
+        - {x: 15, y: 15}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 096362e2bac28f6c0800000000000000
+      internalID: -4109485546250291568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HalfSlabs_and_Slopes_20
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 150
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -7, y: 15}
+        - {x: -15, y: 15}
+        - {x: -15, y: -15}
+        - {x: 15, y: -15}
+        - {x: 15, y: 3}
+        - {x: 10, y: 6}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a43676947cee9c970800000000000000
+      internalID: 8775807888605537098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HalfSlabs_and_Slopes_21
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 150
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -15, y: 5}
+        - {x: -15, y: -15}
+        - {x: 15, y: -15}
+        - {x: 12, y: -11}
+        - {x: -8, y: 2}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0cba6b145bf894c0800000000000000
+      internalID: -4280395107159852020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HalfSlabs_and_Slopes_22
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 150
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -15, y: 15}
+        - {x: -15, y: -15}
+        - {x: 15, y: -15}
+        - {x: 9, y: -7}
+        - {x: -8, y: 12}
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2980bf497b60e810800000000000000
+      internalID: 1792550820465641775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HalfSlabs_and_Slopes_23
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 90
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 3, y: -15}
+        - {x: 3, y: 15}
+        - {x: -15, y: 15}
+        - {x: -15, y: -15}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 455f18ca14f62bf00800000000000000
+      internalID: 1131088784281171284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HalfSlabs_and_Slopes_24
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 90
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -3, y: 15}
+        - {x: -3, y: -15}
+        - {x: 15, y: -15}
+        - {x: 15, y: 15}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68949f72aae35e660800000000000000
+      internalID: 7414401262071400838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HalfSlabs_and_Slopes_25
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 90
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 1, y: -15}
+        - {x: 1, y: 15}
+        - {x: -15, y: 15}
+        - {x: -15, y: -15}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10c3ae808a76d3b60800000000000000
+      internalID: 7727446507039374337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HalfSlabs_and_Slopes_26
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 90
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -1, y: 15}
+        - {x: -1, y: -15}
+        - {x: 15, y: -15}
+        - {x: 15, y: 15}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 336455647eaaad650800000000000000
+      internalID: 6258502542478886451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HalfSlabs_and_Slopes_27
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 60
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 3, y: -15}
+        - {x: 3, y: 15}
+        - {x: -15, y: 15}
+        - {x: -15, y: -15}
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe3a2d1774672b550800000000000000
+      internalID: 6175128088302756847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HalfSlabs_and_Slopes_28
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 60
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -3, y: 15}
+        - {x: -3, y: -15}
+        - {x: 15, y: -15}
+        - {x: 15, y: 15}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42a1130d30a83db90800000000000000
+      internalID: -7218274028762359260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HalfSlabs_and_Slopes_29
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 60
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -15, y: 15}
+        - {x: -15, y: -15}
+        - {x: -6, y: -11}
+        - {x: 15, y: 11}
+        - {x: 15, y: 15}
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8571785802475260800000000000000
+      internalID: 7086205142301767054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HalfSlabs_and_Slopes_30
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 60
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -15, y: 15}
+        - {x: -15, y: -15}
+        - {x: -10, y: -11}
+        - {x: 15, y: 11}
+        - {x: 15, y: 15}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50f9d39262e849830800000000000000
+      internalID: 4077039857228947205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HalfSlabs_and_Slopes_31
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 60
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 1, y: -15}
+        - {x: 1, y: 15}
+        - {x: -15, y: 15}
+        - {x: -15, y: -15}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ccd41930b771ae30800000000000000
+      internalID: 4513019900357565634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HalfSlabs_and_Slopes_32
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 60
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -1, y: 15}
+        - {x: -1, y: -15}
+        - {x: 15, y: -15}
+        - {x: 15, y: 15}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ecc4e0bc5d8fb6e0800000000000000
+      internalID: -1819580295190098719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HalfSlabs_and_Slopes_33
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 30
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -15, y: 15}
+        - {x: -15, y: -1}
+        - {x: 15, y: -1}
+        - {x: 15, y: 15}
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5cbc4b8aa5091050800000000000000
+      internalID: 5771650627491642463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HalfSlabs_and_Slopes_34
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 30
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -15, y: 15}
+        - {x: -15, y: -1}
+        - {x: 15, y: -1}
+        - {x: 15, y: 15}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01a7eaf2518214850800000000000000
+      internalID: 6359408220283238928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HalfSlabs_and_Slopes_35
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 30
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 3, y: -15}
+        - {x: 3, y: 15}
+        - {x: -15, y: 15}
+        - {x: -15, y: -15}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d307ad7da5fa12d0800000000000000
+      internalID: -3307060850863963183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HalfSlabs_and_Slopes_36
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 30
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -3, y: 15}
+        - {x: -3, y: -15}
+        - {x: 15, y: -15}
+        - {x: 15, y: 15}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91c6ba8c62c019c40800000000000000
+      internalID: 5517204379220536345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HalfSlabs_and_Slopes_37
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 30
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -15, y: 15}
+        - {x: -15, y: -1}
+        - {x: 15, y: -1}
+        - {x: 15, y: 15}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a33ed70466a6e2d30800000000000000
+      internalID: 4408578072643494714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HalfSlabs_and_Slopes_38
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 30
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -15, y: 15}
+        - {x: -15, y: -1}
+        - {x: 15, y: -1}
+        - {x: 15, y: 15}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9eeb93cc77dc65a50800000000000000
+      internalID: 6509616225821769449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HalfSlabs_and_Slopes_39
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 30
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -15, y: 15}
+        - {x: -15, y: -15}
+        - {x: -8, y: -10}
+        - {x: 15, y: 1}
+        - {x: 15, y: 15}
+      tessellationDetail: 0
+      bones: []
+      spriteID: ecbd25b02f260f4c0800000000000000
+      internalID: -4255792856153531442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HalfSlabs_and_Slopes_40
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 30
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -15, y: 15}
+        - {x: -15, y: 1}
+        - {x: -8, y: 5}
+        - {x: 14, y: 11}
+        - {x: 15, y: 13}
+        - {x: 15, y: 15}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9de9d3ec806d6dd20800000000000000
+      internalID: 3303062710031064793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HalfSlabs_and_Slopes_41
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 30
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 1, y: -15}
+        - {x: 1, y: 15}
+        - {x: -15, y: 15}
+        - {x: -15, y: -15}
+      tessellationDetail: 0
+      bones: []
+      spriteID: d01c7cdfac8416db0800000000000000
+      internalID: -4800475691121917683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HalfSlabs_and_Slopes_42
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 30
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -1, y: 15}
+        - {x: -1, y: -15}
+        - {x: 15, y: -15}
+        - {x: 15, y: 15}
+      tessellationDetail: 0
+      bones: []
+      spriteID: d33795e8cfed47b10800000000000000
+      internalID: 1978451312623842109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HalfSlabs_and_Slopes_43
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 0
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -15, y: -15}
+        - {x: 15, y: -15}
+        - {x: 15, y: 1}
+        - {x: -15, y: 1}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7fcfd5e8fc52bad30800000000000000
+      internalID: 4443687030708108535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HalfSlabs_and_Slopes_44
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 0
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -15, y: -15}
+        - {x: 15, y: -15}
+        - {x: 15, y: 1}
+        - {x: -15, y: 1}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 940fd6edfebe50c10800000000000000
+      internalID: 2019279423406993481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HalfSlabs_and_Slopes_45
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 0
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 3, y: -15}
+        - {x: 3, y: 15}
+        - {x: -15, y: 15}
+        - {x: -15, y: -15}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73f21d723f225a820800000000000000
+      internalID: 2928785560414793527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HalfSlabs_and_Slopes_46
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 0
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -3, y: 15}
+        - {x: -3, y: -15}
+        - {x: 15, y: -15}
+        - {x: 15, y: 15}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0321ca3bb47b10360800000000000000
+      internalID: 7134184820496405040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HalfSlabs_and_Slopes_47
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -15, y: -15}
+        - {x: 15, y: -15}
+        - {x: 15, y: 1}
+        - {x: -15, y: 1}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5f6387f5ff97ca10800000000000000
+      internalID: 1929686844119936860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HalfSlabs_and_Slopes_48
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 0
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -15, y: -15}
+        - {x: 15, y: -15}
+        - {x: 15, y: 1}
+        - {x: -15, y: 1}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 814e44f7ac7929480800000000000000
+      internalID: -8893879418128899048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HalfSlabs_and_Slopes_49
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 0
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -15, y: 15}
+        - {x: -15, y: -15}
+        - {x: -6, y: -10}
+        - {x: 14, y: 7}
+        - {x: 15, y: 15}
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3be57226fbb6f7e0800000000000000
+      internalID: -1731990340862874817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HalfSlabs_and_Slopes_50
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 0
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -15, y: 15}
+        - {x: -15, y: 5}
+        - {x: -2, y: 8}
+        - {x: 15, y: 11}
+        - {x: 15, y: 15}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a340758e2dbec070800000000000000
+      internalID: 8128642384955196329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HalfSlabs_and_Slopes_51
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 0
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 1, y: -15}
+        - {x: 1, y: 15}
+        - {x: -15, y: 15}
+        - {x: -15, y: -15}
+      tessellationDetail: 0
+      bones: []
+      spriteID: f26821855875e7290800000000000000
+      internalID: -7890773266886654417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HalfSlabs_and_Slopes_52
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 0
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -1, y: 15}
+        - {x: -1, y: -15}
+        - {x: 15, y: -15}
+        - {x: 15, y: 15}
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8ef72fdf04b66380800000000000000
+      internalID: -8978290826855055731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

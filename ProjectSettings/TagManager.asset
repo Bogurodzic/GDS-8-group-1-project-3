@@ -6,6 +6,13 @@ TagManager:
   tags:
   - Sun
   - Box
+  - Coin
+  - MaximumEnemyDistance
+  - Mirror
+  - DoorButton
+  - BoxRespawn
+  - NextStage
+  - Door
   layers:
   - Default
   - TransparentFX
@@ -16,16 +23,16 @@ TagManager:
   - 
   - 
   - Platform
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Box
+  - Bounds
+  - Player
+  - Enemy
+  - Sunlight
+  - Pickup
+  - Bullet
+  - DoorButton
+  - Spikes
+  - Sight
   - 
   - 
   - 
