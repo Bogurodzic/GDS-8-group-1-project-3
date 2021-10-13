@@ -61,7 +61,15 @@ public class PauseController : MonoBehaviour
 
     public void ReloadLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Time.timeScale = 1f;
+        _pauseMenu.SetActive(false);
+        if (GameObject.FindGameObjectWithTag("Player"))
+        {
+            Destroy(GameObject.FindGameObjectWithTag("Player"));
+        }
+
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.name);
     }
 
     public void ShowTutorial()
